@@ -16,5 +16,14 @@ Our primary focus will be on predictive modeling, predictive analysis, and **sup
 - Responses are typically denoted as $y$($\textbf{y}$,$\textbf{Y}$), or $t$($\textbf{t}$,$\textbf{T}$).
 - The relationship is typically denoted as $f(\textbf{x})$.
 	- Note that we cannot say $y=f(\textbf{x})$ since the relationships learned from data is *always* an approximate. That is $y \approx f(\textbf{x})$. 
-	- However, we can account for the error by writing $y=f(\textbf{x})+\text{error}$. The error is sometimes called the **loss function**
-All models have **parameters** (or **coefficients**) we need to learn as part of the model **fitting**, **training**, or **building** process. We can figure out the parameters by **minimizing the model error**. Since the outputs guide/**supervise** t
+	- However, we can account for the error by writing $y=f(\textbf{x})+\text{error}$. The error is sometimes called the **loss function**.
+All models have **parameters** (or **coefficients**) we need to learn as part of the model **fitting**, **training**, or **building** process. We can figure out the parameters by **minimizing the model error**. Since the outputs guide/**supervise** the learning of the unknown model parameters, we called this approach **supervised learning**.
+
+## Loss functions
+Loss functions are related to probability distributions; thus, we will study the probability distributions behind popular loss functions. Understanding the models **probabilistically** will allow us to understand more about the **data generating process**
+
+## Types of supervised learning based on response type
+- If the responses are continuous (e.g., predicting sale price of house, stock price, or temperature), we use a **regression**.
+- If the responses are discrete or categorical, (e.g., predict if the stock will crash below threshold, presence of snow, or whether mortgage will default), we use **classification**.
+	- **Binary classification** is when we have 2 possible classes. E.g., True/False, Yes/No, etc.
+	- **Multiclass classification** is when we have 3 or more possible classes. E.g., Which of the
