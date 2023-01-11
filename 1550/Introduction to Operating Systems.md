@@ -76,7 +76,7 @@ For sake of simplicity, we begin our discussion with computers with limited reso
 4. After the war, the military took charge in developing electronic computers in national research labs. There, many academics saw the potential of computers in research, and built computers which could be programmed (by manipulating physical wires).
 5. In the 40/50s, the **Von Neumann architecture** is proposed, and we are introduced to computers which can execute code and manipulate data. These computers were programmable in machine language.
 6. As hardware became faster, programs were developed to encode a programming language into machine code. Later, **high-level programming languages** were developed.
-
+1960s:
 In the early days, computers were large and extremely expensive (more than the salaries of its users). Thus, the computer's time was more important than the user's time. Therefore, many large institution gave *time* to researchers and billed them for the time used (time-sharing). It was crucial to make sure that the computer was running constantly (to keep costs down). Thus, it was crucial to make sure our programs ran as fast as possible. Input/Output was unheard of; users would program/debug on paper (as it was extremely expensive to spend time programming directly on a computer) using FORTRAN, COBOL, etc.. Programs would then be transferred on a punchcards (each holding 40B).!
 ![](OS_History.png)
 We then use cheaper computers to digitize our punch card into magnetic tape. Then we use the tape on our system, which produces an output tape. Our output tape is then brought to another computer and printed (physically) on paper.
@@ -85,8 +85,20 @@ Extreme specialization of computers. Big Idea: our time is less important than t
 
 System tape contains compiler and some rudimentary billing software. This is our first notion of an operating system.
 
-The presence of the main and auxiliary computers (I/O) fills up space. IBM realizes that this is a barrier for small institution. They create a set of 3 computers that is fundamentally the same.
 
-During this
+
+During this time, architecture and instruction sets are constantly changing as researchers are figuring out to making computer faster. Developers are programming in assembly language (as compilers waste time). Thus, they were not compatible with each other.
+
+The presence of the main and auxiliary computers (I/O) fills up space. IBM realizes that this is a barrier for small institution. They create a set of 3 computers that is fundamentally the same. The 3 machine have the same architecture (but with difference performace). Now, we have compatibility. This drives adoption of computers and standardization.
+
+
+
+Eventually, computers become fast enough that one person running one program does not maximize the resource use.
+
+MIT produces an opearting system which allows many users to submit their programs (using terminals/IO) --> Bell Labs.
+
+Development runs poorly --> Bell Labs quits.
+
+
 
 Later, we will see the minituraization of computers with the invention of transistors.
