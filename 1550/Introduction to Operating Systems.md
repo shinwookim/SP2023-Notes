@@ -71,9 +71,8 @@ If missing the deadline is catastrophic, we call it a **hard real-time system**.
 For sake of simplicity, we begin our discussion with computers with limited resources...the computers of the past. 
 1. At first, calculation was done by human calculators, often female manual labor workers.
 2. During World War II, mechanical computers were invented to break code (encryption)
-3. Towards the end of the war, electronic computers were developed. These early, primitive computers were single purpose computers. They could do one thing, and were not 'programmable'.
+3. Towards the end of the war, electronic computers were developed. These early, primitive computers were *single purpose* (computation) computers. They could do one thing, and were not 'programmable'.
 4. After the war, the military took charge in developing electronic computers in national research labs. There, many academics saw the potential of computers in research, and built computers which could be programmed (by manipulating physical wires).
-5. In the 40/50s, the Von Neumann architecture is proposed, and we are introduced to computers which can execute code and manipulate data. These computers were programmable in machine language.
-6. As hardware became faster, programs were developed to encode a programming language into machine code. Later, high level programming languages were developed.
-
-In the early days, computers were huge and expensive.
+5. In the 40/50s, the **Von Neumann architecture** is proposed, and we are introduced to computers which can execute code and manipulate data. These computers were programmable in machine language.
+6. As hardware became faster, programs were developed to encode a programming language into machine code. Later, **high-level programming languages** were developed.
+In the early days, computers were large and extremely expensive (more than the salaries of its users). Thus, the computer's time was more important than
