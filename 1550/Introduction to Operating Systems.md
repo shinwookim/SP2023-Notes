@@ -161,4 +161,6 @@ Anything that the OS is using, cannot be used by our desired programs.
 That is, the OS is an overhead. However, it is necessary to manage resources, and abstract details.
 Thus, the OS is a layer/intermediatry between the program (requestor) and the resources (request).
 
+The system calls from 447 was for input/output/management of the process (terminate)/system-level randomness.
+
 ![](System%20Call.png)
