@@ -134,4 +134,12 @@ native word size (e.g., Nintendo was an 8-bit system, 64 bit CPU)- most data tha
 Assuming 32 bit CPU: we have a 32 bit address.
 Space: Enumeration of all possible address? `0000000....0000`, `000000...000001`,...,`1111...111111`. approx 4.2 billion addresses.
 
-Most systems are byte-addressable. (We can only talk about addresses in terms of multiple of a byte). --> 4.2 Billin bytes of addressable memory --> 4 GB of RAM at max.
+Most systems are byte-addressable. (We can only talk about addresses in terms of multiple of a byte). --> 4.2 Billin bytes of addressable memory --> 4 GB of RAM at max. (That is our address apce)
+
+We promise our process that all 4GB will be the process's or not yet the process's. However this promise cannot be false.
+
+However, the process will never be able to generate an address that is the code/data of another program, because we are promised the enumeration of all memory.
+
+This is what gives the illusion of exclusive acccess.
+
+Now, the same address can hold different values (for diffent program). The addresses for programs is not the actual address. The OS provides this abstraction.
