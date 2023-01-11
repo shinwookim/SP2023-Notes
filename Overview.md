@@ -39,4 +39,23 @@ There are other types of learning paradigms:
 - Deep Learning
 - Reinforcement Learning
 
-We will look at **unsupervised learning** (also called **data discovery**). Here, we observe variables without distinction between input and responses with the goal of identifying interesting patterns in the da
+We will look at **unsupervised learning** (also called **data discovery**). Here, we observe variables without distinction between input and responses with the goal of identifying interesting patterns in the data. For instance, we might want to find a relationship between the variables, or observations. This paradigm is useful in high-dimensional situation (using principle component analysis). Specifically, we wil use **Cluster analysis** to discover patterns.
+
+# Course Layout
+1. Applied Machine Learning
+	1. Performance metrics
+	2. Overfitting
+	3. Resampling methods
+	4. Model selection
+2. Distribution Fitting
+	1. Descriptive statistics
+	2. Likelihood functions
+	3. Optimization
+	4. Bayesian statistics
+4. Supervised Learning
+	1. Derivation of how models are fit and how their assumptions impact performace
+5. Unsupervised Learning
+	1. K-means
+	2. Hierarchical clustering
+	3. Principle Component Analysis
+Due to time, we cannot cover all types of supervised learning methods and models. Our focus will primarily be on neural networks and tree-based methods (CART decision tree, Bagged trees, Random forest, Boosted trees, and XGBoost). But, we must first build up our understanding from fundamental **linear models** and **generalized linear models** before tackling them.
