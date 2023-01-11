@@ -8,19 +8,7 @@
         "type": "tabs",
         "children": [
           {
-            "id": "d4cefca2b3d7c946",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "1675/Overview.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "fa8cc01d112c076b",
+            "id": "8a49c856a86c16fe",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -30,19 +18,8 @@
                 "source": false
               }
             }
-          },
-          {
-            "id": "8a49c856a86c16fe",
-            "type": "leaf",
-            "state": {
-              "type": "image",
-              "state": {
-                "file": "1520/WWW.png"
-              }
-            }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "vertical"
@@ -92,7 +69,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "ffa1ee54606385b1",
@@ -108,7 +86,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "1520/WWW.png",
+                "file": "1550/Introduction to Operating Systems.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -125,7 +103,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "1520/WWW.png",
+                "file": "1550/Introduction to Operating Systems.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -148,7 +126,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "1520/WWW.png"
+                "file": "1550/Introduction to Operating Systems.md"
               }
             }
           }
@@ -157,7 +135,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -171,14 +150,14 @@
   },
   "active": "8a49c856a86c16fe",
   "lastOpenFiles": [
-    "1520/Course Introduction.md",
-    "1502/Introduction.md",
+    "1675/Overview.md",
     "1550/Introduction to Operating Systems.md",
-    "1550/OS_History.png",
-    "1520/WWW.png",
-    "1555/Overview of Database Management Systems.md",
     "1555/DBMS.png",
     "1675/Intro to Regression.md",
-    "1675/Overview.md"
+    "1520/WWW.png",
+    "1520/Course Introduction.md",
+    "1502/Introduction.md",
+    "1550/OS_History.png",
+    "1555/Overview of Database Management Systems.md"
   ]
 }
