@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1550/Introduction to Operating Systems.md",
+                "file": "1675/Intro to Regression.md",
                 "mode": "source",
                 "source": false
               }
@@ -69,7 +69,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "ffa1ee54606385b1",
@@ -85,7 +86,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "1550/Introduction to Operating Systems.md",
+                "file": "1675/Intro to Regression.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +103,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "1550/Introduction to Operating Systems.md",
+                "file": "1675/Intro to Regression.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +126,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "1550/Introduction to Operating Systems.md"
+                "file": "1675/Intro to Regression.md"
               }
             }
           }
@@ -149,8 +150,8 @@
   },
   "active": "8bca97a759bad74f",
   "lastOpenFiles": [
-    "1550/System Call.png",
     "1550/Introduction to Operating Systems.md",
+    "1550/System Call.png",
     "1550/Memory Partition.png",
     "1550/Address Space.png",
     "1550/Image Protection.png",
