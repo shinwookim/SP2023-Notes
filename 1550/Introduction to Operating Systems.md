@@ -163,4 +163,7 @@ Thus, the OS is a layer/intermediatry between the program (requestor) and the re
 
 The system calls from 447 was for input/output/management of the process (terminate)/system-level randomness.
 
+A system call instruction is how a program asks an OS to do something on its behalf.
+System call is a control transfer (much like `jal`)
+
 ![](System%20Call.png)
