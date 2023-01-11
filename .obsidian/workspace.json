@@ -69,8 +69,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "ffa1ee54606385b1",
@@ -151,14 +150,14 @@
   "active": "8a49c856a86c16fe",
   "lastOpenFiles": [
     "1550/Memory Partition.png",
+    "1550/Address Space.png",
     "1550/Introduction to Operating Systems.md",
+    "1550/Image Protection.png",
+    "Pasted image 20230111100719.png",
     "Memory Part.png",
     "punchcard.png",
     "1675/Overview.md",
     "1555/DBMS.png",
-    "1675/Intro to Regression.md",
-    "1520/WWW.png",
-    "1520/Course Introduction.md",
-    "1502/Introduction.md"
+    "1675/Intro to Regression.md"
   ]
 }

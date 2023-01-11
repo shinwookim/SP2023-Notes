@@ -119,4 +119,13 @@ We can partition memory and give it to each job/process.
 
 One problem with his approach (**protection problem**) is that we need to ensure that programs that does not modify code/data of another program (whether intentionall or not). Now, we need to do extra management to ensure that programs are well behaved.
 ![](Memory%20Partition.png)
-One solution: remember bounds and ensure new memory addresses are within 
+One solution: remember bounds and ensure new memory addresses are within bounds
+![](Image%20Protection.png)
+Perfectly valid approach, but not what we do. We use virtualization. 
+
+Virtualization simulates exclusive access.
+
+***Space***: Technical term. Mathematical notion of enumeration of all possible.
+e.g., what is the space of all possible 4 character ascii strings? --> 7 bit --> $128^4$
+![](Address%20Space.png)
+ADDRRESS is just a number. And since all modern computers store number
