@@ -104,6 +104,13 @@ A few programmers at the lab developed a smaller version and called it **Unix**.
 
 Late  70s: we have personal computers. we can buy the parts and build one at home. Computers are affordable (but still expensive).
 
-Proposal: Cities and towns purchase computers, and users could plug in a terminal at home (much like a utility). Internet? --> this is why we study history (what's old is new)
+Proposal: Cities and towns purchase computers, and users could plug in a terminal at home (much like a utility). Internet? --> this is why we study history (what's old is new again)
+> Ontogeny Recapitulates Phylogeny
 
-This proposal is thrown out with development of personal computers: miniturization and mass production of computers
+This proposal is thrown out with development of personal computers (paradigm shift): miniturization and mass production of computers.
+
+---
+
+# Multiprogramming
+
+Eventually, the time of computer becomes cheaper (lower than )
