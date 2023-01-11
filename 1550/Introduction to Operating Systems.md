@@ -92,13 +92,18 @@ During this time, architecture and instruction sets are constantly changing as r
 The presence of the main and auxiliary computers (I/O) fills up space. IBM realizes that this is a barrier for small institution. They create a set of 3 computers that is fundamentally the same. The 3 machine have the same architecture (but with difference performace). Now, we have compatibility. This drives adoption of computers and standardization.
 
 
-
+Later, we will see the minituraization of computers with the invention of transistors.
+70s:
 Eventually, computers become fast enough that one person running one program does not maximize the resource use.
 
-MIT produces an opearting system which allows many users to submit their programs (using terminals/IO) --> Bell Labs.
+MIT produces an opearting system which allows many users to submit their programs (using terminals/IO) --> Bell Labs. (Multics)
 
 Development runs poorly --> Bell Labs quits.
 
+A few programmers at the lab developed a smaller version and called it **Unix**. It's written in **C**, also developed at Bell Labs.
 
+Late  70s: we have personal computers. we can buy the parts and build one at home. Computers are affordable (but still expensive).
 
-Later, we will see the minituraization of computers with the invention of transistors.
+Proposal: Cities and towns purchase computers, and users could plug in a terminal at home (much like a utility). Internet? --> this is why we study history (what's old is new)
+
+This proposal is thrown out with development of personal computers: miniturization and mass production of computers
