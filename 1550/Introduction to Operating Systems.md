@@ -147,3 +147,8 @@ Now, the same address can hold different values (for diffent program). The addre
 We have solved the protection problem.
 
 Notice that our address space in the diagram is not 4GB. (The OS steals some of it for itself).
+
+Why does the stack heap grow up, and stack down? all the otheer ones create problems. No space is wasted even when they collide.
+
+---
+# System Call
