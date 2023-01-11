@@ -16,8 +16,4 @@ There are some problem that take too long to solve. They are solvable problems, 
 
 We can find a route to visit 1000 cities within a distance: $1000!\approx 4\times 10^{2567}$ possible routes. Even if we assume that we are visiting each path in 1 nano-second, it will take us approximately $4\times 10^{2558}$ seconds, or $4\times 10^{2549}$ years (longer than the age of the universe).
 
-We will study 
-Do we have a faster algorithm?
-Maybe
-Maybe not
-Need to learn how to spot these kind of problems in advance
+We will study ways to spot these kinds of problems in advance and to show if there may be a faster algorithm.
