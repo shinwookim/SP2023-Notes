@@ -66,8 +66,9 @@ If missing the deadline is bad, we call it a **soft real-time system**. For inst
 
 If missing the deadline is catastrophic, we call it a **hard real-time system**. Examples of hard real-time systems include: Autopilot, Nuclear Power plant control, Health care devices. 
 
+---
 # History of Operating Systems
-![](OS_History.png)
+
 For sake of simplicity, we begin our discussion with computers with limited resources...the computers of the past. 
 1. At first, calculation was done by human calculators, often female manual labor workers.
 2. During World War II, mechanical computers were invented to break code (encryption)
@@ -77,5 +78,15 @@ For sake of simplicity, we begin our discussion with computers with limited reso
 6. As hardware became faster, programs were developed to encode a programming language into machine code. Later, **high-level programming languages** were developed.
 
 In the early days, computers were large and extremely expensive (more than the salaries of its users). Thus, the computer's time was more important than the user's time. Therefore, many large institution gave *time* to researchers and billed them for the time used (time-sharing). It was crucial to make sure that the computer was running constantly (to keep costs down). Thus, it was crucial to make sure our programs ran as fast as possible. Input/Output was unheard of; users would program/debug on paper (as it was extremely expensive to spend time programming directly on a computer) using FORTRAN, COBOL, etc.. Programs would then be transferred on a punchcards (each holding 40B).!
+![](OS_History.png)
+We then use cheaper computers to digitize our punch card into magnetic tape. Then we use the tape on our system, which produces an output tape. Our output tape is then brought to another computer and printed (physically) on paper.
 
-We then use cheaper computers (see (a))
+Extreme specialization of computers. Big Idea: our time is less important than the computer. We need to maximize it running time.
+
+System tape contains compiler and some rudimentary billing software. This is our first notion of an operating system.
+
+The presence of the main and auxiliary computers (I/O) fills up space. IBM realizes that this is a barrier for small institution. They create a set of 3 computers that is fundamentally the same.
+
+During this
+
+Later, we will see the minituraization of computers with the invention of transistors.
