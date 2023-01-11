@@ -113,4 +113,10 @@ This proposal is thrown out with development of personal computers (paradigm shi
 
 # Multiprogramming
 
-Eventually, the time of computer becomes cheaper (lower than )
+Eventually, the time of computer becomes cheaper (lower than that of users). However, we need to think that our OS will aid in the maximization of resources. If we have ram, we should use it. If we have, CPU time, we should use it. --> Running multiple programs. Von Neumann --> Sharing of CPU implies sharing of Memory.
+
+We can partition memory and give it to each job/process.
+
+One problem with his approach (**protection problem**) is that we need to ensure that programs that does not modify code/data of another program (whether intentionall or not). Now, we need to do extra management to ensure that programs are well behaved.
+![](Memory%20Partition.png)
+One solution: remember bounds and ensure new memory addresses are within 
