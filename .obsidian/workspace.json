@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "d4d7d4551f4c63fb",
+        "id": "ed19f48706dbf7e0",
         "type": "tabs",
         "children": [
           {
-            "id": "8a49c856a86c16fe",
+            "id": "8bca97a759bad74f",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -147,17 +147,17 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "8a49c856a86c16fe",
+  "active": "8bca97a759bad74f",
   "lastOpenFiles": [
+    "1550/System Call.png",
+    "1550/Introduction to Operating Systems.md",
     "1550/Memory Partition.png",
     "1550/Address Space.png",
-    "1550/Introduction to Operating Systems.md",
     "1550/Image Protection.png",
     "Pasted image 20230111100719.png",
     "Memory Part.png",
     "punchcard.png",
     "1675/Overview.md",
-    "1555/DBMS.png",
-    "1675/Intro to Regression.md"
+    "1555/DBMS.png"
   ]
 }

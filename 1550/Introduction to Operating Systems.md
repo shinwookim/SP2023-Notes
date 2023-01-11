@@ -152,3 +152,13 @@ Why does the stack heap grow up, and stack down? all the otheer ones create prob
 
 ---
 # System Call
+
+An operating system is a piece of software that manages resources, and abstract details.
+For a software to do this, 
+
+The needs of the OS is a measurable detraction of resoruces.
+Anything that the OS is using, cannot be used by our desired programs.
+That is, the OS is an overhead. However, it is necessary to manage resources, and abstract details.
+Thus, the OS is a layer/intermediatry between the program (requestor) and the resources (request).
+
+![](System%20Call.png)
