@@ -67,7 +67,7 @@ If missing the deadline is bad, we call it a **soft real-time system**. For inst
 If missing the deadline is catastrophic, we call it a **hard real-time system**. Examples of hard real-time systems include: Autopilot, Nuclear Power plant control, Health care devices. 
 
 # History of Operating Systems
-![[OS_History.png]]
+![](OS_History.png)
 We will begin our discussion with computers with limited resources...the computers of the past. 
 1. At first, calculation was done by human calculators, often female manual labor workers.
 2. During World War II, mechanical computers were invented to break code (encryption)

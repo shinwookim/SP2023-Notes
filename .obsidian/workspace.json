@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1555/Overview of Database Management Systems.md",
+                "file": "1550/Introduction to Operating Systems.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "1555/Overview of Database Management Systems.md",
+                "file": "1550/Introduction to Operating Systems.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "1555/Overview of Database Management Systems.md",
+                "file": "1550/Introduction to Operating Systems.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "1555/Overview of Database Management Systems.md"
+                "file": "1550/Introduction to Operating Systems.md"
               }
             }
           }
@@ -148,11 +148,11 @@
   },
   "active": "8c31be1a6db40afb",
   "lastOpenFiles": [
-    "1555/DBMS.png",
+    "1550/OS_History.png",
     "1555/Overview of Database Management Systems.md",
+    "1555/DBMS.png",
     "1550/Introduction to Operating Systems.md",
     "1520/Course Introduction.md",
-    "1520/WWW.png",
-    "1550/OS_History.png"
+    "1520/WWW.png"
   ]
 }
