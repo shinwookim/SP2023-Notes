@@ -11,8 +11,10 @@ When we understand the statistics and linear algebra, we will gain the foundatio
 ---
 
 # Focus: Supervised Learning
-Our primary focus will be on predictive modeling, predictive analysis, and **supervised learning**. The goal of supervised learning is to learn the relationship (also called ) between
-
-In supervised learning, we make a distinction between **input** and **responses** (also called **output**, **target**, or **classes**).
+Our primary focus will be on predictive modeling, predictive analysis, and **supervised learning**. The goal of supervised learning is to learn the relationship (also called map) between the **input**s and **output** (**responses**, **target**, or **classes**).
 - Inputs are typically denoted as $x$ (scalar), $\textbf{x}$ (vector), and $\textbf{X}$ (matrix).
 - Responses are typically denoted as $y$($\textbf{y}$,$\textbf{Y}$), or $t$($\textbf{t}$,$\textbf{T}$).
+- The relationship is typically denoted as $f(\textbf{x})$.
+	- Note that we cannot say $y=f(\textbf{x})$ since the relationships learned from data is *always* an approximate. That is $y \approx f(\textbf{x})$. 
+	- However, we can account for the error by writing $y=f(\textbf{x})+\text{error}$. The error is sometimes called the **loss function**
+All models have **parameters** (or **coefficients**) we need to learn as part of the model **fitting**, **training**, or **building** process. We can figure out the parameters by **minimizing the model error**. Since the outputs guide/**supervise** t
