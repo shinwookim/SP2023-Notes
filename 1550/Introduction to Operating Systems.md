@@ -68,7 +68,7 @@ If missing the deadline is catastrophic, we call it a **hard real-time system**.
 
 # History of Operating Systems
 ![](OS_History.png)
-We will begin our discussion with computers with limited resources...the computers of the past. 
+For sake of simplicity, we begin our discussion with computers with limited resources...the computers of the past. 
 1. At first, calculation was done by human calculators, often female manual labor workers.
 2. During World War II, mechanical computers were invented to break code (encryption)
 3. Towards the end of the war, electronic computers were developed. These early, primitive computers were single purpose computers. They could do one thing, and were not 'programmable'.
