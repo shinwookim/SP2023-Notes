@@ -128,4 +128,10 @@ Virtualization simulates exclusive access.
 ***Space***: Technical term. Mathematical notion of enumeration of all possible.
 e.g., what is the space of all possible 4 character ascii strings? --> 7 bit --> $128^4$
 ![](Address%20Space.png)
-ADDRRESS is just a number. And since all modern computers store number
+ADDRRESS is just a number. And since all modern computers store numbers in binary,
+native word size (e.g., Nintendo was an 8-bit system, 64 bit CPU)- most data that the computers can work with in one system/size of registers. native word size is also our address size.
+
+Assuming 32 bit CPU: we have a 32 bit address.
+Space: Enumeration of all possible address? `0000000....0000`, `000000...000001`,...,`1111...111111`. approx 4.2 billion addresses.
+
+Most systems are byte-addressable. (We can only talk about addresses in terms of multiple of a byte). --> 4.2 Billin bytes of addressable memory --> 4 GB of RAM at max.
