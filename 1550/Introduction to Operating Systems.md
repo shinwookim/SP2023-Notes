@@ -123,7 +123,7 @@ One solution: remember bounds and ensure new memory addresses are within bounds
 ![](Image%20Protection.png)
 Perfectly valid approach, but not what we do. We use virtualization. 
 
-Virtualization simulates exclusive access.
+Virtualization simulates exclusive access. (using address spaces)
 
 ***Space***: Technical term. Mathematical notion of enumeration of all possible.
 e.g., what is the space of all possible 4 character ascii strings? --> 7 bit --> $128^4$
@@ -143,3 +143,7 @@ However, the process will never be able to generate an address that is the code/
 This is what gives the illusion of exclusive acccess.
 
 Now, the same address can hold different values (for diffent program). The addresses for programs is not the actual address. The OS provides this abstraction.
+
+We have solved the protection problem.
+
+Notice that our address space in the diagram is not 4GB. (The OS steals some of it for itself).
