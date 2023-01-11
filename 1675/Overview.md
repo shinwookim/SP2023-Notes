@@ -58,4 +58,11 @@ We will look at **unsupervised learning** (also called **data discovery**). Here
 	1. K-means
 	2. Hierarchical clustering
 	3. Principle Component Analysis
-Due to time, we cannot cover all types of supervised learning methods and models. Our focus will primarily be on neural networks and tree-based methods (CART decision tree, Bagged trees, Random forest, Boosted trees, and XGBoost). But, we must first build up our understanding from fundamental **linear models** and **generalized linear models** before tackling them.
+Due to time, we cannot cover all types of supervised learning methods and models. 
+- **Topics not covered:**
+	- Partial Least Squares (PLS)
+	- Multivariate Adaptive Regression Splines (MARS)
+	- Naïve Bayes (NB)
+	- Directed Acyclic Graphs (DAGs)
+	- And more
+Our focus will primarily be on neural networks and tree-based methods (CART decision tree, Bagged trees, Random forest, Boosted trees, and XGBoost). But, we must first build up our understanding from fundamental **linear models** and **generalized linear models** before tackling them.
