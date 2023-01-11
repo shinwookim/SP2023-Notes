@@ -26,4 +26,17 @@ Loss functions are related to probability distributions; thus, we will study the
 - If the responses are continuous (e.g., predicting sale price of house, stock price, or temperature), we use a **regression**.
 - If the responses are discrete or categorical, (e.g., predict if the stock will crash below threshold, presence of snow, or whether mortgage will default), we use **classification**.
 	- **Binary classification** is when we have 2 possible classes. E.g., True/False, Yes/No, etc.
-	- **Multiclass classification** is when we have 3 or more possible classes. E.g., Which of the
+	- **Multiclass classification** is when we have 3 or more possible classes. E.g., Which of the 30 possible teams will win the World Series?
+	- We will primarily focus on binary classification, but also look at multiclass classification
+- There are other response types, however we will not discuss them in this course.
+	- **Counts**: Integer counts of an occurence over a defined interval of time or space. E.g., Number of COVID-19 cases per day.
+	- **Hazard/Survival/Reliability Analysis**: Probability of surviving given survival upto that point in time. (Important in insurance, engineering, manufacturing, medicine)
+# Unsupervised Learning
+There are other types of learning paradigms:
+- **Unsupervised Learning**
+- Semi-supervised Learning
+- Transfer Learning
+- Deep Learning
+- Reinforcement Learning
+
+We will look at **unsupervised learning** (also called **data discovery**). Here, we observe variables without distinction between input and responses with the goal of identifying interesting patterns in the da
