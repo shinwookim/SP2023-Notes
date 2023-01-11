@@ -18,24 +18,23 @@ A **Database Management System** is a general purpose software package designed 
 
 ## **Database system** = *DB* + *DBMS* + *Application Logic*
 The database, together with the DBMS is called the **database system**. We also include the **application logic** in this definition. Application logic can include Resource Planning applications (E.g., Peoplesoft), and Web-based applications (E.g., E-bay, Google), etc.
-
+	![](DBMS.png)
 # Approaches to Management of Data
-1. File system approach: In this approach, we use traditional (flat) files and programs to access them. For instance,  we might use UNIX/DOS files with student records and their courses. Here, we must decide on a layout
-2. Here, we need to write everything to text files and have applications that read and write directly to these files. However, generally this approach is slower, and we must constantly enforce the layout of our data. There are also redunduncies, and are prone to errors.
-
+1. File system approach: In this approach, we use traditional (flat) files and programs to access them. For instance, we might use UNIX/DOS files with student records and their courses. Note that, we must decide on a layout for our data.
+	- Notice that in this approach, we are practically writing all of our data to text files which can be directly read/written to by our applications. However, this approach is often slower, and we must constantly enforce the layout of our data (resulting in redunduncies). Furthermore, this approach makes it hard for multiple instance of our applications to access our data, and is more prone to crashes.
 ## Database vs File System Approaches
 - **Abstraction**
-	- Data abstraction
+	- **Data abstraction**
+		- Data is structured in a way meaningful to applications.
+		- A **Data Model** is a collection of high-level data description constructs (E.g., Relational, Object-oriented, XML, Graph)
 	- Execution abstraction
 - **Reliability**
 	- High availibility: recovery time is *short*
 	- Trusted/Quality data
 - **Efficiency & Performance**
 	- High throughput (commited transaction/unit time)
-	- short response time
-	- 
-
----
+	- Short or bounded response time
+	- Energy Efficiency
 
 
 
