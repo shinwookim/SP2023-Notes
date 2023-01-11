@@ -8,12 +8,12 @@
         "type": "tabs",
         "children": [
           {
-            "id": "8c31be1a6db40afb",
+            "id": "d4cefca2b3d7c946",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1550/Introduction to Operating Systems.md",
+                "file": "Overview.md",
                 "mode": "source",
                 "source": false
               }
@@ -69,7 +69,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "ffa1ee54606385b1",
@@ -85,7 +86,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "1550/Introduction to Operating Systems.md",
+                "file": "Overview.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +103,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "1550/Introduction to Operating Systems.md",
+                "file": "Overview.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +126,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "1550/Introduction to Operating Systems.md"
+                "file": "Overview.md"
               }
             }
           }
@@ -146,12 +147,12 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "8c31be1a6db40afb",
+  "active": "d4cefca2b3d7c946",
   "lastOpenFiles": [
+    "1550/Introduction to Operating Systems.md",
     "1550/OS_History.png",
     "1555/Overview of Database Management Systems.md",
     "1555/DBMS.png",
-    "1550/Introduction to Operating Systems.md",
     "1520/Course Introduction.md",
     "1520/WWW.png"
   ]
