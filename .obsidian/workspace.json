@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1502/Introduction.md",
+                "file": "1555/Overview of Database Management Systems.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "1502/Introduction.md",
+                "file": "1555/Overview of Database Management Systems.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "1502/Introduction.md",
+                "file": "1555/Overview of Database Management Systems.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "1502/Introduction.md"
+                "file": "1555/Overview of Database Management Systems.md"
               }
             }
           }
@@ -149,15 +149,15 @@
   },
   "active": "1c67ebd88fa1c63e",
   "lastOpenFiles": [
-    "1675/Intro to Regression.md",
     "1550/Introduction to Operating Systems.md",
-    "1550/System Call.png",
-    "1550/Memory Partition.png",
-    "1550/Address Space.png",
-    "1550/Image Protection.png",
+    "1550/Assets/Image Protection.png",
+    "1550/Assets/Memory Partition.png",
+    "1550/Assets/OS_History.png",
+    "1550/Assets/Address Space.png",
+    "1502/Introduction.md",
+    "1675/Intro to Regression.md",
+    "1550/Assets/System Call.png",
     "Pasted image 20230111100719.png",
-    "Memory Part.png",
-    "punchcard.png",
-    "1675/Overview.md"
+    "Memory Part.png"
   ]
 }

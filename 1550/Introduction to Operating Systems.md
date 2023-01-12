@@ -78,7 +78,7 @@ For sake of simplicity, we begin our discussion with computers with limited reso
 6. As hardware became faster, programs were developed to encode a programming language into machine code. Later, **high-level programming languages** were developed.
 1960s:
 In the early days, computers were large and extremely expensive (more than the salaries of its users). Thus, the computer's time was more important than the user's time. Therefore, many large institution gave *time* to researchers and billed them for the time used (time-sharing). It was crucial to make sure that the computer was running constantly (to keep costs down). Thus, it was crucial to make sure our programs ran as fast as possible. Input/Output was unheard of; users would program/debug on paper (as it was extremely expensive to spend time programming directly on a computer) using FORTRAN, COBOL, etc.. Programs would then be transferred on a punchcards (each holding 40B).!
-![](OS_History.png)
+![](Assets/OS_History.png)
 We then use cheaper computers to digitize our punch card into magnetic tape. Then we use the tape on our system, which produces an output tape. Our output tape is then brought to another computer and printed (physically) on paper.
 
 Extreme specialization of computers. Big Idea: our time is less important than the computer. We need to maximize it running time.
@@ -118,16 +118,16 @@ Eventually, the time of computer becomes cheaper (lower than that of users). How
 We can partition memory and give it to each job/process.
 
 One problem with his approach (**protection problem**) is that we need to ensure that programs that does not modify code/data of another program (whether intentionall or not). Now, we need to do extra management to ensure that programs are well behaved.
-![](Memory%20Partition.png)
+![](Assets/Memory%20Partition.png)
 One solution: remember bounds and ensure new memory addresses are within bounds
-![](Image%20Protection.png)
+![](Assets/Image%20Protection.png)
 Perfectly valid approach, but not what we do. We use virtualization. 
 
 Virtualization simulates exclusive access. (using address spaces)
 
 ***Space***: Technical term. Mathematical notion of enumeration of all possible.
 e.g., what is the space of all possible 4 character ascii strings? --> 7 bit --> $128^4$
-![](Address%20Space.png)
+![](Assets/Address%20Space.png)
 ADDRRESS is just a number. And since all modern computers store numbers in binary,
 native word size (e.g., Nintendo was an 8-bit system, 64 bit CPU)- most data that the computers can work with in one system/size of registers. native word size is also our address size.
 
@@ -166,4 +166,4 @@ The system calls from 447 was for input/output/management of the process (termin
 A system call instruction is how a program asks an OS to do something on its behalf.
 System call is a control transfer (much like `jal`)
 
-![](System%20Call.png)
+![](Assets/System%20Call.png)
