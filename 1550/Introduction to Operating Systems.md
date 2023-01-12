@@ -131,19 +131,13 @@ This is a perfectly valid approach, but it is not what we do.
 ## Memory Management: Virtualization
 Most modern operating systems take another approach: **virtualization**. Virtualization is extremely useful because it simulates exclusive access for each programs (using **address spaces**). That is, the operating system makes it seem as if all processes have their own set of memory.
 ![](Assets/Address%20Space.png)
-Note that the term **space** in address space is a technical term; It refers to the mathematical notion of an enumartion of everything that is possible. For instance, the space of all possible 4 character ASCII strings is $128^4$ (assuming each ASCII character is )
+Note that the term **space** in address space is a technical term; It refers to the mathematical notion of an enumartion of everything that is possible. For instance, the space of all possible 4 character ASCII strings is $128^4$ (assuming each ASCII character is 7 bits).
 
+For our case, an address is simply a number (which is stored as binary in modern computers). We will consider a CPU with a **native word size** of 32 bits. (The native word size refers to the most data that the computers can work with in one instruction; often, the native word size is also the address size). The address space of a 32 bit CPU is the enumeration of all possible addresses (`0000....000`, `0000....001`,`0000....011`,`1111....111`) which is approximately 4.2 billion addresses.
 
-***Space***: Technical term. Mathematical notion of enumeration of all possible.
-e.g., what is the space of all possible 4 character ascii strings? --> 7 bit --> $128^4$
+Most systems are byte-addressable (meaning we can only talk about addresses in terms of multiple of a byte). Thus, a 32 bit CPU has at most 4.2 billion bytes of addressable memory, or 4GB of possible RAM. 
 
-ADDRRESS is just a number. And since all modern computers store numbers in binary,
-native word size (e.g., Nintendo was an 8-bit system, 64 bit CPU)- most data that the computers can work with in one system/size of registers. native word size is also our address size.
-
-Assuming 32 bit CPU: we have a 32 bit address.
-Space: Enumeration of all possible address? `0000000....0000`, `000000...000001`,...,`1111...111111`. approx 4.2 billion addresses.
-
-Most systems are byte-addressable. (We can only talk about addresses in terms of multiple of a byte). --> 4.2 Billin bytes of addressable memory --> 4 GB of RAM at max. (That is our address apce)
+There is a caveat to address spaces, however. In a 32 bit CPU, we promise all processes each that the 4GB of RAM is either the process's or not yet that process
 
 We promise our process that all 4GB will be the process's or not yet the process's. However this promise cannot be false.
 
