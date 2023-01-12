@@ -38,3 +38,6 @@ The database, together with the DBMS is called the **database system**. We also 
 
 
 
+---
+
+Consistency, Availibility, Performace
