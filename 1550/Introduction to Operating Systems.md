@@ -94,16 +94,22 @@ With main and auxiliary (I/O) computers taking up so much space and money, IBM r
 ## Need for Multiprogramming and UNIX
 With the invention of the transistors, there was the miniturization, and performance boost computers. In the 1970s, computers eventually become fast enough that a single person running a single process at a time did not maximize the use of available resources (meaning that computers were not maximizing their profit). Thus, it became necessary to be able to run multiple processes at once.
 
-Efforts to design a system to manage resources among multiple programs (an operating system) was first developed at Bell Labs by MIT researchers. However, this project (Multics) ultimately failed and was cancelled. Yet, few programmers at Bell Labs were persistent about this goal (a multiprogramming system) and create a smaller version of Multics called **U**
+Efforts to design a system to manage resources among multiple programs (an operating system) was first developed at Bell Labs by MIT researchers. However, this project (Multics) ultimately failed and was cancelled. Yet, few programmers at Bell Labs were persistent about this goal (a multiprogramming system) and create a smaller version of Multics called **Unix** (developed in **C** which was also created at Bell Labs).
 
+### Widespread adoption of computers & a proto-internet proposed
+In the late 70s, costs came down enough to allow for personal computers. Consumers could now buy parts and build a computer at home at a relatively affordable price.
 
+However, these personal computers often lacked in performace, and high performance systems will still extremely expensive. Thus, some people proposed that institutions/government (with large enough funding) such as cities and towns should purchase high performance machine and allow consumers to plug in a terminal at home for a fee (much like a utility).
 
-A few programmers at the lab developed a smaller version and called it **Unix**. It's written in **C**, also developed at Bell Labs.
+This proposal however is largely not adopted as hardware for personal computers became faster, and a paradigm shift occured leading to the miniturization and mass production of computers.
 
-Late  70s: we have personal computers. we can buy the parts and build one at home. Computers are affordable (but still expensive).
+## Why we study history
+> Ontogeny Recapitulates Phylogeny
+Ho
+
 
 Proposal: Cities and towns purchase computers, and users could plug in a terminal at home (much like a utility). Internet? --> this is why we study history (what's old is new again)
-> Ontogeny Recapitulates Phylogeny
+
 
 This proposal is thrown out with development of personal computers (paradigm shift): miniturization and mass production of computers.
 
