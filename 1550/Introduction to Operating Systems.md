@@ -112,14 +112,20 @@ However, this reveals why we study history. The proposal for a network of shared
 
 # Multiprogramming
 
-Eventually, computers become cheap enough that the user's time is worth more than that of the computers'. That means we want to implement multiprogramming as users wish to do many th.
+Eventually, computers become cheap enough that the user's time is worth more than that of the computers'. That means we want to implement multiprogramming as users wish to do many things at once.
 
-the time of computer becomes cheaper (lower than that of users). However, we need to think that our OS will aid in the maximization of resources. If we have ram, we should use it. If we have, CPU time, we should use it. --> Running multiple programs. Von Neumann --> Sharing of CPU implies sharing of Memory.
+As an aside, people often (mistakenly) want their resource usage to be lower (such as when we open the task manager). However, for this course, the maximize the usage of resources (CPU Time, Memory) is a good thing. It is what allows for multiprogramming (as long as the OS is efficient in management of the resources).
 
-We can partition memory and give it to each job/process.
+Also, running multiple programs implies the sharing of memory. Since all programs need to be read from memory (in a Von Neumann Architecture), sharing of CPU's time automatically implies the sharing of memory.
 
-One problem with his approach (**protection problem**) is that we need to ensure that programs that does not modify code/data of another program (whether intentionall or not). Now, we need to do extra management to ensure that programs are well behaved.
+## Memory Management: Partitioning
+
+However, how we share memory is a major concern for the OS. A primitive approach may be to partition memory and give it to each job/process.
 ![](Assets/Memory%20Partition.png)
+However, one problem with this approach is that we need to ensure that programs cannot modify/read the code and data of other pgorams (**protection problem**), which means that we must do extra tasks for management to ensure that all programs are well behaved.
+
+
+
 One solution: remember bounds and ensure new memory addresses are within bounds
 ![](Assets/Image%20Protection.png)
 Perfectly valid approach, but not what we do. We use virtualization. 
