@@ -148,15 +148,11 @@ Thus, we have solved the protection problem.
 As an aside, why does the stack grow down, and heap up? Because all the other ones create issues. If both grow in the same direction, we will need to shift data as they grow. If we split the memory into halves, our programs may terminate when they run out of heap/stack space when there is still space left in memory. By having them grow in the opposite directions, n space is wasted even when they collide.
 
 ---
-# System Call
+# System Calls
 
-An operating system is a piece of software that manages resources, and abstract details.
-For a software to do this, 
+Recall that an operating system is a piece of software that manages resources, and abstract details. For a software to do this, the OS also requires some measurable amount of resources. That is, the OS takes away some resources, decreasing the amount of available resources for processes. I.e., the OS is an (necessary) overhead that lies as an intermediatry between the program (resource requestor) and the resource (request).
 
-The needs of the OS is a measurable detraction of resoruces.
-Anything that the OS is using, cannot be used by our desired programs.
-That is, the OS is an overhead. However, it is necessary to manage resources, and abstract details.
-Thus, the OS is a layer/intermediatry between the program (requestor) and the resources (request).
+Programs communicate with the OS by using **system calls**. Recall that we used system calls in MIPS for input/output/management of the processes (terminate)/system-level randomness
 
 The system calls from 447 was for input/output/management of the process (terminate)/system-level randomness.
 
