@@ -119,22 +119,24 @@ As an aside, people often (mistakenly) want their resource usage to be lower (su
 Also, running multiple programs implies the sharing of memory. Since all programs need to be read from memory (in a Von Neumann Architecture), sharing of CPU's time automatically implies the sharing of memory.
 
 ## Memory Management: Partitioning
-
 However, how we share memory is a major concern for the OS. A primitive approach may be to partition memory and give it to each job/process.
 ![](Assets/Memory%20Partition.png)
 However, one problem with this approach is that we need to ensure that programs cannot modify/read the code and data of other pgorams (**protection problem**), which means that we must do extra tasks for management to ensure that all programs are well behaved.
 
-
-
-One solution: remember bounds and ensure new memory addresses are within bounds
+### Setting Memory Bounds
+To solve the protection problem, we may decide to remember the bounds of each processes and ensure that new memory addresses are within the assigned bounds.
 ![](Assets/Image%20Protection.png)
-Perfectly valid approach, but not what we do. We use virtualization. 
+This is a perfectly valid approach, but it is not what we do.
 
-Virtualization simulates exclusive access. (using address spaces)
+## Memory Management: Virtualization
+Most modern operating systems take another approach: **virtualization**. Virtualization is extremely useful because it simulates exclusive access for each programs (using **address spaces**). That is, the operating system makes it seem as if all processes have their own set of memory.
+![](Assets/Address%20Space.png)
+Note that the term **space** in address space is a technical term; It refers to the mathematical notion of an enumartion of everything that is possible. For instance, the space of all possible 4 character ASCII strings is $128^4$ (assuming each ASCII character is )
+
 
 ***Space***: Technical term. Mathematical notion of enumeration of all possible.
 e.g., what is the space of all possible 4 character ascii strings? --> 7 bit --> $128^4$
-![](Assets/Address%20Space.png)
+
 ADDRRESS is just a number. And since all modern computers store numbers in binary,
 native word size (e.g., Nintendo was an 8-bit system, 64 bit CPU)- most data that the computers can work with in one system/size of registers. native word size is also our address size.
 
