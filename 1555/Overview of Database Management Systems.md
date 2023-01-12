@@ -39,5 +39,9 @@ The database, together with the DBMS is called the **database system**. We also 
 
 
 ---
+Data Abstraction
 
-Consistency, Availibility, Performace
+
+
+
+Triangle: Consistency, Availibility, Performace
