@@ -104,20 +104,17 @@ However, these personal computers often lacked in performace, and high performan
 This proposal however is largely not adopted as hardware for personal computers became faster, and a paradigm shift occured leading to the miniturization and mass production of computers.
 
 ## Why we study history
-> Ontogeny Recapitulates Phylogeny
-Ho
+> Ontogeny Recapitulates Phylogeny. What's old is new again!
 
-
-Proposal: Cities and towns purchase computers, and users could plug in a terminal at home (much like a utility). Internet? --> this is why we study history (what's old is new again)
-
-
-This proposal is thrown out with development of personal computers (paradigm shift): miniturization and mass production of computers.
+However, this reveals why we study history. The proposal for a network of shared computers and accessing them for a fee very much resembles Internet (which would be developed in the 90s). Studying history allows us to discover unrealized ideas that may be realized in the future. Often computers follow a similar cycle, (as was with original single-processing smartphones), and studying it allows us a better understanding of how they work.
 
 ---
 
 # Multiprogramming
 
-Eventually, the time of computer becomes cheaper (lower than that of users). However, we need to think that our OS will aid in the maximization of resources. If we have ram, we should use it. If we have, CPU time, we should use it. --> Running multiple programs. Von Neumann --> Sharing of CPU implies sharing of Memory.
+Eventually, computers become cheap enough that the user's time is worth more than that of the computers'. That means we want to implement multiprogramming as users wish to do many th.
+
+the time of computer becomes cheaper (lower than that of users). However, we need to think that our OS will aid in the maximization of resources. If we have ram, we should use it. If we have, CPU time, we should use it. --> Running multiple programs. Von Neumann --> Sharing of CPU implies sharing of Memory.
 
 We can partition memory and give it to each job/process.
 
