@@ -152,11 +152,6 @@ As an aside, why does the stack grow down, and heap up? Because all the other on
 
 Recall that an operating system is a piece of software that manages resources, and abstract details. For a software to do this, the OS also requires some measurable amount of resources. That is, the OS takes away some resources, decreasing the amount of available resources for processes. I.e., the OS is an (necessary) overhead that lies as an intermediatry between the program (resource requestor) and the resource (request).
 
-Programs communicate with the OS by using **system calls**. Recall that we used system calls in MIPS for input/output/management of the processes (terminate)/system-level randomness
-
-The system calls from 447 was for input/output/management of the process (terminate)/system-level randomness.
-
-A system call instruction is how a program asks an OS to do something on its behalf.
-System call is a control transfer (much like `jal`)
+Programs communicate with the OS by using **system calls**. Recall that we used system calls in MIPS for input/output/management of the processes (terminate)/system-level randomness. Simply put, a system call instruction is how a program asks an OS to do something on its behalf (it is in essence a control transfer (much like `jal`).
 
 ![](Assets/System%20Call.png)
