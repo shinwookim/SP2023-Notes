@@ -137,21 +137,15 @@ For our case, an address is simply a number (which is stored as binary in modern
 
 Most systems are byte-addressable (meaning we can only talk about addresses in terms of multiple of a byte). Thus, a 32 bit CPU has at most 4.2 billion bytes of addressable memory, or 4GB of possible RAM. 
 
-There is a caveat to address spaces, however. In a 32 bit CPU, we promise all processes each that the 4GB of RAM is either the process's or not yet that process
+There is a caveat to address spaces, however. In a 32 bit CPU, we promise all processes each that the 4GB of RAM is either the process's or not yet that process's. But, we know that this promise cannot be false. Discounting the amount taken up by the OS, a modern computer runs hundred's of processes in the background; and it's physically impossible to give 4GB to all the processes.
 
-We promise our process that all 4GB will be the process's or not yet the process's. However this promise cannot be false.
+Yet, since we promise each process the enumeration of the entire 4GBs, no process is able to generate an address that is the code/data of another program. This is what gives the illusion of exclusive acccess.
 
-However, the process will never be able to generate an address that is the code/data of another program, because we are promised the enumeration of all memory.
+In this scheme, the same (virtual) address can hold different values (based on which program requests it). The address provided to the program is not the actual address but an abstraction provided by the OS.
 
-This is what gives the illusion of exclusive acccess.
+Thus, we have solved the protection problem.
 
-Now, the same address can hold different values (for diffent program). The addresses for programs is not the actual address. The OS provides this abstraction.
-
-We have solved the protection problem.
-
-Notice that our address space in the diagram is not 4GB. (The OS steals some of it for itself).
-
-Why does the stack heap grow up, and stack down? all the otheer ones create problems. No space is wasted even when they collide.
+As an aside, why does the stack grow down, and heap up? Because all the other ones create issues. If both grow in the same direction, we will need to shift data as they grow. If we split the memory into halves, our programs may terminate when they run out of heap/stack space when there is still space left in memory. By having them grow in the opposite directions, n space is wasted even when they collide.
 
 ---
 # System Call
