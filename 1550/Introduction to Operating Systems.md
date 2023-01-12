@@ -76,16 +76,17 @@ For sake of simplicity, we begin our discussion with computers with limited reso
 5. In the 40/50s, the **Von Neumann architecture** is proposed, and we are introduced to computers which can execute code and manipulate data. These computers were programmable in machine language.
 6. As hardware became faster, programs were developed to encode a programming language into machine code. Later, **high-level programming languages** were developed.
 
+## Primitive Operating Systems
 In the early days (1960s), computers were extremely large and expensive; they costed more than the average salary of its users. Therefore, the computer's time was more important than the user's time. To minimize the costs, large institutions who owned these computers gave *usage time* to researchers (and users) and biiled them for the time used (*time-sharing*). To maximize the profit, it was crucial for them to ensure that the computer was running as much as possible (any time the computer was not running, it was missing out on profit). This meant that users had to design their programs to run as efficiently as possible (to lower the bill) and they had to program on paper (since time spending doing input/output was time that was not spend computing/billable). Often, early programmers would write their programs on paper (using FORTRAN, COBOL, etc.), debug, and then transfer them to a stack of punchcards (each holding only 40 Bytes).
 ![](Assets/OS_History.png)
-The programmers, once it was their turn, would use cheaper computers (a) to digitize the punch cards into magnetic tape; again, since the costs of using a computer was so expensive, everything besides the actual computation was not done on the main system. They would, then feed the tape into the main system (d) which would run the desired program (along with accounting software) and print the output onto another tape. Finally, this output tape was fed into yet another cheaper machine which would 
+The programmers, once it was their turn, would use cheaper computers (a-b) to digitize the punch cards into magnetic tape; again, since the costs of using a computer was so expensive, everything besides the actual computation was not done on the main system. They would, then feed the tape into the main system (c-d) which would run the desired program (along with accounting software) and print the output onto another tape. Finally, this output tape was fed into yet another cheaper machines (e-f) which would print the output (physically) onto paper.
 
-We then use cheaper computers to digitize our punch card into magnetic tape. Then we use the tape on our system, which produces an output tape. Our output tape is then brought to another computer and printed (physically) on paper.
+In these early computers, *the user's time was less important than that of the computer*. To maximize the running time of the main system, the computers became extremely specialized while any auxillary functions (such as I/O) was handled elsewhere.
 
-Extreme specialization of computers. Big Idea: our time is less important than the computer. We need to maximize it running time.
+Notice that our program code was converted and digitized onto tape along with some rudimentary billing software (b). This is our first notion of a primitive operating system.
 
-System tape contains compiler and some rudimentary billing software. This is our first notion of an operating system.
-
+## Rise of Assembly Language(s)
+During this period, many architectures and instruction sets were developed (and constantly changed) as researchers experimented to make computers even fasters. Once technology progressed, developers began programming in assembly language (compilation for higher level langauges wasted the time of the computer)
 
 
 During this time, architecture and instruction sets are constantly changing as researchers are figuring out to making computer faster. Developers are programming in assembly language (as compilers waste time). Thus, they were not compatible with each other.
