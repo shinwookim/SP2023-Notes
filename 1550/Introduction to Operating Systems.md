@@ -91,16 +91,12 @@ During this period, many architectures and instruction sets were developed (and 
 ## IBM standardizes the ISA
 With main and auxiliary (I/O) computers taking up so much space and money, IBM realized that this created barriers for smaller institution from adopting computers (and IBM missing out on potential customers). In response, IBM created a set of 3 computers who shared the same fundamental architecture (but with varying performances). Now, smaller institutions could afford computers and scale up as they needed to. Furthermore, these new computers drove efforts at standardization/compatiblity, and the adoption of computers. 
 
-## Rise of UNIX
-As technology prog
+## Need for Multiprogramming and UNIX
+With the invention of the transistors, there was the miniturization, and performance boost computers. In the 1970s, computers eventually become fast enough that a single person running a single process at a time did not maximize the use of available resources (meaning that computers were not maximizing their profit). Thus, it became necessary to be able to run multiple processes at once.
 
-Later, we will see the minituraization of computers with the invention of transistors.
-70s:
-Eventually, computers become fast enough that one person running one program does not maximize the resource use.
+Efforts to design a system to manage resources among multiple programs (an operating system) was first developed at Bell Labs by MIT researchers. However, this project (Multics) ultimately failed and was cancelled. Yet, few programmers at Bell Labs were persistent about this goal (a multiprogramming system) and create a smaller version of Multics called **U**
 
-MIT produces an opearting system which allows many users to submit their programs (using terminals/IO) --> Bell Labs. (Multics)
 
-Development runs poorly --> Bell Labs quits.
 
 A few programmers at the lab developed a smaller version and called it **Unix**. It's written in **C**, also developed at Bell Labs.
 
