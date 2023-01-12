@@ -86,13 +86,13 @@ In these early computers, *the user's time was less important than that of the c
 Notice that our program code was converted and digitized onto tape along with some rudimentary billing software (b). This is our first notion of a primitive operating system.
 
 ## Rise of Assembly Language(s)
-During this period, many architectures and instruction sets were developed (and constantly changed) as researchers experimented to make computers even fasters. Once technology progressed, developers began programming in assembly language (compilation for higher level langauges wasted the time of the computer)
+During this period, many architectures and instruction sets were developed (and constantly changed) as researchers experimented to make computers even fasters. Once technology progressed, developers began programming in assembly language (compilation for higher level langauges wasted the time of the computer). However, the constantly changing instruction sets meant that the computers of these times were not compatible with each other.
 
+## IBM standardizes the ISA
+With main and auxiliary (I/O) computers taking up so much space and money, IBM realized that this created barriers for smaller institution from adopting computers (and IBM missing out on potential customers). In response, IBM created a set of 3 computers who shared the same fundamental architecture (but with varying performances). Now, smaller institutions could afford computers and scale up as they needed to. Furthermore, these new computers drove efforts at standardization/compatiblity, and the adoption of computers. 
 
-During this time, architecture and instruction sets are constantly changing as researchers are figuring out to making computer faster. Developers are programming in assembly language (as compilers waste time). Thus, they were not compatible with each other.
-
-The presence of the main and auxiliary computers (I/O) fills up space. IBM realizes that this is a barrier for small institution. They create a set of 3 computers that is fundamentally the same. The 3 machine have the same architecture (but with difference performace). Now, we have compatibility. This drives adoption of computers and standardization.
-
+## Rise of UNIX
+As technology prog
 
 Later, we will see the minituraization of computers with the invention of transistors.
 70s:
