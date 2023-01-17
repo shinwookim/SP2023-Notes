@@ -8,11 +8,15 @@
         "type": "tabs",
         "children": [
           {
-            "id": "f0c14a5ebd018ab5",
+            "id": "ebb6b1fb9247c77f",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "1555/Conceptual Data Modeling and Database Design.md",
+                "mode": "source",
+                "source": false
+              }
             }
           }
         ]
@@ -65,7 +69,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "ffa1ee54606385b1",
@@ -81,6 +86,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "1555/Conceptual Data Modeling and Database Design.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -97,6 +103,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "1555/Conceptual Data Modeling and Database Design.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -118,7 +125,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "1555/Conceptual Data Modeling and Database Design.md"
+              }
             }
           }
         ],
@@ -138,17 +147,17 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "f0c14a5ebd018ab5",
+  "active": "ebb6b1fb9247c77f",
   "lastOpenFiles": [
+    "CAP_Theorem.png",
+    "1555/Conceptual Data Modeling and Database Design.md",
+    "1555/Overview of Database Management Systems.md",
     "1675/Intro to Regression.md",
     "1675/Overview.md",
-    "1555/Overview of Database Management Systems.md",
     "1550/Introduction to Operating Systems.md",
     "1550/Assets/Image Protection.png",
     "1550/Assets/Memory Partition.png",
     "1550/Assets/OS_History.png",
-    "1550/Assets/Address Space.png",
-    "1502/Introduction.md",
-    "1550/Assets/System Call.png"
+    "1550/Assets/Address Space.png"
   ]
 }
