@@ -69,8 +69,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "ffa1ee54606385b1",
@@ -149,9 +148,9 @@
   },
   "active": "ebb6b1fb9247c77f",
   "lastOpenFiles": [
-    "CAP_Theorem.png",
-    "1555/Conceptual Data Modeling and Database Design.md",
     "1555/Overview of Database Management Systems.md",
+    "1555/Conceptual Data Modeling and Database Design.md",
+    "1555/CAP_Theorem.png",
     "1675/Intro to Regression.md",
     "1675/Overview.md",
     "1550/Introduction to Operating Systems.md",

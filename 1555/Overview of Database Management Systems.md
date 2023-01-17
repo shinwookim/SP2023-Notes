@@ -45,3 +45,4 @@ Data Abstraction
 
 
 Triangle: Consistency, Availibility, Performace
+![](CAP_Theorem.png)
