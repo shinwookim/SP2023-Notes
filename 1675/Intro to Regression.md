@@ -14,7 +14,24 @@ However, in reality, we can never observe the TRUTH. When we collect data, we ar
 
 For our example, we will collect $N=30$ observations and denote the observed inputs as$\textbf{x}=\{ x_1,x_2,...,x_n,...,x_N\}$; and observed responses as $\textbf{y}=\{ y_1,y_2,...,y_n,...,y_N\}$.
 
-We now have $N=30$ input-output pairs: $\{x_n,y_n\}$
+We now have $N=30$ input-output pairs: $\{x_n,y_n\}^{N=30}_{n=1}$ 
+
+We are abstracting the details of how the data was *collected*. For now, simply presume that 30 input-output pairs have been collected.
+Plotting the 30 pairs on a scatterplot (black = noisy observation; red = TRUTH)
+![](Pasted%20image%2020230117113913.png)
+But how would we know that the TRUTH is a parabola if the TRUTH trend line wasn't shown?
+
+
+---
+
+### Linear Fitting
+Assuming that we do not know the TRUTH,  we begin by **training** or **fitting** a model between the response $y$ and the input $x$. We start with a simple linear relationship: $\beta_0+\beta_1x+\text{error}$. (Note that any learning can only produce apporximate relationships. Thus, there will always be an error).
+
+The beta($\beta$)s are the coefficients or parametrs of the model. We learn or estimate their values from the data by minimizing the error.
+
+```R
+# Store the data in the object `my_train` which contains two 
+```
 
 
 
