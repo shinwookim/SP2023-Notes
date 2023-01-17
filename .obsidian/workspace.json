@@ -4,19 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "4228b431d4e8c466",
+        "id": "f6ef8d39916172ff",
         "type": "tabs",
         "children": [
           {
-            "id": "bff187217194d60e",
+            "id": "f0c14a5ebd018ab5",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "1550/Introduction to Operating Systems.md",
-                "mode": "source",
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -69,8 +65,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "ffa1ee54606385b1",
@@ -86,7 +81,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "1550/Introduction to Operating Systems.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +97,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "1550/Introduction to Operating Systems.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,9 +118,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "1550/Introduction to Operating Systems.md"
-              }
+              "state": {}
             }
           }
         ],
@@ -147,8 +138,10 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "bff187217194d60e",
+  "active": "f0c14a5ebd018ab5",
   "lastOpenFiles": [
+    "1675/Intro to Regression.md",
+    "1675/Overview.md",
     "1555/Overview of Database Management Systems.md",
     "1550/Introduction to Operating Systems.md",
     "1550/Assets/Image Protection.png",
@@ -156,8 +149,6 @@
     "1550/Assets/OS_History.png",
     "1550/Assets/Address Space.png",
     "1502/Introduction.md",
-    "1675/Intro to Regression.md",
-    "1550/Assets/System Call.png",
-    "Pasted image 20230111100719.png"
+    "1550/Assets/System Call.png"
   ]
 }
