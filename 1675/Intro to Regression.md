@@ -40,6 +40,16 @@ mod1 <- lm(y~x, data = my_train)
 
 # We can summarize the results with the `summary()` function
 summary(mod1)
-# `(Intercept)`
-```
+# `(Intercept)` = β_0
+# `x = β_1
 
+# We can visualize the coefficient estimates and confidence intervals
+coefplot::coefplot(mod1) +
+	labs(title = "Coefficient plot for linear relationship model") +
+	theme_bw() + 
+	theme(axis.text.y = element_text(size = 14))
+```
+![](Pasted%20image%2020230117115015.png)
+If Zero(0) is contained within the confidence interval of the slope ($\beta_1$), we cannot say the slope is definitely negative (even if the estimate is negative). Thus, we conclude that $x$ is not statistically significant.
+
+Conversely, if zero(0) is not contained, we can say definitively that the slope is positive (or negative), thus we say that $x$ is statistically significant.
