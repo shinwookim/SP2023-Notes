@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "f6ef8d39916172ff",
+        "id": "beaedc27abd3960d",
         "type": "tabs",
         "children": [
           {
-            "id": "ebb6b1fb9247c77f",
+            "id": "30bed25d7a206081",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -148,12 +148,12 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "ebb6b1fb9247c77f",
+  "active": "30bed25d7a206081",
   "lastOpenFiles": [
     "1555/Conceptual Data Modeling and Database Design.md",
+    "1675/Intro to Regression.md",
     "1555/Overview of Database Management Systems.md",
     "1555/CAP_Theorem.png",
-    "1675/Intro to Regression.md",
     "1675/Overview.md",
     "1550/Introduction to Operating Systems.md",
     "1550/Assets/Image Protection.png",
