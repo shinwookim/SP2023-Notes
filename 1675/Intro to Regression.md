@@ -29,9 +29,17 @@ Assuming that we do not know the TRUTH,  we begin by **training** or **fitting**
 
 The beta($\beta$)s are the coefficients or parametrs of the model. We learn or estimate their values from the data by minimizing the error.
 
+We can use `R` to fit the model to our data. First, store the data in the object `my_train` which contains two columns (variables) `x` and `y`.
+
 ```R
-# Store the data in the object `my_train` which contains two 
+# Fit a linear relationship using `lm()` function and the formula interface
+mod1 <- lm(y~x, data = my_train)
+## Formula interface (`y~x`) allows us to specify the response and inputs (predictors) to the model, <OUTPUT VAR NAMES> ~ <INPUT VAR NAME>
+### Read as "the output, `y`, is a function of the input, `x`"
+## We also assign `my_train` object to the `data` argument of `lm()` function
+
+# We can summarize the results with the `summary()` function
+summary(mod1)
+# `(Intercept)`
 ```
-
-
 
