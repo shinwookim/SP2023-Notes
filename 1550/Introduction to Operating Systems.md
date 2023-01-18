@@ -265,3 +265,9 @@ syscall changes mode.
 
 Syscall tells the processor that the next instruction is OS code (allows us to run priv. instr)
 Thus, when we return we must flip the mode bit once again (kernel space --> user space)
+
+
+OS is event driven.
+
+When we exit the program, we make a system call.
+exit is a system call that never returns.
