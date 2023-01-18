@@ -162,4 +162,12 @@ graph TD;
   B-->A
 ```
 Programs communicate with the OS by using **system calls**. Recall that we used system calls in MIPS for input/output/management of the processes (terminate)/system-level randomness. Simply put, a system call instruction is how a program asks an OS to do something on its behalf (it is in essence a control transfer (much like `jal`). In reality, system calls in operating systems are more simple (rather than multiple print syscalls, we might have a single output syscall). ![System Call](Assets/System%20Call.png)
-Suppose a simple 'Hello World!' program written in C which uses the `printf()` function. After we compile, when we run the program (which is loaded into memory), the call to `printf()` will be handled by the `jal` instruction. 
+Suppose a simple 'Hello World!' program written in C which uses the `printf()` function. After we compile, when we run the program (which is loaded into memory), the call to `printf()` will be handled by the `jal` instruction.
+
+Every programming language (besides assembly language) has a standard library. If we call any code from libraries, they are linked to our program during compilation.
+
+By the time we call `printf()` (code from libraries), it should already be loaded into RAM/the program's address space (restriction of Von Neumann architecture).
+
+`printf()` as a function has only purpose: stringification and interpolation (using the format specifier). 
+
+At the end of `printf()`, we have a string (which is not yet displayed on screen)
