@@ -154,4 +154,4 @@ Recall that an operating system is a piece of software that manages resources, a
 
 Programs communicate with the OS by using **system calls**. Recall that we used system calls in MIPS for input/output/management of the processes (terminate)/system-level randomness. Simply put, a system call instruction is how a program asks an OS to do something on its behalf (it is in essence a control transfer (much like `jal`).
 
-![](Assets/System%20Call.png)
+![System Call](Assets/System%20Call.png)
