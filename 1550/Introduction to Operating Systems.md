@@ -219,8 +219,24 @@ Well if the OS is software (built out of instructions), why don't programmers ju
 
 To give the operating system authority,
 
-	
+	instuction set = things that processor can do
+		- instr set is partitioned into at least (and exactly-for our purposes) two sections.
 
+1. User mode instruction
+2. Kernel mode instruction
+---
+1. Protected mode instruction
+3. Privelliged mode instruction
 
+---
+x86 has 4 partitiones (ring 0, ...,3)
+
+So we will consider the two partion of an isntr set.
+
+Some instructions (privelliged) can be only run in kernel mode.
+
+All instructions we've written has been user/protected mode instruction.
+
+THE OS IS BUILT OUT OF INSTRUCTIONS
 
 
