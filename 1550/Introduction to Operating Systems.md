@@ -240,3 +240,14 @@ All instructions we've written has been user/protected mode instruction.
 THE OS IS BUILT OUT OF INSTRUCTIONS
 
 
+KERNEL = CORE SPACE OF OEPARTING SYSTEM INSTRUCTION
+
+
+
+WHen we call the instructions, the processor must distringuish which mode we are in....determine if it is allowed to run kernel mode instr. A single bit flag inside the processor stores this (machine status register).
+
+If we are in user mode, the processor can only  run user mode instr.
+If we are in kernel mode, the processor can run both user and kernel mode inst.
+
+What if we are in the wrong mode? (in user mode calling a kernel instruction)...
+1. (least desirable) 
