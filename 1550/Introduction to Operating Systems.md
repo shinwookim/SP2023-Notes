@@ -257,3 +257,11 @@ What if we are in the wrong mode? (in user mode calling a kernel instruction)...
 	3. exception tells operating system 
 		1. opearting system usually :
 		2. exception --> signal --> given to process (default action: crash; but can be modified)
+
+
+How does the OS flip the mode?
+!Syscall -- this is why jal and syscall are different.
+syscall changes mode.
+
+Syscall tells the processor that the next instruction is OS code (allows us to run priv. instr)
+Thus, when we return we must flip the mode bit once again (kernel space --> user space)
