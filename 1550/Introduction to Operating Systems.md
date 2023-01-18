@@ -206,8 +206,21 @@ Is it just a nomenclature? NO!
 
 Even though at the higher level, they look simiar,;;;but how they work is different.
 
+Functions are addressed. Syscall are indexed.
+
 Differene is because the OS lies between the App and OS. When an app makes a system call, the operating system does some work (conditional) to determine if the app can access the resource requested.
 
-Functions are addressed. Syscall are indexed.
+If the condition is met, the OS will do the work requested. If it is not met (e.g., security policy, resource usage), the OS will decline to do the work.
+
+Opeartings system = `if(condition) work;`
+
+## Why syscall?
+Well if the OS is software (built out of instructions), why don't programmers just skip the middle man (OS) and do the work ourself? I.e., how do we grant authority to OS (to control the resources which it has domain over)?
+
+To give the operating system authority,
+
+	
+
+
 
 
