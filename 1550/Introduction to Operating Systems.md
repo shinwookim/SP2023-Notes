@@ -198,4 +198,10 @@ Is it just a nomenclature? NO!
 	- by the time we are running the code, we have the address in the immediate (not labels)
 - What about `syscall`?
 	- syscall didn't take any operands....?
-	- syscall is an R-type instruction. 
+	- syscall is an R-type instruction. (but isn't syscall a control transfer?)
+		- techinically, because there is a func field which allows us to encode more instructions (to not waste J or I types)
+		- We put an integer in `v0` but that integer is not an address.
+		- they are an indexed by an ordinal; they were enumerated
+		- Note that this is very different to how `jal` works which accepts an addr.
+
+Even though at the higher level, they look simiar,;;;but
