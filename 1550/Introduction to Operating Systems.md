@@ -250,4 +250,10 @@ If we are in user mode, the processor can only  run user mode instr.
 If we are in kernel mode, the processor can run both user and kernel mode inst.
 
 What if we are in the wrong mode? (in user mode calling a kernel instruction)...
-1. (least desirable) 
+1. (least desirable) x86 historoically for some inst: simply ignores it (makes x86 hard to virtualize)
+2. x86 many; mips all: the processor raises an **exception**
+	1. e.g. integer division by zero
+	2. Page fault
+	3. exception tells operating system 
+		1. opearting system usually :
+		2. exception --> signal --> given to process (default action: crash; but can be modified)
