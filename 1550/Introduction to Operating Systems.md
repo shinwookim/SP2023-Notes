@@ -161,7 +161,9 @@ graph TD;
   C-->B
   B-->A
 ```
-Programs communicate with the OS by using **system calls**. Recall that we used system calls in MIPS for input/output/management of the processes (terminate)/system-level randomness. Simply put, a system call instruction is how a program asks an OS to do something on its behalf (it is in essence a control transfer (much like `jal`). In reality, system calls in operating systems are more simple (rather than multiple print syscalls, we might have a single output syscall). ![System Call](Assets/System%20Call.png)
+Programs communicate with the OS by using **system calls**. Recall that we used system calls in MIPS for input/output/management of the processes (terminate)/system-level randomness. Simply put, a system call instruction is how a program asks an OS to do something on its behalf (it is in essence a control transfer (much like `jal`). In reality, system calls in operating systems are more simple (rather than multiple print syscalls, we might have a single output syscall). 
+
+
 Suppose a simple 'Hello World!' program written in C which uses the `printf()` function. After we compile, when we run the program (which is loaded into memory), the call to `printf()` will be handled by the `jal` instruction.
 
 Every programming language (besides assembly language) has a standard library. If we call any code from libraries, they are linked to our program during compilation.
@@ -169,7 +171,7 @@ Every programming language (besides assembly language) has a standard library. I
 By the time we call `printf()` (code from libraries), it should already be loaded into RAM/the program's address space (restriction of Von Neumann architecture).
 
 `printf()` as a function has only purpose: stringification and interpolation (using the format specifier). 
-
+![System Call](Assets/System%20Call.png)
 At the end of `printf()`, we have a string (which is not yet displayed on screen). To show this string on screen, we have to control the hardware which controls the exact pixels on the screen.
 
 1. We need to determine the font (fonts are small programs which describe how each character should be drawn)
@@ -181,4 +183,16 @@ All of this work is required to see some text on the screen. (however, this is n
 
 printf must hand off this task to something....operating system? (we want to abstract these hardware level details from the programmer)
 
-Just before `printf()` returns, it makes a system call.
+Just before `printf()` returns, it makes a system call (giving the location--stdout, and the string).
+
+Looking at the assembly verifies this.
+
+At a higher level, the syscall tells the OS to do some task and return (once the task is complete).
+
+Simply, control transfer with a return.
+
+
+But why `jal` (for lib functions) and `syscall` (for OS task)?
+Is it just a nomenclature? NO! 
+- `jal` What type of instruction? *J type*
+	- 
