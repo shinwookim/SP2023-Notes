@@ -204,4 +204,10 @@ Is it just a nomenclature? NO!
 		- they are an indexed by an ordinal; they were enumerated
 		- Note that this is very different to how `jal` works which accepts an addr.
 
-Even though at the higher level, they look simiar,;;;but
+Even though at the higher level, they look simiar,;;;but how they work is different.
+
+Differene is because the OS lies between the App and OS. When an app makes a system call, the operating system does some work (conditional) to determine if the app can access the resource requested.
+
+Functions are addressed. Syscall are indexed.
+
+
