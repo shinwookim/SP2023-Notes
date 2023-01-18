@@ -130,7 +130,7 @@ This is a perfectly valid approach, but it is not what we do.
 
 ## Memory Management: Virtualization
 Most modern operating systems take another approach: **virtualization**. Virtualization is extremely useful because it simulates exclusive access for each programs (using **address spaces**). That is, the operating system makes it seem as if all processes have their own set of memory.
-![](Assets/Address%20Space.png)
+![Address Space](Assets/Address%20Space.png)
 Note that the term **space** in address space is a technical term; It refers to the mathematical notion of an enumartion of everything that is possible. For instance, the space of all possible 4 character ASCII strings is $128^4$ (assuming each ASCII character is 7 bits).
 
 For our case, an address is simply a number (which is stored as binary in modern computers). We will consider a CPU with a **native word size** of 32 bits. (The native word size refers to the most data that the computers can work with in one instruction; often, the native word size is also the address size). The address space of a 32 bit CPU is the enumeration of all possible addresses (`0000....000`, `0000....001`,`0000....011`,`1111....111`) which is approximately 4.2 billion addresses.
@@ -151,7 +151,17 @@ As an aside, why does the stack grow down, and heap up? Because all the other on
 # System Calls
 
 Recall that an operating system is a piece of software that manages resources, and abstract details. For a software to do this, the OS also requires some measurable amount of resources. That is, the OS takes away some resources, decreasing the amount of available resources for processes. I.e., the OS is an (necessary) overhead that lies as an intermediatry between the program (resource requestor) and the resource (request).
-
+```mermaid
+graph TD; 
+  A[App] 
+  B[Operating System]
+  C[Hardware] 
+  A--System Call-->B
+  B-->C
+  C-->B
+  B-->A
+```
 Programs communicate with the OS by using **system calls**. Recall that we used system calls in MIPS for input/output/management of the processes (terminate)/system-level randomness. Simply put, a system call instruction is how a program asks an OS to do something on its behalf (it is in essence a control transfer (much like `jal`).
 
 ![System Call](Assets/System%20Call.png)
+
