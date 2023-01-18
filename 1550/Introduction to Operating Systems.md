@@ -170,4 +170,15 @@ By the time we call `printf()` (code from libraries), it should already be loade
 
 `printf()` as a function has only purpose: stringification and interpolation (using the format specifier). 
 
-At the end of `printf()`, we have a string (which is not yet displayed on screen)
+At the end of `printf()`, we have a string (which is not yet displayed on screen). To show this string on screen, we have to control the hardware which controls the exact pixels on the screen.
+
+1. We need to determine the font (fonts are small programs which describe how each character should be drawn)
+2. Find out what pixels to manipulate using the font and font-size.
+3. Determine where the terminal is, and what line and column (considering line-wrap, word-break) to display
+4. After we have this information, we use an instruction to turn on/off the necessary pixels.
+
+All of this work is required to see some text on the screen. (however, this is not what printf does). printf does not know how to do all this at this level of details.
+
+printf must hand off this task to something....operating system? (we want to abstract these hardware level details from the programmer)
+
+Just before `printf()` returns, it makes a system call.
