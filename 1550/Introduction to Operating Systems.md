@@ -194,5 +194,8 @@ Simply, control transfer with a return.
 
 But why `jal` (for lib functions) and `syscall` (for OS task)?
 Is it just a nomenclature? NO! 
-- `jal` What type of instruction? *J type*
-	- 
+- `jal` What type of instruction? *J type* (6 bit opcode; 26 bit immediate--address)
+	- by the time we are running the code, we have the address in the immediate (not labels)
+- What about `syscall`?
+	- syscall didn't take any operands....?
+	- syscall is an R-type instruction. 
