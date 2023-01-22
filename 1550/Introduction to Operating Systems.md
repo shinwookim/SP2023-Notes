@@ -147,9 +147,8 @@ Thus, we have solved the protection problem.
 
 As an aside, why does the stack grow down, and heap up? Because all the other ones create issues. If both grow in the same direction, we will need to shift data as they grow. If we split the memory into halves, our programs may terminate when they run out of heap/stack space when there is still space left in memory. By having them grow in the opposite directions, n space is wasted even when they collide.
 
-Note that an 
 # System Calls
-Recall that an operating system is a piece of software that manages resources, and abstract details. For a software to do this, the OS also requires some measurable amount of resources. That is, the OS takes away some resources, decreasing the amount of available resources for processes. I.e., the OS is an (necessary) overhead that lies as an intermediatry between the program (resource requestor) and the resource (request).
+Note that an operating system is simply a piece of software that manages resources, and abstract details. For a mere software to do this, the OS requires some measurable amount of resources. That is, the OS must use up some resources which decreases the amount of available resources for the processes. I.e., the OS is an (necessary) overhead that lies as an intermediatry between the program (resource requestor) and the resource (request).
 ```mermaid
 graph TD; 
   A[App] 
@@ -160,7 +159,21 @@ graph TD;
   C-->B
   B-->A
 ```
-Programs communicate with the OS by using **system calls**. Recall that we used system calls in MIPS for input/output/management of the processes (terminate)/system-level randomness. Simply put, a system call instruction is how a program asks an OS to do something on its behalf (it is in essence a control transfer (much like `jal`). In reality, system calls in operating systems are more simple (rather than multiple print syscalls, we might have a single output syscall). 
+**System calls** are how programs communicate with the operating system (which in turn communicates with the actual hardware). Previously, we used system calls in MIPS for input/output, management of the processes (such as terminate), and system-level randomness (for cryptography). In a more broad view, a system call instruction is how a program asks an OS to perform something on its behalf. In essence, it is a control transfer (much like `jal`).
+
+Consider a simple "*Hello World!* program written in C":
+```C
+#include <stdio.h>
+int main() {
+   printf("Hello, World!");
+   return 0;
+}
+```
+Notice that since `printf()` i
+
+
+
+) (it is in essence a control transfer (much like `jal`). In reality, system calls in operating systems are more simple (rather than multiple print syscalls, we might have a single output syscall). 
 
 
 Suppose a simple 'Hello World!' program written in C which uses the `printf()` function. After we compile, when we run the program (which is loaded into memory), the call to `printf()` will be handled by the `jal` instruction.
