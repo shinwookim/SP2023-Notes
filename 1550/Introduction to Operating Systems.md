@@ -130,7 +130,7 @@ This is a perfectly valid approach, but it is not what we do.
 
 ## Memory Management: Virtualization
 Most modern operating systems take another approach: **virtualization**. Virtualization is extremely useful because it simulates exclusive access for each programs (using **address spaces**). That is, the operating system makes it seem as if all processes have their own set of memory.
-![](Assets/Address%20Space.png)
+![Address Space](Assets/Address%20Space.png)
 Note that the term **space** in address space is a technical term; It refers to the mathematical notion of an enumartion of everything that is possible. For instance, the space of all possible 4 character ASCII strings is $128^4$ (assuming each ASCII character is 7 bits).
 
 For our case, an address is simply a number (which is stored as binary in modern computers). We will consider a CPU with a **native word size** of 32 bits. (The native word size refers to the most data that the computers can work with in one instruction; often, the native word size is also the address size). The address space of a 32 bit CPU is the enumeration of all possible addresses (`0000....000`, `0000....001`,`0000....011`,`1111....111`) which is approximately 4.2 billion addresses.
@@ -151,7 +151,123 @@ As an aside, why does the stack grow down, and heap up? Because all the other on
 # System Calls
 
 Recall that an operating system is a piece of software that manages resources, and abstract details. For a software to do this, the OS also requires some measurable amount of resources. That is, the OS takes away some resources, decreasing the amount of available resources for processes. I.e., the OS is an (necessary) overhead that lies as an intermediatry between the program (resource requestor) and the resource (request).
+```mermaid
+graph TD; 
+  A[App] 
+  B[Operating System]
+  C[Hardware] 
+  A--System Call-->B
+  B-->C
+  C-->B
+  B-->A
+```
+Programs communicate with the OS by using **system calls**. Recall that we used system calls in MIPS for input/output/management of the processes (terminate)/system-level randomness. Simply put, a system call instruction is how a program asks an OS to do something on its behalf (it is in essence a control transfer (much like `jal`). In reality, system calls in operating systems are more simple (rather than multiple print syscalls, we might have a single output syscall). 
 
-Programs communicate with the OS by using **system calls**. Recall that we used system calls in MIPS for input/output/management of the processes (terminate)/system-level randomness. Simply put, a system call instruction is how a program asks an OS to do something on its behalf (it is in essence a control transfer (much like `jal`).
 
-![](Assets/System%20Call.png)
+Suppose a simple 'Hello World!' program written in C which uses the `printf()` function. After we compile, when we run the program (which is loaded into memory), the call to `printf()` will be handled by the `jal` instruction.
+
+Every programming language (besides assembly language) has a standard library. If we call any code from libraries, they are linked to our program during compilation.
+
+By the time we call `printf()` (code from libraries), it should already be loaded into RAM/the program's address space (restriction of Von Neumann architecture).
+
+`printf()` as a function has only purpose: stringification and interpolation (using the format specifier). 
+![System Call](Assets/System%20Call.png)
+At the end of `printf()`, we have a string (which is not yet displayed on screen). To show this string on screen, we have to control the hardware which controls the exact pixels on the screen.
+
+1. We need to determine the font (fonts are small programs which describe how each character should be drawn)
+2. Find out what pixels to manipulate using the font and font-size.
+3. Determine where the terminal is, and what line and column (considering line-wrap, word-break) to display
+4. After we have this information, we use an instruction to turn on/off the necessary pixels.
+
+All of this work is required to see some text on the screen. (however, this is not what printf does). printf does not know how to do all this at this level of details.
+
+printf must hand off this task to something....operating system? (we want to abstract these hardware level details from the programmer)
+
+Just before `printf()` returns, it makes a system call (giving the location--stdout, and the string).
+
+Looking at the assembly verifies this.
+
+At a higher level, the syscall tells the OS to do some task and return (once the task is complete).
+
+Simply, control transfer with a return.
+
+
+But why `jal` (for lib functions) and `syscall` (for OS task)?
+Is it just a nomenclature? NO! 
+- `jal` What type of instruction? *J type* (6 bit opcode; 26 bit immediate--address)
+	- by the time we are running the code, we have the address in the immediate (not labels)
+- What about `syscall`?
+	- syscall didn't take any operands....?
+	- syscall is an R-type instruction. (but isn't syscall a control transfer?)
+		- techinically, because there is a func field which allows us to encode more instructions (to not waste J or I types)
+		- We put an integer in `v0` but that integer is not an address.
+		- they are an indexed by an ordinal; they were enumerated
+		- Note that this is very different to how `jal` works which accepts an addr.
+
+Even though at the higher level, they look simiar,;;;but how they work is different.
+
+Functions are addressed. Syscall are indexed.
+
+Differene is because the OS lies between the App and OS. When an app makes a system call, the operating system does some work (conditional) to determine if the app can access the resource requested.
+
+If the condition is met, the OS will do the work requested. If it is not met (e.g., security policy, resource usage), the OS will decline to do the work.
+
+Opeartings system = `if(condition) work;`
+
+## Why syscall?
+Well if the OS is software (built out of instructions), why don't programmers just skip the middle man (OS) and do the work ourself? I.e., how do we grant authority to OS (to control the resources which it has domain over)?
+
+To give the operating system authority,
+
+	instuction set = things that processor can do
+		- instr set is partitioned into at least (and exactly-for our purposes) two sections.
+
+1. User mode instruction
+2. Kernel mode instruction
+---
+1. Protected mode instruction
+3. Privelliged mode instruction
+
+---
+x86 has 4 partitiones (ring 0, ...,3)
+
+So we will consider the two partion of an isntr set.
+
+Some instructions (privelliged) can be only run in kernel mode.
+
+All instructions we've written has been user/protected mode instruction.
+
+THE OS IS BUILT OUT OF INSTRUCTIONS
+
+
+KERNEL = CORE SPACE OF OEPARTING SYSTEM INSTRUCTION
+
+
+
+WHen we call the instructions, the processor must distringuish which mode we are in....determine if it is allowed to run kernel mode instr. A single bit flag inside the processor stores this (machine status register).
+
+If we are in user mode, the processor can only  run user mode instr.
+If we are in kernel mode, the processor can run both user and kernel mode inst.
+
+What if we are in the wrong mode? (in user mode calling a kernel instruction)...
+1. (least desirable) x86 historoically for some inst: simply ignores it (makes x86 hard to virtualize)
+2. x86 many; mips all: the processor raises an **exception**
+	1. e.g. integer division by zero
+	2. Page fault
+	3. exception tells operating system 
+		1. opearting system usually :
+		2. exception --> signal --> given to process (default action: crash; but can be modified)
+
+
+How does the OS flip the mode?
+!Syscall -- this is why jal and syscall are different.
+syscall changes mode.
+
+Syscall tells the processor that the next instruction is OS code (allows us to run priv. instr)
+Thus, when we return we must flip the mode bit once again (kernel space --> user space)
+
+
+OS is event driven.
+
+When we exit the program, we make a system call.
+exit is a system call that never returns.
