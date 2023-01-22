@@ -173,24 +173,19 @@ Notice that we use the standard library function `printf()` to print to our stri
 
 Now if we examine the `printf()` function, we'll see that the majority of work done by the `printf()` is the stringification and interpolation of the argument string (using approporiate format specifiers). Towards the end of `printf()`, we are left with a string which is not yet displayed on the standard output.
 
-The task of actually displaying the string is handled by a syscall (with yet another control transfer) and is a complex one.![System Call](Assets/System%20Call.png)
-To show this string on screen, we need to manipulate the hardware which controls the exact pixels on the screen.
+The task of actually displaying the string is very complex. To show this string on screen, we need to manipulate the hardware which controls the exact pixels on the screen.
 1. First, we need to read the font (fonts are small programs which describe how each character needs to be drawn) to determine how to draw the string (what pixels to manipulate)
 	* We may also need additional information such as font-size
 2. Next, we must determined where the terminal is, and what line and column to display at.
 	* We may also need to consider line-wraps and work-breaking 
 3. Finally, once we have all this information, can we use an instruction to turn on/off the necessary pixels.
 Clearly this involves alot of details about the hardware and is best left abstracted for functions like `printf()`. I.e., it is the job of the operating system.
+![System Call](Assets/System%20Call.png)
+Thus, just before `printf()` returns, it makes a system call (with yet another control transfer) with arguments to declare the location of output, `stdout`, and the string. This is verifiable by examining the assembly-level code. However, at a higher level, the syscall is simply telling the OS to do some task (print to stdout) and then returning once the task is complete. The details of how that task is done is abstracted.
 
-Thus, 
+## Why syscall?
+From the details above, we can conclude that a syscall is simply a control transfer with a return. But if it is simply a control transfer why wouldn't we just use `jal` (used for library functions) and not `syscall` (used for OS tasks)?
 
-Just before `printf()` returns, it makes a system call (giving the location--stdout, and the string).
-
-Looking at the assembly verifies this.
-
-At a higher level, the syscall tells the OS to do some task and return (once the task is complete).
-
-Simply, control transfer with a return.
 
 
 But why `jal` (for lib functions) and `syscall` (for OS task)?
