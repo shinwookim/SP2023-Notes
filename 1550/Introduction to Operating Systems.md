@@ -174,16 +174,15 @@ Notice that we use the standard library function `printf()` to print to our stri
 Now if we examine the `printf()` function, we'll see that the majority of work done by the `printf()` is the stringification and interpolation of the argument string (using approporiate format specifiers). Towards the end of `printf()`, we are left with a string which is not yet displayed on the standard output.
 
 The task of actually displaying the string is handled by a syscall (with yet another control transfer) and is a complex one.![System Call](Assets/System%20Call.png)
-At the end of `printf()`, we have a string (which is not yet displayed on screen). To show this string on screen, we have to control the hardware which controls the exact pixels on the screen.
+To show this string on screen, we need to manipulate the hardware which controls the exact pixels on the screen.
+1. First, we need to read the font (fonts are small programs which describe how each character needs to be drawn) to determine how to draw the string (what pixels to manipulate)
+	* We may also need additional information such as font-size
+2. Next, we must determined where the terminal is, and what line and column to display at.
+	* We may also need to consider line-wraps and work-breaking 
+3. Finally, once we have all this information, can we use an instruction to turn on/off the necessary pixels.
+Clearly this involves alot of details about the hardware and is best left abstracted for functions like `printf()`. I.e., it is the job of the operating system.
 
-1. We need to determine the font (fonts are small programs which describe how each character should be drawn)
-2. Find out what pixels to manipulate using the font and font-size.
-3. Determine where the terminal is, and what line and column (considering line-wrap, word-break) to display
-4. After we have this information, we use an instruction to turn on/off the necessary pixels.
-
-All of this work is required to see some text on the screen. (however, this is not what printf does). printf does not know how to do all this at this level of details.
-
-printf must hand off this task to something....operating system? (we want to abstract these hardware level details from the programmer)
+Thus, 
 
 Just before `printf()` returns, it makes a system call (giving the location--stdout, and the string).
 
