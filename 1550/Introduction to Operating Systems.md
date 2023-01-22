@@ -161,9 +161,7 @@ graph TD;
 ```
 **System calls** are how programs communicate with the operating system (which in turn communicates with the actual hardware). Previously, we used system calls in MIPS for input/output, management of the processes (such as terminate), and system-level randomness (for cryptography). In a more broad view, a system call instruction is how a program asks an OS to perform something on its behalf. In essence, it is a control transfer (much like `jal`).
 
-Almost all programming languages (besides assembly language) has a standard library. Thus, if a program makes calls to a functions in that library, it must be linked during compilation, and loaded into memory during run-time (as a consequence of the Von Neumann architecture). 
-
-Consider a simple "*Hello World!* program written in C":
+Almost all programming languages (besides assembly language) has a standard library. Thus, if a program makes calls to a functions in that library, it must be linked during compilation, and loaded into memory during run-time (as a consequence of the Von Neumann architecture). Consider a simple "*Hello World!* program written in C":
 ```C
 #include <stdio.h>
 int main() {
@@ -171,27 +169,11 @@ int main() {
    return 0;
 }
 ```
-Notice that we use the standard library function `printf()` to print to our string to the standard output. Thus, when we compile our program,  
+Notice that we use the standard library function `printf()` to print to our string to the standard output. Thus, when we compile our program, the call to `printf()` will be handled by a `jal` instruction to the `printf()` function. Thus, we are transferring control from our code into the `printf()` function.
 
-Notice that since `printf()` is a standard library function, when we compile our program it is handled by a `jal` instruction.
+Now if we examine the `printf()` function, we'll see that the majority of work done by the `printf()` is the stringification and interpolation of the argument string (using approporiate format specifiers). Towards the end of `printf()`, we are left with a string which is not yet displayed on the standard output.
 
-
-
-
-
-
-
-In reality, system calls in operating systems are more simple (rather than multiple print syscalls, we might have a single output syscall). 
-
-
-Suppose a simple 'Hello World!' program written in C which uses the `printf()` function. After we compile, when we run the program (which is loaded into memory), the call to `printf()` will be handled by the `jal` instruction.
-
-Every programming language (besides assembly language) has a standard library. If we call any code from libraries, they are linked to our program during compilation.
-
-
-
-`printf()` as a function has only purpose: stringification and interpolation (using the format specifier). 
-![System Call](Assets/System%20Call.png)
+The task of actually displaying the string is handled by a syscall (with yet another control transfer) and is a complex one.![System Call](Assets/System%20Call.png)
 At the end of `printf()`, we have a string (which is not yet displayed on screen). To show this string on screen, we have to control the hardware which controls the exact pixels on the screen.
 
 1. We need to determine the font (fonts are small programs which describe how each character should be drawn)
@@ -291,3 +273,5 @@ OS is event driven.
 
 When we exit the program, we make a system call.
 exit is a system call that never returns.
+
+In reality, system calls in operating systems are more simple (rather than multiple print syscalls, we might have a single output syscall). 
