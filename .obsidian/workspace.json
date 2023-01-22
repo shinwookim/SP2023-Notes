@@ -23,11 +23,9 @@
             "id": "d59d83f351c0d2b3",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "image",
               "state": {
-                "file": "449/00. Introduction & What is Systems.md",
-                "mode": "source",
-                "source": false
+                "file": "449/assets/Pasted image 20221023215050.png"
               }
             }
           }
@@ -98,7 +96,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "449/00. Introduction & What is Systems.md",
+                "file": "1550/Introduction to Operating Systems.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -115,7 +113,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "449/00. Introduction & What is Systems.md",
+                "file": "1550/Introduction to Operating Systems.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -138,7 +136,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "449/00. Introduction & What is Systems.md"
+                "file": "1550/Introduction to Operating Systems.md"
               }
             }
           }
@@ -159,8 +157,10 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "d59d83f351c0d2b3",
+  "active": "a4f5499d9a34f44b",
   "lastOpenFiles": [
+    "449/01. Data Representation.md",
+    "449/00. Introduction & What is Systems.md",
     "Untitled.md",
     "1550/Introduction to Operating Systems.md",
     "1550/OS_History.png",
