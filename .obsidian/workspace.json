@@ -11,8 +11,12 @@
             "id": "248af4b62044c158",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "1550/Introduction to Operating Systems.md",
+                "mode": "source",
+                "source": false
+              }
             }
           }
         ]
@@ -81,6 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "1550/Introduction to Operating Systems.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -97,6 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "1550/Introduction to Operating Systems.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -118,7 +124,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "1550/Introduction to Operating Systems.md"
+              }
             }
           }
         ],
@@ -138,17 +146,17 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "a4f5499d9a34f44b",
+  "active": "248af4b62044c158",
   "lastOpenFiles": [
+    "Untitled.md",
+    "449/Untitled.md",
+    "1502/Introduction.md",
+    "1502/01. Mathematics Preliminaries.md",
+    "449/00. Introduction & What is Systems.md",
+    "449/01. Data Representation.md",
     "conflict-files-obsidian-git.md",
     "449/assets/Pasted image 20221023215050.png",
     "1550/Introduction to Operating Systems.md",
-    "449/01. Data Representation.md",
-    "449/00. Introduction & What is Systems.md",
-    "Untitled.md",
-    "1550/OS_History.png",
-    "1555/Overview of Database Management Systems.md",
-    "1555/DBMS.png",
-    "1520/Course Introduction.md"
+    "1550/OS_History.png"
   ]
 }
