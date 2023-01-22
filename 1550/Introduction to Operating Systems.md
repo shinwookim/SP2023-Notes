@@ -161,6 +161,8 @@ graph TD;
 ```
 **System calls** are how programs communicate with the operating system (which in turn communicates with the actual hardware). Previously, we used system calls in MIPS for input/output, management of the processes (such as terminate), and system-level randomness (for cryptography). In a more broad view, a system call instruction is how a program asks an OS to perform something on its behalf. In essence, it is a control transfer (much like `jal`).
 
+Almost all programming languages (besides assembly language) has a standard library. Thus, if a program makes calls to a functions in that library, it must be linked during compilation, and loaded into memory during run-time (as a consequence of the Von Neumann architecture). 
+
 Consider a simple "*Hello World!* program written in C":
 ```C
 #include <stdio.h>
@@ -169,18 +171,24 @@ int main() {
    return 0;
 }
 ```
-Notice that since `printf()` i
+Notice that we use the standard library function `printf()` to print to our string to the standard output. Thus, when we compile our program,  
+
+Notice that since `printf()` is a standard library function, when we compile our program it is handled by a `jal` instruction.
 
 
 
-) (it is in essence a control transfer (much like `jal`). In reality, system calls in operating systems are more simple (rather than multiple print syscalls, we might have a single output syscall). 
+
+
+
+
+In reality, system calls in operating systems are more simple (rather than multiple print syscalls, we might have a single output syscall). 
 
 
 Suppose a simple 'Hello World!' program written in C which uses the `printf()` function. After we compile, when we run the program (which is loaded into memory), the call to `printf()` will be handled by the `jal` instruction.
 
 Every programming language (besides assembly language) has a standard library. If we call any code from libraries, they are linked to our program during compilation.
 
-By the time we call `printf()` (code from libraries), it should already be loaded into RAM/the program's address space (restriction of Von Neumann architecture).
+
 
 `printf()` as a function has only purpose: stringification and interpolation (using the format specifier). 
 ![System Call](Assets/System%20Call.png)
