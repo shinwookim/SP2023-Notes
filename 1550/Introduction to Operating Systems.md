@@ -202,37 +202,16 @@ Recall that the instruction set defines the things that a processor can do. Howe
 
 1. There is the **User mode instructions**/**Protected mode instructions** which are the instructions that our user program runs.
 2. And there is the **Kernel mode instructions**/**Privelliged mode instructions** which the operating system runs.
-Note that some architectures may have more than 2 partitions (e.g., x86 has 4 part)
+Note that some architectures may have more than 2 partitions (e.g., x86 has 4 partitions called ring 0, ... ring 3). However, for our purposes we will consider the instruction set to be partitioned into 2 parts.
 
-	instuction set = things that processor can do
-		- instr set is partitioned into at least (and exactly-for our purposes) two sections.
+Although most instructions (User/Protected mode) can be run by all programs, some instructions (Kernel/Privelliged mode) can only be run in kernel mode. Up until now, all the instructions we've wrriten were user/protected mode instructions.
+* Note that the Kernel, here, refers to the core space of operating system instructions, and will be used synonymously with the OS for now.
+When a kernel mode instruction is called, the processor distinguished which mode we are in to determine if it is allowed to run that instruction. A single bit flag inside the machine status register stores which mode we are in. If we are in kernel mode, the processor can run both user mode and kernel mode instructions. However, if we are in user mode, the processor canonly run user mode instructions.
 
-1. User mode instruction
-2. Kernel mode instruction
----
-1. Protected mode instruction
-3. Privelliged mode instruction
-
----
-x86 has 4 partitiones (ring 0, ...,3)
-
-So we will consider the two partion of an isntr set.
-
-Some instructions (privelliged) can be only run in kernel mode.
-
-All instructions we've written has been user/protected mode instruction.
-
-THE OS IS BUILT OUT OF INSTRUCTIONS
-
-
-KERNEL = CORE SPACE OF OEPARTING SYSTEM INSTRUCTION
+But what if we are in user mode, but call a kernel mode instructions? Well that depends on what instruction is called. Historically, x86 simply ignored these calls
 
 
 
-WHen we call the instructions, the processor must distringuish which mode we are in....determine if it is allowed to run kernel mode instr. A single bit flag inside the processor stores this (machine status register).
-
-If we are in user mode, the processor can only  run user mode instr.
-If we are in kernel mode, the processor can run both user and kernel mode inst.
 
 What if we are in the wrong mode? (in user mode calling a kernel instruction)...
 1. (least desirable) x86 historoically for some inst: simply ignores it (makes x86 hard to virtualize)
