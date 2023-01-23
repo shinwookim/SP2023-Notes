@@ -91,18 +91,18 @@ On chip structure: there is a table (Interrupt vector) indexed by the particular
 All system calls go to the same entry in the table (usually index 0, sometimes x86 128).
 
 The processor sets the address at the table, then fetches instructions to handle all system calls.
-The Operating system has a second table (syscall table in Linux) which is indexed by the ordinal in `v0`.)
+The operating system has a second table (syscall table in Linux) which is indexed by the ordinal in `v0` ).
 
 
-2 step process of dispatching a particular syscall
+2-step process of dispatching a particular syscall
 1. Interrupt vector to determine the interrupt is syscall
-	1. Escalates privellege
+	1. Escalates privilege
 2. Syscall table to handle the particular syscall
-	1. after instruction complete, syscall/interrupt returns and privellege level is dropped
+	1. after instruction complete, syscall/interrupt returns and privilege level is dropped
 
 ^ This is complex....but it is too expensive?
-The syscall instruction is only minimally more expensive than a,,,perhaps a divison instruction.
-(Note some instr are more slower than others e..g., `jal j` are faster than loads)
+The syscall instruction is only minimally more expensive than a,,,perhaps a division instruction.
+(Note some instr are slower than others e..g., `jal j` are faster than loads)
 It's not horrific! 
 
-System calls are slow!!!! (even though `syscall` isn't) because of the work that must occur next...!
+System calls are slow!!!! (even though `syscall` isn't) because of the work that must occur next...! (recall with function calls, we had to store and restore registers--depeding on calling conventions:::it was a lot of work...)
