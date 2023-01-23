@@ -138,14 +138,32 @@ IT RUNS, ONLY WHEN IT NEEDS TO (WHEN WE GENERATE EVENTS) → EVENT DRIVEN.
 
 EVENT DRIVEN VS. PROMPT AND WAIT
 (MOST GUI PROGRAMS) VS (SCANNER.NEXTIN())
-==> RUNS WHEN EVENT IS GENERATED (BY A USER)
+→ RUNS WHEN EVENT IS GENERATED (BY A USER)
 
-WHEN (BUTTON CLICKED) --> DO TASK (GUI LISTENS)
+WHEN (BUTTON CLICKED) → DO TASK (GUI LISTENS)
 
-NOT: WAIT UNTIL BUTTON CLICKED --> DO TASK
+NOT: WAIT UNTIL BUTTON CLICKED → DO TASK
 
 
-A SYSCALL IS AN EVENT(!) ==> INTERRUPT (MEANS WE ARE WILLING TO WAIT WHILE THE TASK IS DONE)
+A SYSCALL IS AN EVENT(!) → INTERRUPT (MEANS WE ARE WILLING TO WAIT WHILE THE TASK IS DONE)
 - THE OS AND PROGRAM IS NOT RUNNING SIMULTANEOUSLY, BUT SEQUENTIALLY
+$$\text{System Call}\in\text{Interrupt}\in\text{Event}$$
+An operating system is an event handler.
+Interrupt vector is the link between the event and the OS code (which handles the event)!
+
+((
+The OS runs first at BOOT (in privelleged mode) to set interrupt vector (installing our self as the event handler, meaning we establish ourself as OS)
+
+Interrupt vector access is privelleged!.
+
+Whatevery handles event is the OS!
+
+
+))
 
 ---
+
+
+
+
+
