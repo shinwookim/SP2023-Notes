@@ -3,6 +3,9 @@
   "useMarkdownLinks": true,
   "showUnsupportedFiles": true,
   "spellcheckDictionary": [
-    "fee"
+    "fee",
+    "stringification",
+    "`printf",
+    "`printf"
   ]
 }
