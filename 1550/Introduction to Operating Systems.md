@@ -186,12 +186,16 @@ Thus, just before `printf()` returns, it makes a system call (with yet another c
 ## Why syscall?
 From the details above, we can conclude that a syscall is simply a control transfer with a return. But if it is simply a control transfer why wouldn't we just use `jal` (used for library functions) and not `syscall` (used for OS tasks)?
 
+Recall that `jal` is a *J-type* instruction (6 bit opcodes, 26 bit immediate); and that at run-time the address of the control transfer is loaded from the 26 bit immediate. 
+
+However, a `syscall` did not take any operands. We put an integer in register `v0`, but that integer was not an address. Instead they were an enumerated ordinal which could be looked up on a table.
+
+Even though they look similar, `jal` and `syscall`s work in different ways. The wo
+
+are different in that `jal` uses functions which are addressed, and `syscall` uses
 
 
-But why `jal` (for lib functions) and `syscall` (for OS task)?
-Is it just a nomenclature? NO! 
-- `jal` What type of instruction? *J type* (6 bit opcode; 26 bit immediate--address)
-	- by the time we are running the code, we have the address in the immediate (not labels)
+
 - What about `syscall`?
 	- syscall didn't take any operands....?
 	- syscall is an R-type instruction. (but isn't syscall a control transfer?)
