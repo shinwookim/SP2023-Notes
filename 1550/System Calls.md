@@ -176,7 +176,9 @@ Static RAM vs Dynamic RAM
 Registers are fast because it's made of flip-flops, etc. but is more expensive.
 Dynamic ram is like a water bucket (threshold) --> We need to flush it periodically.
 
-If we must write 32 registers to RAM for context switch, it's slooooo
+If we must write 32 registers to RAM for context switch, it's slooooow!
+
+Examine a program with many print statements (and remove them!) Notice the difference
 ![](Pasted%20image%2020230123104046.png)
 
 
