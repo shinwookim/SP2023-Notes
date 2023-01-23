@@ -84,4 +84,15 @@ An interrupt is bigger than a system call. (we can group by the source)
 Where do we get the address the CPU should set the program counter to (to run OS code)???
 
 
-When we get an interrupt, regardless of origin, the processor needs an address to set program counter (to run OS code which)
+When we get an interrupt, regardless of origin, the processor needs an address to set program counter (to run OS code which handles it).
+
+On chip structure: there is a table (Interrupt vector) indexed by the particular type of interrupt. At each index, there is an address. At the address is an OS code which handles the interrupt. (Note, this does not use the ordinal in `v0`). --> Which entry in the interrupt vector represents an interrupt that is a system call?
+
+All system calls go to the same entry in the table (usually index 0, sometimes x86 128).
+
+The processor sets the address at the table, then fetches instructions to handle all system calls.
+The Operating system has a second table (syscall table in Linux) which is indexed by the ordinal in `v0`.)
+
+
+2 step process of dispatching a particular syscall
+1. Interrupt vector to determ
