@@ -194,19 +194,15 @@ Even though they look similar, `jal` and syscalls work in different ways. The wo
 
 As an aside, since the presence of the `func` field allows for more R-type instructions, to not waste the limited J or I type instructions, syscalls are techinically R-type instructions.
 
-At its core, when an app makes a system call, the operating system does some conditional work to determine if the app has access the the requested resource. If the condition is met, the OS will do the work requested, and if the condition is not met (due to security policies, resource usage, etc), the OS will decline to do the work.
-$$\verb|{Operating System = if (condition){ do_work; }}$$
+At its core, when an app makes a system call, the operating system does some conditional work to determine if the app has access the the requested resource. If the condition is met, the OS will do the work requested, and if the condition is not met (due to security policies, resource usage, etc), the OS will decline to do the work.$$\verb|Operating System = if (condition) {do_work;}|$$
+### Preventing apps from bypassing the OS
+If the OS is just softare (built out of the same instruction set), how do we prevent someone from programming an app to skip the middle man (OS) and do the work itself? I.e., how can we grand authority to the OS to control the resources which it has domain over?
 
-Differene is because the OS lies between the App and OS. When an app makes a system call, the operating system does some work (conditional) to determine if the app can access the resource requested.
+Recall that the instruction set defines the things that a processor can do. However, if we examine closely, the instruction set is partioned into at least (and most often exactly) two sections for the sake of giving the OS authority.
 
-If the condition is met, the OS will do the work requested. If it is not met (e.g., security policy, resource usage), the OS will decline to do the work.
-
-Opeartings system = `if(condition) work;`
-
-## Why syscall?
-Well if the OS is software (built out of instructions), why don't programmers just skip the middle man (OS) and do the work ourself? I.e., how do we grant authority to OS (to control the resources which it has domain over)?
-
-To give the operating system authority,
+1. There is the **User mode instructions**/**Protected mode instructions** which are the instructions that our user program runs.
+2. And there is the **Kernel mode instructions**/**Privelliged mode instructions** which the operating system runs.
+Note that some architectures may have more than 2 partitions (e.g., x86 has 4 part)
 
 	instuction set = things that processor can do
 		- instr set is partitioned into at least (and exactly-for our purposes) two sections.
