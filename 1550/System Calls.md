@@ -67,6 +67,8 @@ But if the OS needs to run kernel mode instructions, how does it flip the mode? 
 + The OS is also event driven, it acts when it's called upon!
 + Syscalls are often very simple. Instead of multiple print syscalls, there is often a single output syscall which can be specified using flags!
 
+---
+
 ## Trapping/Interrupt
 (similar nomenclature)
 
@@ -125,11 +127,25 @@ The OS has interrupt handler for sys calls which stores all the registers!....bu
 
 
 
-HENCE THE SYSTEM CALL IS SLOOOOOOOOW!
+HENCE, THE SYSTEM CALL IS SLOOOOOOOOW!
 
 
-aside: OS is not a typical program....protecting the addresses in the table!
+aside: OS is not a typical program....protecting the addresses in the table! (EVENT DRIVEN)
 
 THE OS IS EVENT DRIVEN....IF THE OS IS RUNNING CODE, IT'S NOT RUNNING THE USER PROGRAM...THUS, IT IS NOT WATCHING OUR PROGRAM (IF THE OS IS USING THE RESOURCE, THE USER PROCESS CANNOT)
 
-IT RUNS, ONLY WHEN IT NEEDS TO
+IT RUNS, ONLY WHEN IT NEEDS TO (WHEN WE GENERATE EVENTS) → EVENT DRIVEN.
+
+EVENT DRIVEN VS. PROMPT AND WAIT
+(MOST GUI PROGRAMS) VS (SCANNER.NEXTIN())
+==> RUNS WHEN EVENT IS GENERATED (BY A USER)
+
+WHEN (BUTTON CLICKED) --> DO TASK (GUI LISTENS)
+
+NOT: WAIT UNTIL BUTTON CLICKED --> DO TASK
+
+
+A SYSCALL IS AN EVENT(!) ==> INTERRUPT (MEANS WE ARE WILLING TO WAIT WHILE THE TASK IS DONE)
+- THE OS AND PROGRAM IS NOT RUNNING SIMULTANEOUSLY, BUT SEQUENTIALLY
+
+---
