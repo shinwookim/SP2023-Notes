@@ -188,25 +188,14 @@ From the details above, we can conclude that a syscall is simply a control trans
 
 Recall that `jal` is a *J-type* instruction (6 bit opcodes, 26 bit immediate); and that at run-time the address of the control transfer is loaded from the 26 bit immediate. 
 
-However, a `syscall` did not take any operands. We put an integer in register `v0`, but that integer was not an address. Instead they were an enumerated ordinal which could be looked up on a table.
+However, a syscall did not take any operands. We put an integer in register `v0`, but that integer was not an address. Instead they were an enumerated ordinal which could be looked up on a table.
 
-Even though they look similar, `jal` and `syscall`s work in different ways. The wo
+Even though they look similar, `jal` and syscalls work in different ways. The work of `jal` is based on functions which are addressed, while the work of syscalls are indexed.
 
-are different in that `jal` uses functions which are addressed, and `syscall` uses
+As an aside, since the presence of the `func` field allows for more R-type instructions, to not waste the limited J or I type instructions, syscalls are techinically R-type instructions.
 
-
-
-- What about `syscall`?
-	- syscall didn't take any operands....?
-	- syscall is an R-type instruction. (but isn't syscall a control transfer?)
-		- techinically, because there is a func field which allows us to encode more instructions (to not waste J or I types)
-		- We put an integer in `v0` but that integer is not an address.
-		- they are an indexed by an ordinal; they were enumerated
-		- Note that this is very different to how `jal` works which accepts an addr.
-
-Even though at the higher level, they look simiar,;;;but how they work is different.
-
-Functions are addressed. Syscall are indexed.
+At its core, when an app makes a system call, the operating system does some conditional work to determine if the app has access the the requested resource. If the condition is met, the OS will do the work requested, and if the condition is not met (due to security policies, resource usage, etc), the OS will decline to do the work.
+$$\verb|{Operating System = if (condition){ do_work; }}$$
 
 Differene is because the OS lies between the App and OS. When an app makes a system call, the operating system does some work (conditional) to determine if the app can access the resource requested.
 
