@@ -126,3 +126,10 @@ The OS has interrupt handler for sys calls which stores all the registers!....bu
 
 
 HENCE THE SYSTEM CALL IS SLOOOOOOOOW!
+
+
+aside: OS is not a typical program....protecting the addresses in the table!
+
+THE OS IS EVENT DRIVEN....IF THE OS IS RUNNING CODE, IT'S NOT RUNNING THE USER PROGRAM...THUS, IT IS NOT WATCHING OUR PROGRAM (IF THE OS IS USING THE RESOURCE, THE USER PROCESS CANNOT)
+
+IT RUNS, ONLY WHEN IT NEEDS TO
