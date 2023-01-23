@@ -50,6 +50,7 @@ At its core, when an app makes a system call, the operating system does some con
 If the OS is just software (built out of the same instruction set), how do we prevent someone from programming an app to skip the middle man (OS) and do the work itself? I.e., how can we grant authority to the OS to control the resources which it has domain over?
 
 Recall that the instruction set defines the things that a processor can do. However, if we examine closely, the instruction set is partitioned into at least (and most often exactly) two sections for the sake of giving the OS authority.
+
 ## Dual Mode
 1. There is the **User mode instructions**/**Protected mode instructions** which are the instructions that our user program runs.
 2. And there is the **Kernel mode instructions**/**Privileged mode instructions** which the operating system runs.
@@ -65,3 +66,10 @@ But if the OS needs to run kernel mode instructions, how does it flip the mode? 
 + Note that an exit syscall is special in that it never returns!
 + The OS is also event driven, it acts when it's called upon!
 + Syscalls are often very simple. Instead of multiple print syscalls, there is often a single output syscall which can be specified using flags!
+
+## Trapping/Interrupt
+(similar nomencleture)
+
+OS stops the cored we are running, switch to OS code, do the task, and come back
+
+"our code" is interrupted, 
