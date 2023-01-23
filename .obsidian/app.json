@@ -1,5 +1,11 @@
 {
   "alwaysUpdateLinks": true,
   "useMarkdownLinks": true,
-  "showUnsupportedFiles": true
+  "showUnsupportedFiles": true,
+  "spellcheckDictionary": [
+    "fee",
+    "stringification",
+    "`printf",
+    "`printf"
+  ]
 }
