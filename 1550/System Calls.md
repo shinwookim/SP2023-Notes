@@ -158,13 +158,27 @@ Interrupt vector access is privelleged!.
 
 Whatevery handles event is the OS!
 
-Not a problem anymore (usually)....but common in viruses of 80s/90s. Virus Code would infect master boot record. And at Boot, it would install it self on the interrupt table, which could infect more floppies as they were inserted.
+Not a problem anymore (usually)....but common in viruses of 80s/90s. Virus Code would infect master boot record. And at Boot, it would install itself on the interrupt table, which could infect more floppies as they were inserted.
 
 
 ))
-
+## Memory Hierarchy
 Back to context switch...
 There are no safe registers...so we must save to memory. But which memory?
+
+We have registers because they are fast/// Our instruction can only run as fast as our hardware. If we can add two numbers fast, we need to be able to read/write those numbers equally fast, for the instruction to be actually fast. (Getting the numbers is slower than doing the math!)
+
+Since the speed of light is finite, electrical signals can only move so fast. --> Physical distance matters! Memory that is closer to CPU is faster!
+
+Registers are fast because they are as close as possible to the CPU (they are actually inside it).
+
+Static RAM vs Dynamic RAM
+Registers are fast because it's made of flip-flops, etc. but is more expensive.
+Dynamic ram is like a water bucket (threshold) --> We need to flush it periodically.
+
+If we must write 32 registers to RAM for context switch, it's slooooo
+![](Pasted%20image%2020230123104046.png)
+
 
 ---
 
