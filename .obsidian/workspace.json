@@ -18,8 +18,17 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "74e157958415faef",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {}
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -85,7 +94,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "1550/Introduction to Operating Systems.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +110,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "1550/Introduction to Operating Systems.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -124,9 +131,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "1550/Introduction to Operating Systems.md"
-              }
+              "state": {}
             }
           }
         ],
@@ -146,8 +151,10 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "248af4b62044c158",
+  "active": "a4f5499d9a34f44b",
   "lastOpenFiles": [
+    "1550/System Calls.md",
+    "1550/Introduction to Operating Systems.md",
     "Untitled.md",
     "449/Untitled.md",
     "1502/Introduction.md",
@@ -155,8 +162,6 @@
     "449/00. Introduction & What is Systems.md",
     "449/01. Data Representation.md",
     "conflict-files-obsidian-git.md",
-    "449/assets/Pasted image 20221023215050.png",
-    "1550/Introduction to Operating Systems.md",
-    "1550/OS_History.png"
+    "449/assets/Pasted image 20221023215050.png"
   ]
 }
