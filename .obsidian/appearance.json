@@ -2,5 +2,6 @@
   "accentColor": "#003594",
   "theme": "moonstone",
   "translucency": true,
-  "nativeMenus": false
+  "nativeMenus": false,
+  "baseFontSize": 13
 }
