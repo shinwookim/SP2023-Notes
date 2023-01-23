@@ -72,4 +72,4 @@ But if the OS needs to run kernel mode instructions, how does it flip the mode? 
 
 OS stops the cored we are running, switch to OS code, do the task, and come back
 
-"our code" is interrupted, 
+"our code" is interrupted, while the O
