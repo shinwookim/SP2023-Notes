@@ -6,6 +6,12 @@
     "fee",
     "stringification",
     "`printf",
-    "`printf"
-  ]
+    "`printf",
+    "syscall",
+    "syscall",
+    "Syscalls",
+    "Syscall",
+    "syscalls"
+  ],
+  "showInlineTitle": false
 }

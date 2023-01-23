@@ -21,7 +21,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "conflict-files-obsidian-git.md",
+                "file": "1550/System Calls.md",
                 "mode": "source",
                 "source": false
               }
@@ -78,7 +78,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "ffa1ee54606385b1",
@@ -94,7 +95,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "conflict-files-obsidian-git.md",
+                "file": "1550/System Calls.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +112,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "conflict-files-obsidian-git.md",
+                "file": "1550/System Calls.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -134,7 +135,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "conflict-files-obsidian-git.md"
+                "file": "1550/System Calls.md"
               }
             }
           }
@@ -158,8 +159,8 @@
   },
   "active": "b5925605e35e9ba7",
   "lastOpenFiles": [
-    "1502/01. Mathematics Preliminaries.md",
     "conflict-files-obsidian-git.md",
+    "1502/01. Mathematics Preliminaries.md",
     "1502/Introduction.md",
     "1550/Introduction to Operating Systems.md",
     "1675/Pasted image 20230117115015.png",
