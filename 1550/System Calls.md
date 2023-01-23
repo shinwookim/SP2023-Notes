@@ -68,8 +68,20 @@ But if the OS needs to run kernel mode instructions, how does it flip the mode? 
 + Syscalls are often very simple. Instead of multiple print syscalls, there is often a single output syscall which can be specified using flags!
 
 ## Trapping/Interrupt
-(similar nomencleture)
+(similar nomenclature)
 
-OS stops the cored we are running, switch to OS code, do the task, and come back
+OS stops the code we are running, switch to OS code, do the task, and come back
 
-"our code" is interrupted, while the O
+"our code" is interrupted, while the OS does the task, then we are returned back to our program with the work done
+
+When we get the interrupt, we stop the program, handle it, then go back (or crash)
+
+An interrupt is bigger than a system call. (we can group by the source)
+1. Software (originated) interrupt - comes about because a software requested it **Trap**
+2. Hardware interrupt - comes from hardware (to pause code until the interrupt is handled), then we go back to code
+3. Exceptions
+
+Where do we get the address the CPU should set the program counter to (to run OS code)???
+
+
+When we get an interrupt, regardless of origin, the processor needs an address to set program counter (to run OS code which)
