@@ -8,14 +8,6 @@
         "type": "tabs",
         "children": [
           {
-            "id": "a476cf12d542eff2",
-            "type": "leaf",
-            "state": {
-              "type": "empty",
-              "state": {}
-            }
-          },
-          {
             "id": "b5925605e35e9ba7",
             "type": "leaf",
             "state": {
@@ -28,8 +20,7 @@
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -160,6 +151,7 @@
   },
   "active": "b5925605e35e9ba7",
   "lastOpenFiles": [
+    "1550/System Calls.md",
     "conflict-files-obsidian-git.md",
     "1502/01. Mathematics Preliminaries.md",
     "1502/Introduction.md",
@@ -168,7 +160,6 @@
     "1675/Pasted image 20230117114115.png",
     "1675/Pasted image 20230117113913.png",
     "1675/Intro to Regression.md",
-    "1555/Conceptual Data Modeling and Database Design.md",
-    "1555/Overview of Database Management Systems.md"
+    "1555/Conceptual Data Modeling and Database Design.md"
   ]
 }

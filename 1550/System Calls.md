@@ -49,7 +49,7 @@ At its core, when an app makes a system call, the operating system does some con
 ### Preventing apps from bypassing the OS
 If the OS is just software (built out of the same instruction set), how do we prevent someone from programming an app to skip the middle man (OS) and do the work itself? I.e., how can we grant authority to the OS to control the resources which it has domain over?
 
-Recall that the instruction set defines the things that a processor can do. However, if we examine closely, the instruction set is partitioned into at least (and most often exactly) two sections for the sake of giving the OS authority.
+Recall that th e instruction set defines the things that a processor can do. However, if we examine closely, the instruction set is partitioned into at least (and most often exactly) two sections for the sake of giving the OS authority.
 ## Dual Mode
 1. There is the **User mode instructions**/**Protected mode instructions** which are the instructions that our user program runs.
 2. And there is the **Kernel mode instructions**/**Privileged mode instructions** which the operating system runs.
