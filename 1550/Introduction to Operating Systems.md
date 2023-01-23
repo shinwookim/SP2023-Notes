@@ -165,7 +165,7 @@ Almost all programming languages (besides assembly language) has a standard libr
 ```C
 #include <stdio.h>
 int main() {
-   printf("Hello, World!");
+   printf("Hello, World!"); // <-- call to standard library function printf()
    return 0;
 }
 ```
@@ -210,21 +210,7 @@ When a kernel mode instruction is called, the processor distinguished which mode
 
 But what if we are in user mode, but call a kernel mode instructions? Well that depends on what instruction is called. Historically and least desirably, x86 simply ignored these calls (which caused problems when trying to virtualize x86). However, in modern architectures (such as MIPS, and many x86 instructions), a call to an unauthorized instruction will raise an **exception** (e.g., Integer division by zero, Page fault). The exception tells the operating system which usually sends a signal to the process (which by default crashes the process).
 
-But if the OS needs to run kernel mode instructions, how does it flip the mode? It uses syscall (which changes the mode)! Hence, is the reason why syscalls and `jal` are different. Syscall tells the processor that the next instruction is OS code (and allows us to run private mode instructions). Once the OS code is run and we return, the mode bit is flipped again (as we return from the )
-
-
-
-How does the OS flip the mode?
-!Syscall -- this is why jal and syscall are different.
-syscall changes mode.
-
-Syscall tells the processor that the next instruction is OS code (allows us to run priv. instr)
-Thus, when we return we must flip the mode bit once again (kernel space --> user space)
-
-
-OS is event driven.
-
-When we exit the program, we make a system call.
-exit is a system call that never returns.
-
-In reality, system calls in operating systems are more simple (rather than multiple print syscalls, we might have a single output syscall). 
+But if the OS needs to run kernel mode instructions, how does it flip the mode? It uses syscall (which changes the mode)! Hence, is the reason why syscalls and `jal` are different. Syscall tells the processor that the next instruction is OS code (and allows us to run private mode instructions). Once the OS code is run and we return, the mode bit is flipped again (as we return from the kernel space to the user space).
++ Note that a exit syscall is special in that it never returns!
++ The OS is also event driven, it acts when it's called upon!
++ Syscalls are often very simple. Instead of multiple print syscalls, there is often a single output syscall which can be specified using flags!
