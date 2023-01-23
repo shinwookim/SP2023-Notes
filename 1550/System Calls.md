@@ -109,4 +109,20 @@ System calls are slow!!!! (even though `syscall` isn't) because of the work that
 
 In 447, however, we did not worry about the state of registers before and after a syscall! Most of the OS code is built from the same user mode instructions, which means it needs to modify the same registers!!!! Therefore, like functions, a system call must preserve the state of registers (to preserve the notion of exclusive access)!
 
-But now, the OS must preserve the state of ALL registers!!! (not just the regi)
+But now, the OS must preserve the state of ALL registers!!! (not just the registers from calling conventions)
+
+## Context Switch!!!
+> Switching from one running process to another
+
+Context = State of general purpose registers
+
+For functions, we preserved subsets of context (depending on calling conventions)
+For syscalls, the entire context must be preserved! (every register must be saved, and restored at end of call)
+
+The `syscall` (interrupt) instruction itself does not do not context switch. After the instr, the program counter has the address of OS code (none of the registers are saved...yet).
+
+The OS has interrupt handler for sys calls which stores all the registers!....but store to where? --> MEMORY!!!!
+
+
+
+HENCE THE SYSTEM CALL IS SLOOOOOOOOW!
