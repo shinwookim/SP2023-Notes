@@ -158,8 +158,13 @@ Interrupt vector access is privelleged!.
 
 Whatevery handles event is the OS!
 
+Not a problem anymore (usually)....but common in viruses of 80s/90s. Virus Code would infect master boot record. And at Boot, it would install it self on the interrupt table, which could infect more floppies as they were inserted.
+
 
 ))
+
+Back to context switch...
+There are no safe registers...so we must save to memory. But which memory?
 
 ---
 
