@@ -105,4 +105,6 @@ The syscall instruction is only minimally more expensive than a,,,perhaps a divi
 (Note some instr are slower than others e..g., `jal j` are faster than loads)
 It's not horrific! 
 
-System calls are slow!!!! (even though `syscall` isn't) because of the work that must occur next...! (recall with function calls, we had to store and restore registers--depeding on calling conventions:::it was a lot of work...)
+System calls are slow!!!! (even though `syscall` isn't) because of the work that must occur next...! (recall with function calls, we had to store and restore registers--depeding on calling conventions:::it was a lot of work...why? Because only one set of registers to share among multiple functions...we used calling conventions as implementers of a function).
+
+In 447, however, we did not worry about the state of registers before and after a syscall! Most of the OS code is built from the same user mode instructions,, which means it needs to modify the same registers!!!!
