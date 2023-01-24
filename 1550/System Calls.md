@@ -69,99 +69,59 @@ But if the OS needs to run kernel mode instructions, how does it flip the mode? 
 
 ---
 
-## Trapping/Interrupt
-(similar nomenclature)
+## Interrupts
+We've seen how, when a user program makes a system call, the operating system stops the hardware from running user code and switches to the OS code to complete the requested task. Thus, our code is *interrupted* while the OS does the requested task, and when it's done, the hardware is returned to our program. This is the idea of an **interrupt**.
 
-OS stops the code we are running, switch to OS code, do the task, and come back
+When the OS gets an interrupt, it must stop the current program, handle the interrupt, then come back (or crash the program), much like a system call. In fact, a system call is a type of interrupt called **trap**; however, an interrupt is much larger than a system call. Grouping by the source, there are:
+1. Software (originated) interrupt (I.e., Trap, Exceptions)
+	- comes about because a piece of software requested it
+1. Hardware Interrupt
+	- comes from hardware (to pause the code until the cause of interrupt is handled)
+	- goes back to code when the interrupt is handled.
 
-"our code" is interrupted, while the OS does the task, then we are returned back to our program with the work done
+To handle an interrupt, regardless of origin, the processor must set the program counter to the OS code which can handle the interrupt. The address that is loaded into the program counter comes from a structure on the chip called the **interrupt vector,** which is indexed by the particular types of interrupt. At each index is an address which points to the OS code which can handle the interrupt.
 
-When we get the interrupt, we stop the program, handle it, then go back (or crash)
+For system calls, they are all mapped to the same entry in the interrupt vector (usually index 0, sometimes index 128 in x86). That is, the instructions which handle *all* system calls are the same. To handle the exact system call, the operating system has a second table (Linux's syscall table) which is indexed by the ordinal stored in register `v0`.
 
-An interrupt is bigger than a system call. (we can group by the source)
-1. Software (originated) interrupt - comes about because a software requested it **Trap**
-2. Hardware interrupt - comes from hardware (to pause code until the interrupt is handled), then we go back to code
-3. Exceptions
+Thus, it is a 2-step process of dispatching a particular syscall:
+1. Interrupt vectors determines that the interrupt is a syscall
+	- Escalates privilege and sets program counter
+2. Syscall table in the OS handles the particular syscall 
+	- Once the instructions handling the syscall completes, the privilege level is dropped and the syscall returns
 
-Where do we get the address the CPU should set the program counter to (to run OS code)???
+## Performance of System Calls
+This process seems very complex... but it is too expensive?
 
+Recall that some instructions are slower than others. For instance, `jal` and `j` instructions are much faster than any load instructions. For system calls, the `syscall` instruction is only minimally more expensive than a division instruction. 
 
-When we get an interrupt, regardless of origin, the processor needs an address to set program counter (to run OS code which handles it).
+However, the system calls themselves are slow. This is because of the work that must occur after the initial `syscall`.
 
-On chip structure: there is a table (Interrupt vector) indexed by the particular type of interrupt. At each index, there is an address. At the address is an OS code which handles the interrupt. (Note, this does not use the ordinal in `v0`). → Which entry in the interrupt vector represents an interrupt that is a system call?
+Recall with function calls, we had to store and restore registers (following the calling convention). We often had to push the register entries onto the stack and pop them before we returned. This was a lot of (computational work); however, it was necessary because only one set of registers needed to be shared among multiple functions. Thus, as function implementers, it was crucial to follow the established calling conventions.
 
-All system calls go to the same entry in the table (usually index 0, sometimes x86 128).
+In 447, however, we did not worry about the state of registers before and after a `syscall`. How? Since the majority of the operating system code is built from the same user mode instructions, it should be modifying and using the same registers. Therefore, like functions, a system call must preserve the state of registers (to preserve the notion of exclusive access). 
 
-The processor sets the address at the table, then fetches instructions to handle all system calls.
-The operating system has a second table (syscall table in Linux) which is indexed by the ordinal in `v0` ).
-
-
-2-step process of dispatching a particular syscall
-1. Interrupt vector to determine the interrupt is syscall
-	1. Escalates privilege
-2. Syscall table to handle the particular syscall
-	1. after instruction complete, syscall/interrupt returns and privilege level is dropped
-
-^ This is complex....but it is too expensive?
-The syscall instruction is only minimally more expensive than a,,,perhaps a division instruction.
-(Note some instr are slower than others e..g., `jal j` are faster than loads)
-It's not horrific! 
-
-System calls are slow!!!! (even though `syscall` isn't) because of the work that must occur next...! (recall with function calls, we had to store and restore registers--depeding on calling conventions:::it was a lot of work...why? Because only one set of registers to share among multiple functions...we used calling conventions as implementers of a function).
-
-In 447, however, we did not worry about the state of registers before and after a syscall! Most of the OS code is built from the same user mode instructions, which means it needs to modify the same registers!!!! Therefore, like functions, a system call must preserve the state of registers (to preserve the notion of exclusive access)!
-
-But now, the OS must preserve the state of ALL registers!!! (not just the registers from calling conventions)
-
-## Context Switch!!!
+### Context Switch
 > Switching from one running process to another
 
-Context = State of general purpose registers
+Unlike functions, however, the OS must preserve the state of *all* general purpose registers. This state is called **context**. For functions, we preserved a subset of the context (depending on the *save registers* defined in the calling conventions). Thus, sometimes we could optimize our code by *shifting around* the values of registers to avoid the long memory write/load times. However, operating systems must preserve the entire context, which means we cannot shift around registers. The data stored in all registers must be stored in memory; thus, a system call is more expensive and slow.
 
-For functions, we preserved subsets of context (depending on calling conventions)
-For syscalls, the entire context must be preserved! (every register must be saved, and restored at end of call)
+### Address Protection
+The `syscall` (interrupt) instruction itself does not perform the context switch. Instead, after this instruction, the program counter is loaded with the address of the OS code which does. But how do we make sure that the Interrupt Vector is not compromised by user programs?
 
-The `syscall` (interrupt) instruction itself does not do not context switch. After the instr, the program counter has the address of OS code (none of the registers are saved...yet).
+The Interrupt Vector is protected because accessing it is a privileged instruction (only the OS can do it). When our computer boots, the OS is run first (in privileged mode) to set the interrupt vector and install itself as the event handler.
 
-The OS has interrupt handler for sys calls which stores all the registers!....but store to where? --> MEMORY!!!!
+In the 80s/90s, it was common for viruses to infect the master boot record, which would allow it to install itself on the interrupt table at boot. Thus, the viruses acted as the OS and would infect any floppy drives that were inserted (and spreading). In modern systems, it is very difficult to modify boot sequence/boot record Thus, this is no longer a modern concern.
 
+### OS is Event Driven
 
-
-HENCE, THE SYSTEM CALL IS SLOOOOOOOOW!
-
-
-aside: OS is not a typical program....protecting the addresses in the table! (EVENT DRIVEN)
-
-THE OS IS EVENT DRIVEN....IF THE OS IS RUNNING CODE, IT'S NOT RUNNING THE USER PROGRAM...THUS, IT IS NOT WATCHING OUR PROGRAM (IF THE OS IS USING THE RESOURCE, THE USER PROCESS CANNOT)
-
-IT RUNS, ONLY WHEN IT NEEDS TO (WHEN WE GENERATE EVENTS) → EVENT DRIVEN.
-
-EVENT DRIVEN VS. PROMPT AND WAIT
-(MOST GUI PROGRAMS) VS (SCANNER.NEXTIN())
-→ RUNS WHEN EVENT IS GENERATED (BY A USER)
-
-WHEN (BUTTON CLICKED) → DO TASK (GUI LISTENS)
-
-NOT: WAIT UNTIL BUTTON CLICKED → DO TASK
-
-
-A SYSCALL IS AN EVENT(!) → INTERRUPT (MEANS WE ARE WILLING TO WAIT WHILE THE TASK IS DONE)
-- THE OS AND PROGRAM IS NOT RUNNING SIMULTANEOUSLY, BUT SEQUENTIALLY
+As an aside, the OS is not a typical program. Since user programs cannot run while the hardware runs OS code, the operating system cannot wait idle (as it takes away resources from user programs). I.e., it is not watching any programs for any errors.
 $$\text{System Call}\in\text{Interrupt}\in\text{Event}$$
-An operating system is an event handler.
-Interrupt vector is the link between the event and the OS code (which handles the event)!
+Instead, the operating system is an **event-driven** program. It runs, only when it needs to (when other software generate events). Other examples of event-driven programs may be a graphical user interface program. A GUI does not wait for the user to interact, but when a user clicks a button (and generates an event), it handles it accordingly.
 
-((
-The OS runs first at BOOT (in privelleged mode) to set interrupt vector (installing our self as the event handler, meaning we establish ourself as OS)
+Conversely, an example of a non-event driven program may be a prompt and wait program. Consider the code `Scanner.nextInt()` in Java. This line waits for the user to input an integer, then follows its code procedurally.
 
-Interrupt vector access is privelleged!.
+The OS and user programs runs simultaneously, but sequentially. Interrupt vector is the link between the vent and the OS code.
 
-Whatevery handles event is the OS!
-
-Not a problem anymore (usually)....but common in viruses of 80s/90s. Virus Code would infect master boot record. And at Boot, it would install itself on the interrupt table, which could infect more floppies as they were inserted.
-
-
-))
 ## Memory Hierarchy
 Back to context switch...
 There are no safe registers...so we must save to memory. But which memory?

@@ -136,8 +136,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -151,6 +150,7 @@
   },
   "active": "b5925605e35e9ba7",
   "lastOpenFiles": [
+    "Untitled.md",
     "1550/System Calls.md",
     "conflict-files-obsidian-git.md",
     "1502/01. Mathematics Preliminaries.md",
@@ -159,7 +159,6 @@
     "1675/Pasted image 20230117115015.png",
     "1675/Pasted image 20230117114115.png",
     "1675/Pasted image 20230117113913.png",
-    "1675/Intro to Regression.md",
-    "1555/Conceptual Data Modeling and Database Design.md"
+    "1675/Intro to Regression.md"
   ]
 }
