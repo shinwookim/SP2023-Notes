@@ -13,9 +13,9 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1550/System Calls.md",
-                "mode": "preview",
-                "backlinks": true,
+                "file": "1550/01 System Calls.md",
+                "mode": "source",
+                "backlinks": false,
                 "source": false
               }
             }
@@ -87,7 +87,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "1550/System Calls.md",
+                "file": "1550/01 System Calls.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "1550/System Calls.md",
+                "file": "1550/01 System Calls.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -127,7 +127,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "1550/System Calls.md"
+                "file": "1550/01 System Calls.md"
               }
             }
           }
@@ -150,15 +150,15 @@
   },
   "active": "b5925605e35e9ba7",
   "lastOpenFiles": [
+    "1550/00 Introduction to Operating Systems.md",
+    "1550/Assets/Memory Diagram.png",
+    "1550/01 System Calls.md",
     "Untitled.md",
-    "1550/System Calls.md",
     "conflict-files-obsidian-git.md",
     "1502/01. Mathematics Preliminaries.md",
     "1502/Introduction.md",
-    "1550/Introduction to Operating Systems.md",
     "1675/Pasted image 20230117115015.png",
     "1675/Pasted image 20230117114115.png",
-    "1675/Pasted image 20230117113913.png",
-    "1675/Intro to Regression.md"
+    "1675/Pasted image 20230117113913.png"
   ]
 }

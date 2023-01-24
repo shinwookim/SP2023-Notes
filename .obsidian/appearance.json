@@ -2,7 +2,12 @@
   "accentColor": "#003594",
   "theme": "moonstone",
   "translucency": true,
-  "nativeMenus": false,
-  "baseFontSize": 13,
-  "textFontFamily": "American Typewriter"
+  "nativeMenus": true,
+  "baseFontSize": 16,
+  "textFontFamily": "Helvetica",
+  "interfaceFontFamily": "Helvetica",
+  "monospaceFontFamily": "Andale Mono",
+  "enabledCssSnippets": [
+    "center"
+  ]
 }

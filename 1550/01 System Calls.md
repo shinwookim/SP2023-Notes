@@ -128,5 +128,5 @@ Now, since the speed of light is finite, electrical signals can only move so fas
 
 Furthermore, they are a type of Static RAM built from flip-flops, etc. which are faster but more expensive (they require more transistor to store each bit).
 
-In contrast, dynamic RAM uses a threshold approach. Generally, the bits of dynamic RAM each acts like little leaky buckets of water, where a full bucket might be a 1 and an empty one a 0. However, with this approach, the DRAM needs to be needs to be flushed when we see that the full buckets have gotten too low. This adds overhead and makes it slower.![](Pasted%20image%2020230123104046.png)
+In contrast, dynamic RAM uses a threshold approach. Generally, the bits of dynamic RAM each acts like little leaky buckets of water, where a full bucket might be a 1 and an empty one a 0. However, with this approach, the DRAM needs to be needs to be flushed when we see that the full buckets have gotten too low. This adds overhead and makes it slower.![](Memory%20Diagram.png)
 Therefore, if we are writing 32 registers to the DRAM to perform a context switch, it will take a lot of time. We can examine this in a simple java program with many print statements (syscall). The program will run generally slow, but once we remove the print statements, it will run noticeably faster.

@@ -14,5 +14,10 @@
     "syscalls",
     "the"
   ],
-  "showInlineTitle": false
+  "showInlineTitle": false,
+  "newFileLocation": "current",
+  "newLinkFormat": "relative",
+  "attachmentFolderPath": "./",
+  "showLineNumber": false,
+  "spellcheck": true
 }
