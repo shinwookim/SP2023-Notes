@@ -33,7 +33,6 @@ The task of actually displaying the string is very complex. To show this string 
 Clearly this involves a lot of details about the hardware and is best left abstracted for functions like `printf()`. I.e., it is the job of the operating system.
 ![System Call](Assets/System%20Call.png)
 Thus, just before `printf()` returns, it makes a system call (with yet another control transfer) with arguments to declare the location of output, `stdout`, and the string. This is verifiable by examining the assembly-level code. However, at a higher level, the syscall is simply telling the OS to do some task (print to stdout) and then returning once the task is complete. The details of how that task is done is abstracted.
-
 ## Why syscall?
 From the details above, we can conclude that a syscall is simply a control transfer with a return. But if it is simply a control transfer, why wouldn't we just use `jal` (used for library functions) and not `syscall` (used for OS tasks)?
 
@@ -45,7 +44,11 @@ Even though they look similar, `jal` and syscalls work in different ways. The wo
 
 As an aside, since the presence of the `func` field allows for more R-type instructions, to not waste the limited J or I type instructions, syscalls are technically R-type instructions.
 
-At its core, when an app makes a system call, the operating system does some conditional work to determine if the app has access to the requested resource. If the condition is met, the OS will do the work requested, and if the condition is not met (due to security policies, resource usage, etc.), the OS will decline to do the work.$$\verb|Operating System = if (condition) {do OS_task;}|$$
+At its core, when an app makes a system call, the operating system does some conditional work to determine if the app has access to the requested resource. If the condition is met, the OS will do the work requested, and if the condition is not met (due to security policies, resource usage, etc.), the OS will decline to do the work.
+```
+Operating System = if (condition) { do OS_task; }
+```
+
 ### Preventing apps from bypassing the OS
 If the OS is just software (built out of the same instruction set), how do we prevent someone from programming an app to skip the middle man (OS) and do the work itself? I.e., how can we grant authority to the OS to control the resources which it has domain over?
 
@@ -66,8 +69,6 @@ But if the OS needs to run kernel mode instructions, how does it flip the mode? 
 + Note that an exit syscall is special in that it never returns!
 + The OS is also event driven, it acts when it's called upon!
 + Syscalls are often very simple. Instead of multiple print syscalls, there is often a single output syscall which can be specified using flags!
-
----
 
 ## Interrupts
 We've seen how, when a user program makes a system call, the operating system stops the hardware from running user code and switches to the OS code to complete the requested task. Thus, our code is *interrupted* while the OS does the requested task, and when it's done, the hardware is returned to our program. This is the idea of an **interrupt**.
@@ -90,7 +91,7 @@ Thus, it is a 2-step process of dispatching a particular syscall:
 	- Once the instructions handling the syscall completes, the privilege level is dropped and the syscall returns
 
 ## Performance of System Calls
-This process seems very complex... but it is too expensive?
+This process seems very complex. But it is too expensive?
 
 Recall that some instructions are slower than others. For instance, `jal` and `j` instructions are much faster than any load instructions. For system calls, the `syscall` instruction is only minimally more expensive than a division instruction. 
 
@@ -99,26 +100,22 @@ However, the system calls themselves are slow. This is because of the work that 
 Recall with function calls, we had to store and restore registers (following the calling convention). We often had to push the register entries onto the stack and pop them before we returned. This was a lot of (computational work); however, it was necessary because only one set of registers needed to be shared among multiple functions. Thus, as function implementers, it was crucial to follow the established calling conventions.
 
 In 447, however, we did not worry about the state of registers before and after a `syscall`. How? Since the majority of the operating system code is built from the same user mode instructions, it should be modifying and using the same registers. Therefore, like functions, a system call must preserve the state of registers (to preserve the notion of exclusive access). 
-
 ### Context Switch
 > Switching from one running process to another
 
 Unlike functions, however, the OS must preserve the state of *all* general purpose registers. This state is called **context**. For functions, we preserved a subset of the context (depending on the *save registers* defined in the calling conventions). Thus, sometimes we could optimize our code by *shifting around* the values of registers to avoid the long memory write/load times. However, operating systems must preserve the entire context, which means we cannot shift around registers. The data stored in all registers must be stored in memory.
-
 #### Address Protection
 Note that the `syscall` (interrupt) instruction does not actually perform the context switch itself. Instead, after this instruction, the program counter is loaded with the address of the OS code which does. But how do we make sure that the Interrupt Vector is not compromised by user programs?
 
 The Interrupt Vector is protected because accessing it is a privileged instruction (only the OS can do it). When our computer boots, the OS is run first (in privileged mode) to set the interrupt vector and install itself as the event handler.
 
 In the 80s/90s, it was common for viruses to infect the master boot record, which would allow it to install itself on the interrupt table at boot. Thus, the viruses acted as the OS and would infect any floppy drives that were inserted (and spreading). In modern systems, it is very difficult to modify boot sequence/boot record Thus, this is no longer a modern concern.
-
 #### OS is Event Driven
 As an aside, the OS is not a typical program. Since user programs cannot run while the hardware runs OS code, the operating system cannot wait idle (as it takes away resources from user programs) and watch what user programs are doing (for security, etc.).
 $$\text{System Call}\in\text{Interrupt}\in\text{Event}$$
 Instead, the operating system is an **event-driven** program. It runs, only when it needs to (e.g., when an event is generated by user programs). Thus, the OS and user programs run not simultaneously, but sequentially. Note that the Interrupt vector acts as the link between the event and the OS code.
 
 Other examples of event-driven programs may be a graphical user interface program. A GUI does not wait for the user to interact, but when a user clicks a button (and generates an event), it handles it accordingly. Conversely, an example of a non-event driven program may be a prompt and wait program. A java program with the code `Scanner.nextInt()` waits for the user to input an integer, then follows its code procedurally.
-
 ### Memory Hierarchy
 Back to context switch. We said that since there are no safe registers, we must store preserve all register values to memory. But, to which memory?
 
