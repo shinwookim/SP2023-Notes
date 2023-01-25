@@ -33,6 +33,7 @@ The task of actually displaying the string is very complex. To show this string 
 Clearly this involves a lot of details about the hardware and is best left abstracted for functions like `printf()`. I.e., it is the job of the operating system.
 ![System Call](Assets/System%20Call.png)
 Thus, just before `printf()` returns, it makes a system call (with yet another control transfer) with arguments to declare the location of output, `stdout`, and the string. This is verifiable by examining the assembly-level code. However, at a higher level, the syscall is simply telling the OS to do some task (print to stdout) and then returning once the task is complete. The details of how that task is done is abstracted.
+
 ## Why syscall?
 From the details above, we can conclude that a syscall is simply a control transfer with a return. But if it is simply a control transfer, why wouldn't we just use `jal` (used for library functions) and not `syscall` (used for OS tasks)?
 
@@ -100,16 +101,19 @@ However, the system calls themselves are slow. This is because of the work that 
 Recall with function calls, we had to store and restore registers (following the calling convention). We often had to push the register entries onto the stack and pop them before we returned. This was a lot of (computational work); however, it was necessary because only one set of registers needed to be shared among multiple functions. Thus, as function implementers, it was crucial to follow the established calling conventions.
 
 In 447, however, we did not worry about the state of registers before and after a `syscall`. How? Since the majority of the operating system code is built from the same user mode instructions, it should be modifying and using the same registers. Therefore, like functions, a system call must preserve the state of registers (to preserve the notion of exclusive access). 
+
 ### Context Switch
 > Switching from one running process to another
 
 Unlike functions, however, the OS must preserve the state of *all* general purpose registers. This state is called **context**. For functions, we preserved a subset of the context (depending on the *save registers* defined in the calling conventions). Thus, sometimes we could optimize our code by *shifting around* the values of registers to avoid the long memory write/load times. However, operating systems must preserve the entire context, which means we cannot shift around registers. The data stored in all registers must be stored in memory.
+
 #### Address Protection
 Note that the `syscall` (interrupt) instruction does not actually perform the context switch itself. Instead, after this instruction, the program counter is loaded with the address of the OS code which does. But how do we make sure that the Interrupt Vector is not compromised by user programs?
 
 The Interrupt Vector is protected because accessing it is a privileged instruction (only the OS can do it). When our computer boots, the OS is run first (in privileged mode) to set the interrupt vector and install itself as the event handler.
 
 In the 80s/90s, it was common for viruses to infect the master boot record, which would allow it to install itself on the interrupt table at boot. Thus, the viruses acted as the OS and would infect any floppy drives that were inserted (and spreading). In modern systems, it is very difficult to modify boot sequence/boot record Thus, this is no longer a modern concern.
+
 #### OS is Event Driven
 As an aside, the OS is not a typical program. Since user programs cannot run while the hardware runs OS code, the operating system cannot wait idle (as it takes away resources from user programs) and watch what user programs are doing (for security, etc.).
 $$\text{System Call}\in\text{Interrupt}\in\text{Event}$$
@@ -126,4 +130,107 @@ Now, since the speed of light is finite, electrical signals can only move so fas
 Furthermore, they are a type of Static RAM built from flip-flops, etc. which are faster but more expensive (they require more transistor to store each bit).
 
 In contrast, dynamic RAM uses a threshold approach. Generally, the bits of dynamic RAM each acts like little leaky buckets of water, where a full bucket might be a 1 and an empty one a 0. However, with this approach, the DRAM needs to be needs to be flushed when we see that the full buckets have gotten too low. This adds overhead and makes it slower.![](Memory%20Diagram.png)
-Therefore, if we are writing 32 registers to the DRAM to perform a context switch, it will take a lot of time. We can examine this in a simple java program with many print statements (syscall). The program will run generally slow, but once we remove the print statements, it will run noticeably faster.
+Therefore, if we are writing 32 registers to the DRAM to perform a context switch, it will take a lot of time. We can examine this in a simple java program with many print statements (many system calls). The program will run generally slow, but once we remove the print statements, it will run noticeably faster.
+
+Thus, system calls are expensive not because of the control transfer, but because of the large context. There are engineering trade-offs. Faster memory is often smaller, closer to the CPU, and more expensive. Hence to balance the speed and storage necessitates the existence of cache.
+
+Later we will see that we can store the context in magnetic disk/solid state drive. While this would be slow, these means of storage is non-volatile
+
+Also store information if it is huge.
+But the performance penalty is so big. (latency)
+
+However for this case, if we must store on disk, we've probably failed our job as the OS.
+
+Context switch incur cost-->for us, we assume that this has been minimized by everyone (computer architecture experts, OS implementers)
+- don't save unnecessary context
+- save as fast as possible (allowed by our architecture)
+
+Thus, there is nothing we can do to reduce the speed of context switch.
+We can however, reduce the number of context switches
+
+We won't use time measurements (because that depends on the hardware)--> we will argue fast/slow in terms of # of context switches.
+
+<-- This will be our program analysis (much like asymptotic analysis). However, this is very difficult, sometimes impossible, for practical reasons.
+
+From a programmer's perspective, a syscall looks like we just did a very long instruction (abstraction)
+
+Bootstrapping problem --> How do we start this process?
+When we turn on the CPU, it starts in priv mode. --> allows the OS to install handler.
+Once we our out of priv mode, no one can change Interrupt Vector.
+
+---
+A simple computer system
+- We have enough resourcecs to share them (enough ram to store all instructions)
+Simplifications to the CPU
+- Our CPU will be single core (for now) operating at +1 GHZ
+	- We will discuss multi core later.
+- Peripheral devices are input/output driven
+	- going and getting data
+	- going and receiving data
+	- connected through a shared channel called a BUS
+	- This BUS is how CPU, RAM, I/O devices send data
+		- With store instruction, CPU sends to BUs, which sends to peripheral
+		- details of BUS is for engineers (we won't focus on it much)
+
+Protect and Share - protecting our resources
+- CPU time
+	- Preemption - make sure no one is to greedy. Stop long running process
+- Memory
+	- Address Space/Virtual Memory - exclusive access
+- I/O - shared and protected via various ways (depending on deviec)
+	- Spool (queue) e.g., printer queues jobs when multiple people request it
+		- Sumultaneous Preipheral Operation On Line
+- Security
+---
+
+CPU Architecture
+There are many micro architectures which influences the implementaiotn and discussion of the OS
+
+1. (447) "read, execute, "retires instruction"
+2. pipeline unit Decode Execute 
+3. Superscalar CPU
+and more...
+
+Certain abstractions may not actually be true.
+E.g, division by zero
+All the work after the division instruction may be retired? may not be...
+raises precise exception vs imprecise exception
+<-- different exceptions raised based on architecture.
+
+We are ignoring the hardware concerns.
+
+But sometimes, hardware can change how software interacts
+**HARD DRIVE INTERNALS**
+Stores bits as N/S magnetic poles on one side on platters which rotate.
+Data is layed out in concentric circles (cylinder, track)
+--> raises weird concerns.
+We can put less data in the inner track than the outer track (because circumfrence is different).
+--> , Inner track and outer track move at different linear velocity
+--> Thus read write is fsater on the outer track (and we can write more!)
+--> OS might want to track where we write on the disk (especially if we are concerened with performance)
+
+-->>File System
+
+## Hardware-originated Interrupt
+I/O via Interrupt
+
+Recall OS is event driven
+	Once source of event was software(syscall)
+	Other events may originate from hardware
+E.g., Hard disks are slow (during a single access time, we could run 4B instr)
+But shouldn't we be able to run instr while we are getting the data from the disk
+- But when we do that, the HDD needs to tell the CPU to stop the running task and run OS code (to receive the data from HDD - READ)
+THIS IS AN HARDWARE ORIGINAITED INTERRUPT.
+
+In software, we used control transfers
+In hardware, the hardware communicates via the BUS
+Bus transfers not only information, but also a command --> Interrupt!
+
+So it doesn't matter where it originated from, when the CPU receives an interrupt, it goes through the same steps as a syscall.
+
+File Systems
+--> need to store files
+	--> but also metadate (which desecribes the layout of the system: name of file, extension, ways to find it, permissions, etc.)
+
+---
+
