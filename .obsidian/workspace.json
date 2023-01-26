@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "df401ee5d663887d",
+        "id": "13308fdc63d174f5",
         "type": "tabs",
         "children": [
           {
-            "id": "94aa5caae0e7307c",
+            "id": "233bc808ff378667",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1550/02 Monolithic OS.md",
+                "file": "1550/01 System Calls and Hardware.md",
                 "mode": "source",
                 "backlinks": true,
                 "source": false
@@ -70,8 +70,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "ffa1ee54606385b1",
@@ -87,7 +86,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "1550/02 Monolithic OS.md",
+                "file": "1550/01 System Calls and Hardware.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +103,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "1550/02 Monolithic OS.md",
+                "file": "1550/01 System Calls and Hardware.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -127,7 +126,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "1550/02 Monolithic OS.md"
+                "file": "1550/01 System Calls and Hardware.md"
               }
             }
           }
@@ -149,17 +148,17 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "94aa5caae0e7307c",
+  "active": "233bc808ff378667",
   "lastOpenFiles": [
-    "1550/Pasted image 20230125102642.png",
-    "1550/02 Monolithic OS.md",
-    "1550/01 System Calls.md",
-    "1550/Assets/Memory Diagram.png",
+    "1550/02 Types of Operating Systems.md",
+    "1550/Assets/HDD.png",
+    "1550/Assets/CPU Architecture.png",
+    "1550/01 System Calls and Hardware.md",
     "1550/00 Introduction to Operating Systems.md",
-    "Untitled.md",
-    "conflict-files-obsidian-git.md",
-    "1502/01. Mathematics Preliminaries.md",
-    "1502/Introduction.md",
-    "1675/Pasted image 20230117115015.png"
+    "1550/Assets/Microkernel.png",
+    "1550/Assets/Monolithic OS.png",
+    "1550/Pasted image 20230125102642.png",
+    "1550/Assets/Memory Diagram.png",
+    "Untitled.md"
   ]
 }

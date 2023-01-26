@@ -2,23 +2,23 @@
 
 > At its basics, an operating system manages resources and abstracts details. 
 
-This definition alone does not reveal much about what an OS is. Throughout this term, we will look at more definitions to supplement it and get a better understnading of what an OS is.
+This definition alone does not reveal much about what an OS is. Throughout this term, we will look at more definitions to supplement it and get a better understanding of what an OS is.
 
 ## What is a resource?
-Resources are anything that we have a finite amount of. More specifically, they must be *reasonably constrained* since everything in the real world is technicaly finite.
+Resources are anything that we have a finite amount of. More specifically, they must be *reasonably constrained* since everything in the real world is technically finite.
 
 ### CPU Time
 For instance, **CPU Time** is a common resource in a computer. Even the fastest processors can only do so much work per unit time. We cannot run any more processes without adding more of it (e.g., more cores).
 
 ### Memory
-Another common resouce in a computer is **Memory**. Recall the **Von Neumann architecture** in which both processes (code) and data lives in memory. In this architecture, the processor must fetch programs from memory and work on data that lives in memory/registers; the processor cannot execute code or modify data directly from the disk. Here, everything the processes does is an instruction drawn from memory/register.
+Another common resource in a computer is **Memory**. Recall the **Von Neumann architecture** in which both processes (code) and data lives in memory. In this architecture, the processor must fetch programs from memory and work on data that lives in memory/registers; the processor cannot execute code or modify data directly from the disk. Here, everything the processes does is an instruction drawn from memory/register.
 
-Note that in the Von Neumann architecture, the code can also be considered to be data (as both lives on the RAM). As a consequence, it is *possible* to run a program which modifies itself (although it is highly discouraged). In comparision, the Harvard architecture has two memories (one for data and one for code).
+Note that in the Von Neumann architecture, the code can also be considered to be data (as both lives on the RAM). As a consequence, it is *possible* to run a program which modifies itself (although it is highly discouraged). In comparison, the Harvard architecture has two memories (one for data and one for code).
 
 *Technically* with modern systems, we can argue that they can change between the architectures depending on what the focus is (as generally modern systems have a split L1 cache)/
 
 ### I/O Devices
-**Input/Output devices** are another type of a resource. All the data that is not stored in memory is stored in I/O devices (disks, file systems). I/O devices generally have information we want to consume, or receieve information we produce.
+**Input/Output devices** are another type of a resource. All the data that is not stored in memory is stored in I/O devices (disks, file systems). I/O devices generally have information we want to consume, or receive information we produce.
 
 ### Security
 Although not a typical resource, **security** focuses on the **management** of the other resources. Since the operating system manages the resources, it is a great place to implement security (E.g., access control). Often, this raises the question of *could you do X?* and *should you do X?*. and *security* vs *availability*.
@@ -109,7 +109,6 @@ This proposal however is largely not adopted as hardware for personal computers 
 However, this reveals why we study history. The proposal for a network of shared computers and accessing them for a fee very much resembles Internet (which would be developed in the 90s). Studying history allows us to discover unrealized ideas that may be realized in the future. Often computers follow a similar cycle, (as was with original single-processing smartphones), and studying it allows us a better understanding of how they work.
 
 ---
-
 # Multiprogramming
 
 Eventually, computers become cheap enough that the user's time is worth more than that of the computers'. That means we want to implement multiprogramming as users wish to do many things at once.

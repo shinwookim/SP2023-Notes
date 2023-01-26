@@ -12,7 +12,9 @@
     "Syscalls",
     "Syscall",
     "syscalls",
-    "the"
+    "the",
+    "Exo-kernel",
+    "Exokernel"
   ],
   "showInlineTitle": false,
   "newFileLocation": "current",
