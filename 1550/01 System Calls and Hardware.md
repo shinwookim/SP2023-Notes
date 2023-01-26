@@ -173,10 +173,4 @@ Consider a read instruction from a hard disk. Since hard disks are very slow, it
 
 We've said that our computer talks to peripheral devices via the BUS, so we can enable the BUS to not only transfer information, but also a command: Interrupts!
 
-Much like software-originated interrupts, when the CPU receives this signal, it goes through the same steps as a System Call and allows the OS the execute code to transfer the data.
-
-In software, we used control transfers
-In hardware, the hardware communicates via the BUS
-Bus transfers not only information, but also a command --> Interrupt!
-
-So it doesn't matter where it originated from, when the CPU receives an interrupt, it goes through the same steps as a syscall.
+Much like software-originated interrupts, when the CPU receives this signal, it goes through the same steps as a System Call and allows the OS the execute code to transfer the data. So it doesn't matter where it originated from!
