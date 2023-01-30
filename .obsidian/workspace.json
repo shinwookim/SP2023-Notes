@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "6698312de8937578",
+        "id": "e037e6cac5b9e0b3",
         "type": "tabs",
         "children": [
           {
-            "id": "36932ee1ec1b230f",
+            "id": "19d13a178c2f5db9",
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -140,12 +140,12 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "36932ee1ec1b230f",
+  "active": "19d13a178c2f5db9",
   "lastOpenFiles": [
     "1550/03 Scheduling.md",
+    "1550/02 Types of Operating Systems.md",
     "1550/Assets/VM.png",
     "1550/01 System Calls and Hardware.md",
-    "1550/02 Types of Operating Systems.md",
     "1555/Untitled.md",
     "1550/Assets/HDD.png",
     "1550/Assets/CPU Architecture.png",
