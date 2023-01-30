@@ -4,20 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "4bf37882fd05dff7",
+        "id": "6698312de8937578",
         "type": "tabs",
         "children": [
           {
-            "id": "46abc375b8b2b868",
+            "id": "36932ee1ec1b230f",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "1550/02 Types of Operating Systems.md",
-                "mode": "source",
-                "backlinks": true,
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -70,8 +65,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "ffa1ee54606385b1",
@@ -87,7 +81,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "1550/02 Types of Operating Systems.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +97,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "1550/02 Types of Operating Systems.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -126,9 +118,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "1550/02 Types of Operating Systems.md"
-              }
+              "state": {}
             }
           }
         ],
@@ -150,17 +140,17 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "46abc375b8b2b868",
+  "active": "36932ee1ec1b230f",
   "lastOpenFiles": [
+    "1550/03 Scheduling.md",
+    "1550/Assets/VM.png",
     "1550/01 System Calls and Hardware.md",
     "1550/02 Types of Operating Systems.md",
+    "1555/Untitled.md",
     "1550/Assets/HDD.png",
     "1550/Assets/CPU Architecture.png",
     "1550/00 Introduction to Operating Systems.md",
     "1550/Assets/Microkernel.png",
-    "1550/Assets/Monolithic OS.png",
-    "1550/Pasted image 20230125102642.png",
-    "1550/Assets/Memory Diagram.png",
-    "Untitled.md"
+    "1550/Assets/Monolithic OS.png"
   ]
 }

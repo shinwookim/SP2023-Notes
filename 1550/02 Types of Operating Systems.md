@@ -33,7 +33,37 @@ Microkernel may require more:
 
 ⇾ Microkernel is slower
 
+
+Benefits of Microkernel
+- Module-based approach allows for each management and deployment (just swap it)
+- Monolithic OS requires reboot (to restart kernel)
+	- small program ⇾ easier to debug
+		- ⇾ less chance of bugs/exploits
+		- More secure (exploits are run in Kernel space in Mono; Microkernel runs in user space (except if the exploit is in microkernel itself))
+In microkernel, microkernel is secure (due to less complexity) and server (due to user space)
+
+**modularity** → Replace and reset
+
+If the kernel crashes, we must reboot (bring down entire system)
+If the server crashes, we can just reboot the server
+
 In fact, both are valid approaches and are used in modern operating systems. Linux is monolithic, and Windows follows a microkernel design (although technically, Windows uses a hybrid approach).
 
+Hybrid: Commonly used servers are pushed to kernel for better performance - reduce context switch
+(eg. scheduling)
+
+Monolithic (Performance) v Microkernel(Safety)
+
+# Virtual Machines
+dependence on VM in this course
+
+Process-level VM (QEmu/VMware) vs application VM
+Linux - Host
+Windows NT - Guest
+
+Virtual Machine Monitor/Hypervisor
 
 
+Managing resources and abstracring (just like OS)
+
+![](Assets/VM.png)
