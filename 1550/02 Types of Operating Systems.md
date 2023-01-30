@@ -24,3 +24,12 @@ But looking closely, we notice that a large part of scheduling does not require 
 So is the Microkernel better than a Monolithic operating system? No! It may be beneficial to use a microkernel design if we don't want to add any constraints to the OS, but another developer might argue that this OS doesn't do very much... and is not particularly useful.
 
 In fact, both are valid approaches and are used in modern operating systems. Linux is monolithic, and Windows follows a microkernel design (although technically, Windows uses a hybrid approach).
+
+---
+
+
+
+
+
+
+
