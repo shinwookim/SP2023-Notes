@@ -1,4 +1,6 @@
 [
   "obsidian-git",
-  "obsidian-languagetool-plugin"
+  "obsidian-languagetool-plugin",
+  "markdown-prettifier",
+  "table-editor-obsidian"
 ]

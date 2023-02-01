@@ -6,6 +6,20 @@
     "fee",
     "stringification",
     "`printf",
-    "`printf"
-  ]
+    "`printf",
+    "syscall",
+    "syscall",
+    "Syscalls",
+    "Syscall",
+    "syscalls",
+    "the",
+    "Exo-kernel",
+    "Exokernel"
+  ],
+  "showInlineTitle": false,
+  "newFileLocation": "current",
+  "newLinkFormat": "relative",
+  "attachmentFolderPath": "./",
+  "showLineNumber": false,
+  "spellcheck": true
 }

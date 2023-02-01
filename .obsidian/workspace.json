@@ -11,12 +11,8 @@
             "id": "248af4b62044c158",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "1550/Introduction to Operating Systems.md",
-                "mode": "source",
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           },
           {
@@ -26,9 +22,29 @@
               "type": "empty",
               "state": {}
             }
+          },
+          {
+            "id": "43f55203c4e104ae",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {}
+            }
+          },
+          {
+            "id": "1ec8f53a704496db",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "conflict-files-obsidian-git.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
         ],
-        "currentTab": 1
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -94,7 +110,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "1550/Introduction to Operating Systems.md",
+                "file": "conflict-files-obsidian-git.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +127,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "1550/Introduction to Operating Systems.md",
+                "file": "conflict-files-obsidian-git.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -134,7 +150,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "1550/Introduction to Operating Systems.md"
+                "file": "conflict-files-obsidian-git.md"
               }
             }
           }
@@ -155,17 +171,17 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "a4f5499d9a34f44b",
+  "active": "1ec8f53a704496db",
   "lastOpenFiles": [
-    "1550/System Calls.md",
+    "conflict-files-obsidian-git.md",
     "1550/Introduction to Operating Systems.md",
+    "1550/System Calls.md",
     "Untitled.md",
     "449/Untitled.md",
     "1502/Introduction.md",
     "1502/01. Mathematics Preliminaries.md",
     "449/00. Introduction & What is Systems.md",
     "449/01. Data Representation.md",
-    "conflict-files-obsidian-git.md",
     "449/assets/Pasted image 20221023215050.png"
   ]
 }

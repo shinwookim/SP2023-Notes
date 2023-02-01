@@ -1,4 +1,14 @@
 {
   "accentColor": "#003594",
-  "theme": "moonstone"
+  "theme": "moonstone",
+  "translucency": true,
+  "nativeMenus": true,
+  "baseFontSize": 16,
+  "textFontFamily": "Helvetica",
+  "interfaceFontFamily": "Helvetica",
+  "monospaceFontFamily": "Andale Mono",
+  "enabledCssSnippets": [
+    "center"
+  ],
+  "cssTheme": "Atom"
 }
