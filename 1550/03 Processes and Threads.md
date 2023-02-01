@@ -6,7 +6,7 @@ For now, assume we have a one single-core processor running at modern speed (mul
 ## Multiprogramming / Multitasking
 > Running multiple processes *simultaneously*
 
-If we have multiple CPU, we can run them in parallel.![](Pasted%20image%2020230130102737.png)
+If we have multiple CPU, we can run them in parallel.![](Assets/Basics%20of%20Scheduling.png)
 In a single CPU, we can share the CPU time to make it appear as if we are running them simultaneously.
 
 *Animation*: still images --> rapid flipping --> illusion of motion
