@@ -22,51 +22,25 @@ But looking closely, we notice that a large part of scheduling does not require 
 ![](Assets/Microkernel.png)
 
 ### Pros and cons of each design
-So is the Microkernel better than a Monolithic operating system? No, It depends.
+So which design is better? That depends. Let us consider a few situations to see where a monolithic OS shines, and where the microkernel shines.
 
-Let us consider the number of context switches used by each design to analyze performance. 
+#### Considering performance
+As mentioned before, we will be using the number of context switches required as a measure of performance. Consider scheduling. For a monolithic OS, scheduling requirest (at minimum) just 2 system calls. We need one to get into the kernel (from a user process), at which point all work related to scheduling is done inside kernel mode. Then, we need another to return to the user process. However, for a microkernel design, we need at least one context switch to move from the user process to the microkernel; another to move from the microkernel to the server handling the scheduler; one more to move back into the microkernel (once a decision has been made by the server); and lastly one final context switch to move from the microkernel to the new user process. As a consequence, microkernel designs are often slower than monolthic ones.
 
-Consider the number of context switches.
-Monolithic requires 2 (one to get into kernel, one to return to user process)
-Microkernel may require more:
-1. Client process to microkernel
-2. microkernel to server
-3. server to microkernel
-4. microkernel to client process
+#### Modularity
+However, a microkernel design shines when it comes to **modularity**. The microkernel's module based approach allows servers to be repaired, upgraded, or replaced rather easily. In fact, you'll find that monolithic OS often requires a reboot when upgrading a service (to restart the entire kernel) wheras this is not the case for microkernels. Furthermore. microkernel's modularity leads to smaller programs which means it is easier to debug and troubleshoot from a software engineering point of view. Smaller programs also means there are less chance of bugs or exploits in the code. 
 
-⇾ Microkernel is slower
+But perhaps most importantly, the microkernel is more *secure* than a monolithic design. If an explot were to be injected into the OS, microkernel would most likely run that exploit in the user space whereas the monolithic OS would run the exploit code in kernel mode (this is assuming that the exploit doesn't lie on the microkernel itself). Furthermor, in considering reliability, we'll notice that if a server crashes, a monothlithic OS will crash the entire kernel (bringing down the entire system) whereas in a microkernel design, the server can simply be rebooted.
 
-
-Benefits of Microkernel
-- Module-based approach allows for each management and deployment (just swap it)
-- Monolithic OS requires reboot (to restart kernel)
-	- small program ⇾ easier to debug
-		- ⇾ less chance of bugs/exploits
-		- More secure (exploits are run in Kernel space in Mono; Microkernel runs in user space (except if the exploit is in microkernel itself))
-In microkernel, microkernel is secure (due to less complexity) and server (due to user space)
-
-**modularity** → Replace and reset
-
-If the kernel crashes, we must reboot (bring down entire system)
-If the server crashes, we can just reboot the server
-
-In fact, both are valid approaches and are used in modern operating systems. Linux is monolithic, and Windows follows a microkernel design (although technically, Windows uses a hybrid approach).
-
-Hybrid: Commonly used servers are pushed to kernel for better performance - reduce context switch
-(eg. scheduling)
-
-Monolithic (Performance) v Microkernel(Safety)
+Indeed with both having their pros and cons, the two designs described here are still widely used in modern operating systems. Linux follows a monolithic design (although there was some controversy surrounding this choice of design — see Tanenbaum–Torvalds debate). On the other hand, Windows follows a hybrid microkernel design. Yet more interestingly, Windows follows a hybrid microkernel design in that it follows the general principles of a microkernel with some of the more commonly used servers (e.g., scheduling) pushed backed into the kernel for better performance.
 
 # Virtual Machines
-dependence on VM in this course
+To study the various operating systems and their designs/implementations, this course will rely heavily on the use of virtual machines. Simply put, virtual machines are software that emulate actual hardware well enough that we could run an entire operating system on them. VMs vary from process level (e.g., QEmu/VMware), application level (e.g., JVM), to Hardware level (e.g., Virtual Machine Monitor, Hypervisor) which allows us to run multiple OS on a single machine.
 
-Process-level VM (QEmu/VMware) vs application VM
-Linux - Host
-Windows NT - Guest
+Much like an operating system, a virtual machine must manage resources and abstract details. Hence, the study of the OS is essentially the study of VMs.
 
-Virtual Machine Monitor/Hypervisor
-
-
-Managing resources and abstracring (just like OS)
+As an aside, the machine/OS that supports a VM is called the **host** (Linux in diagram) and the OS on the VM is called the **guest** (Windows NT). Furthermore, modern VMs are much faster than one might imagine due to the fact that many modern VMs allow fall through in which instructions in the same architecture (between host and guest) fall through, reducing time needed for emulation.
 
 ![](Assets/VM.png)
+
+
