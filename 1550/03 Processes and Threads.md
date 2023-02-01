@@ -21,7 +21,7 @@ As an analogy, consider juggling. We are only able to juggle because most of the
 As an aside, let us take a moment to consider the difference between a *program* and a *process*. Simply put, a process is an instance of a program. As such we can instantiate multiple instances of a program, whith each instance (process) having their own data. For example, we can open two tabs in chrome that load different webpages because each tab has its own set of data.
 
 ### Life Cycle of a Process
-![](Process%20Lifecycle.png)
+![](Assets/Process%20Lifecycle.png)
 1. When a process is first created, it is put in the *ready* stage.
 	* At this stage, the process has everything needed to run except the CPU time; it enters the ready queue.
 2. At some point, the scheduler comes by and selects one of the ready processes to begin running.
