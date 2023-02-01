@@ -21,7 +21,10 @@ In a monolithic OS, this entire process of scheduling is part of the Kernel (OS)
 But looking closely, we notice that a large part of scheduling does not require privileged instructions. Inserting and removing a node in a linked list (when a new process starts or exits) clearly does not require any privilege; and traversing a linked list and making a choice (scheduling) does not either. The only part of scheduling which requires privilege is when we need to restore context to allow user programs to run (after a choice has been made by the scheduler). In a Microkernel design, the goal is to make the kernel as small as possible. Thus, we push everything that does not need to be in the kernel (non-privileged code) out onto the server, which lives in the user space. Therefore, in a Microkernel, the management of the schedule, and scheduling is done in User mode, and only the context switch occurs in the kernel. 
 ![](Assets/Microkernel.png)
 
-So is the Microkernel better than a Monolithic operating system? No! It depends.
+### Pros and cons of each design
+So is the Microkernel better than a Monolithic operating system? No, It depends.
+
+Let us consider the number of context switches used by each design to analyze performance. 
 
 Consider the number of context switches.
 Monolithic requires 2 (one to get into kernel, one to return to user process)
