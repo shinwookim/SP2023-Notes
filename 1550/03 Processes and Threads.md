@@ -127,28 +127,17 @@ So should we implement the task handlers as threads? or processes? In fact, both
 
 First, let's consider *security*. If we want to protect a worker from one another, we would want to use processes since the resources are partitioned by the OS in a notion of exclusive access. This could be particularly useful if there is an exploitable vulnerability such as injecting mallicious code. If a thread is infected, it can impact other threads; however, if a process is infected, it can't effect any other processes.
 
-What about reliability? If a single worker is buggy in a process approach, we can simply kill the process with a signal. However, since signal handlers are per-process, if a thread does something buggy, we still need to kill t
+What about reliability? If a single worker is buggy in a process approach, we can simply kill the process with a signal. However, since signal handlers are per-process, if a thread does something buggy, we still need to kill the entire process which kills multiple worker threads.
 
+However, if we think about resource efficiency and performance, the thread approach might prove to be better. Since threads allow for sharing, we could have a shared **cache** that the threads can all access. This is especially useful if the vast majority of the web requests are for the same page (like the index page)! 
 
-Why threads or process?
-1. Security due to isolation. protecting a worker for one another (proc) (eg. exploitable vulenarability)
-2. Reliability -- > if a process crashes
-- we can kill it using signals via the OS (signal handlers are per process)
-	- If the thread does something buddy, the entire process dies (and all of its threads).
-	- If a process does somethjing buggy, we terminate the buggy proccess and the rest persits.
+Note that however, caching isn't typically implemented at this level. A common web server softaware, APACHE, is process based but still utilizes caching but at the file system level.
 
-
-
-1. Threads allow sharing --> what if we have a shared **cache**? --> performance boost (especially if the vast majority of the website is requesting the same page (home page))
-	- To utilize the cache, every worker that spawns must be able to get cache (even write to cache)
-	- Note APACHE is process based. (caching is handled at the file system level) and it is decently fast.
-2. Threads are faster to create than process
-	- Same address space, amount of context to store is less (although depends on implementation of threads)
-	- However, we know that thread switches are cheaper!
-
-Implementing Thread (User Threads vs Kernel Threads)
+### Implementing threads (User Threads vs Kernel Threads)
 ![](thread-implementation.png)
-Modern OS Manage the time through preemption
+In a modern operating system (one that manages resources throgh preemption), there are two main approaches to threads: **User Threads** and **Kernel Threads**.
+
+In a 
 
 In User thread, the thread state resides inside the user space. Typically, by linking against a library  We still manage process at the user level. The threads within a proecss are managed by the process itself (perhaps by linkinng a libarary)
 
