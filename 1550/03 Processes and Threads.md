@@ -92,23 +92,17 @@ Whatever approach we take, the operating system is involved in mediating the com
 What if, instead, we combine the threads into one process (right)? Note that now the 3 threads reside in a singular address space. That means each thread can access another thread's memory. If one threads stores a value to memory, another thread is able to read or modify it. Now for each thread to communicate with each other, the process can simply read and write to a shared memory location. In fact, since reading and writing are just loads and stores to memory (no OS involved), we attain a performance boost. However, there is a catch; poorly written code might be dangerous since one thread can modify the code/data of another thread.
 
 ### Difference in philosophy
-
-
-
-If we have multiple tasks which are mostly independent:
-1. Multiple Process
-2. Multiple threads in a singular process
-If the threads communicate, how do they communicate? Can the change of values harm us?
-Typical competition of resource (process)...vs....cooperation (threads)
-management of resources by OS vs. self-management of resources
-
-
-Process are not the only things that feed as input to the scheduler
+However, choosing between threading and processes isn't just weight trade-offs; it is a matter of philosophy. If we have multiple tasks which are mostly independent we can choose to implement this as multiple processes, or multiple threads in a single process. If the tasks needs to compete for some resource, we would choose the process approach as the OS can manage the resources between processes. However, if the tasks are more cooperative in nature, we might choose threads; the threads can share the resource among themselves without the need for OS overhead. Hence, the question of threads vs process is a question of *resource management by the OS* vs. *resource management by the process*.
 
 
 
 
-Our focus: how the OS implements the threads
+
+
+
+### How the OS implements threads
+
+
 
 Thread State
 Per Process Items (still the same)
