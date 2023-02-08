@@ -65,7 +65,7 @@ Back to invoking the scheduler; To run the scheduler, we need to be in kernel mo
 
 This process model gives us a view at what is going on  inside the system. Some of the process run programs that carry out commands from a user; other processes are part of the system and handle tasks such as carrying out requests for file services or managing the details of running a disk or tape drive. 
 
-We might say that the processes are structured into two *layers*. The lowest layer of the process-structured operating system handles interrupts and scheduling. In fact, the details of starting and stopping processes are abstracted away in the *scheduler*. The rest of the operating system is structured in a process form; these sequential processes lie above the scheduler. ![](two-layer-process.png)
+We might say that the processes are structured into two *layers*. The lowest layer of the process-structured operating system handles interrupts and scheduling. In fact, the details of starting and stopping processes are abstracted away in the *scheduler*. The rest of the operating system is structured in a process form; these sequential processes lie above the scheduler. ![](Assets/two-layer-process.png)
 ## Process Table
 To implement the process model, the operating system must maintain some sort of data structure which contain some information about each process. This data structure is called a **process table** (in Linux, it is actually a linked list) and in it each process has a process table entry (also called **process control blocks**). 
 
@@ -82,7 +82,7 @@ Note that how the process table entry is exactly laid out is an implementation d
 
 This definition is very similar to the definition of a process. In fact, in a traditional operating system, each process has an address space and a single thread of control.
 
-Suppose we have 3 independent tasks to run (independent as in they are able to be run concurrently).![](threads-and-processes.png)
+Suppose we have 3 independent tasks to run (independent as in they are able to be run concurrently).![](Assets/threads-and-processes.png)
 We could launch 3 processes (left), resulting in 3 streams of instructions. Here, each process has a single **main thread** (the thread which runs `main()`). Since each set of processes gets a unique address space, we are left with 3 sets of address spaces to manage. But how can each process communicate with one another?
 1. One approach might be to have all the process read and write to a same file.
 2. Another approach might be to use a socket and set up a network connection between each process
@@ -134,7 +134,7 @@ However, if we think about resource efficiency and performance, the thread appro
 Note that however, caching isn't typically implemented at this level. A common web server softaware, APACHE, is process based but still utilizes caching but at the file system level.
 
 ### Implementing threads (User Threads vs Kernel Threads)
-![](thread-implementation.png)
+![](Assets/thread-implementation.png)
 In a modern operating system (one that manages resources throgh preemption), there are two main approaches to threads: **User Threads** and **Kernel Threads**.
 
 In a user thread approach, the thread state resides within the user space. We manage the threads at the user level by the process itself (typically by linking against a library). This is great since it does not require any kernel support; however this is likely slower than kernel threads and is harder to do non-blocking I/O.
