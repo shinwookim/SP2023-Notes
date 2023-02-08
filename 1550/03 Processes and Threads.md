@@ -63,12 +63,22 @@ Back to invoking the scheduler; To run the scheduler, we need to be in kernel mo
 2. However, it seems unwise to rely on the process to voluntarily yield their time. We might have naughty programs which do not yield, leading to the same problem as our example program. In this case, since we cannot generate an event from the software (as the naughty program does not generate it), we must rely upon a hardware preemption timer. A timer built into the hardware delivers an interrupt periodically by setting a maximum time a process is allowed to run before a context switch is needed. If a context switch occurs before the timer, the signal is ignored. If there is no context switch since the last signal, however, a hardware interrupt allows the OS to run the scheduler. This type of system is called a **preemptive multitasking system**.
 **(7)** Lastly, processes can be killed by other processes (e.g., `kill`) in what is called an **abnormal termination**.
 
+This process model gives us a view at what is going on  inside the system. Some of the process run programs that carry out commands from a user; other processes are part of the system and handle tasks such as carrying out requests for file services or managing the details of running a disk or tape drive. 
+
+We might say that the processes are structured into two *layers*. The lowest layer of the process-structured operating system handles interrupts and scheduling while above this layer lies the sequ
+
+the  above layers are the sequential processes
+
+while a variety of process are on top of it.
+
+
+![](Pasted%20image%2020230206093143.png)
+
+
 ## Process Table
-Using this process model, it gives us a view at what is going on  inside the system. Some of the process run programs that carry out commands from a user; other processes are part of the 
 
 
 (In Linux, Linked List)
-![](Pasted%20image%2020230206093143.png)
 The exact Process Table entry is an implementation detail  (some details might be stored conceptually)
 
 Process Management
