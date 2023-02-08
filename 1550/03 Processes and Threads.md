@@ -64,6 +64,9 @@ Back to invoking the scheduler; To run the scheduler, we need to be in kernel mo
 **(7)** Lastly, processes can be killed by other processes (e.g., `kill`) in what is called an **abnormal termination**.
 
 ## Process Table
+Using this process model, it gives us a view at what is going on  inside the system. Some of the process run programs that carry out commands from a user; other processes are part of the 
+
+
 (In Linux, Linked List)
 ![](Pasted%20image%2020230206093143.png)
 The exact Process Table entry is an implementation detail  (some details might be stored conceptually)
