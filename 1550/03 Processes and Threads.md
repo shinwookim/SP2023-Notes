@@ -83,30 +83,18 @@ Note that how the process table entry is exactly laid out is an implementation d
 This definition is very similar to the definition of a process. In fact, in a traditional operating system, each process has an address space and a single thread of control.
 
 Suppose we have 3 independent tasks to run (independent as in they are able to be run concurrently).![](threads-and-processes.png)
-We could launch 3 processes (left), resulting in 3 streams of instructions. Since each set of processes gets a unique address space, we are left with 3 sets of address spaces to manage.
+We could launch 3 processes (left), resulting in 3 streams of instructions. Since each set of processes gets a unique address space, we are left with 3 sets of address spaces to manage. But how can each process communicate with one another?
+1. One approach might be to have all the process read and write to a same file.
+2. Another approach might be to use a socket and set up a network connection between each process
+3. We might even try to use the signals to communicate (although singals are usually only used to handle events)
+Whatever approach we take, the operating system is involved in mediating the communication. I.e., each process must make a system call. Thus, communication between processes is slow.
 
-What if, instead, we combine the threads into one process (right)? Note that now the 3 threads reside in a singular address space. That means each thread can access another thread's memory. If one threads stores a value to memory, another thread is able to read or modify it.
+What if, instead, we combine the threads into one process (right)? Note that now the 3 threads reside in a singular address space. That means each thread can access another thread's memory. If one threads stores a value to memory, another thread is able to read or modify it. Now for each thread to communicate with each other, the process can simply read and write to a shared memory location. In fact, since reading and writing are just loads and stores to memory (no OS involved), we attain a performance boost. However, there is a catch; poorly written code might be dangerous since one thread can modify the code/data of another thread.
 
-
-
-
-
-In fact, this is what allows threads to communicate with each other: they read and write to a shared memory location.
-
-In our 3 process approach, h
+### Difference in philosophy
 
 
-In the left, how do we let each of the processes talk to each other?
-1. Write to the file/then read to the file
-2. Signalling (but usually for handling events)
-3. Network connection (socket)
-<-- they are pretty slow...dependent on syscalls.....the OS is involved in mediating the communication
 
-In right, there is no OS involved → just loads and stores → performance boost
-
-But isn't that dangerous? One thread can modify the code/data of another thread.
-
-Difference in philosophy
 If we have multiple tasks which are mostly independent:
 1. Multiple Process
 2. Multiple threads in a singular process
