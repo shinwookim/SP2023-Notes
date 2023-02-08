@@ -94,9 +94,24 @@ What if, instead, we combine the threads into one process (right)? Note that now
 ### Difference in philosophy
 However, choosing between threading and processes isn't just weight trade-offs; it is a matter of philosophy. If we have multiple tasks which are mostly independent we can choose to implement this as multiple processes, or multiple threads in a single process. If the tasks needs to compete for some resource, we would choose the process approach as the OS can manage the resources between processes. However, if the tasks are more cooperative in nature, we might choose threads; the threads can share the resource among themselves without the need for OS overhead. Hence, the question of threads vs process is a question of *resource management by the OS* vs. *resource management by the process*.
 
+### Practical uses for threads
+To illustrate when threads might be a useful option, let us consider an example: a word processor. A modern word processor, like Microsoft Word, needs to do a lot more than simply read, edit, and write files.
+1. Task 1: The program needs to wait for a user to type something; when the user does type, we need to insert that information into some sort of data structure (called document for now)
+2. Task 2: At the same time, we need to render the document; we need to break the document into lines, paragraphs, pages, etc and visually display them on the screen
+3. Task 3: We should add a spe
 
 
+1.  writing a word processor
+	1. TASK 1: wait for user to type something --> insertion in a data structures called document
+	2. TASK 2: at the same time, we need to render the document (break doc into lines, paragraphs, pages)
+	3. TASK 3: Spell check each word against a dictionary, and draw red line under mis-spelled word
+	4. TASK 4: Every few minutes, we save the document
 
+These tasks have some degree of concurrency. Note that most of these tasks have a large idle time between each instruction.
+
+In these periods of idle time, we can schedule some other thread.
+
+If we have 4 tasks that can be done concurrently, and highly interweaavlble (due to large idle time)...  should we use threads or processes?
 
 
 
@@ -130,18 +145,6 @@ Is it beneficial to create more threads in the same process? Yes.
 --> need for thread switch
 
 
-Multithreading in action
-1.  writing a word processor
-	1. TASK 1: wait for user to type something --> insertion in a data structures called document
-	2. TASK 2: at the same time, we need to render the document (break doc into lines, paragraphs, pages)
-	3. TASK 3: Spell check each word against a dictionary, and draw red line under mis-spelled word
-	4. TASK 4: Every few minutes, we save the document
-
-These tasks have some degree of concurrency. Note that most of these tasks have a large idle time between each instruction.
-
-In these periods of idle time, we can schedule some other thread.
-
-If we have 4 tasks that can be done concurrently, and highly interweaavlble (due to large idle time)...  should we use threads or processes?
 
 Threads
 - notion of *Explicit Sharing* - we don't want to pass that information around. Let the threads have a shared pointer within a singular address space.
