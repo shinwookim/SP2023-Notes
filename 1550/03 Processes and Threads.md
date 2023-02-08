@@ -69,8 +69,7 @@ We might say that the processes are structured into two *layers*. The lowest lay
 ## Process Table
 To implement the process model, the operating system must maintain some sort of data structure which contain some information about each process. This data structure is called a **process table** (in Linux, it is actually a linked list) and in it each process has a process table entry (also called **process control blocks**). 
 
-Most importantly, we need to keep track of the process's *state* (from the process life cycle above). We would also record the pri
-
+Most importantly, we need to keep track of the process's *state* (from the process life cycle above). We would also record the priority (to use in scheduling), and even some statistics about the process. Furthermore, it would be beneficial to keep track of what *file*s the process is using (important because in UNIX, *everything is a file*) and related security information. Lastly, to manage the memory of the system, the OS needs some way to keep tabs on the address space of our process.
 
 Note that how the process table entry is exactly laid out is an implementation detail in will vary among different designs. For instance the process table entry might keep track of the registers, program counter, and CPU status work; these details might also be relegated to storage in the program stack. However, here is what we might find in a typical process table entry:
 |Process management | Memory Management | File management|
@@ -78,36 +77,18 @@ Note that how the process table entry is exactly laid out is an implementation d
 |Registers<br /> Program counter<br /> CPU status word<br /> Stack pointer<br /> Process state<br /> Priority/scheduling parameters<br /> Process ID<br /> Parent process ID<br /> Signals<br /> Process start time<br /> Total CPU usage|Pointers to text, data, stack<br />*or*<br />Pointer to page table|Root directory<br /> Working (current) directory<br /> File descriptors<br /> User ID, Group ID|
 
 
+## Threads
+> A thread is a stream of instructions and their associated states
 
+This definition is very similar to the definition of a process. In fact, in a traditional operating system, each process has an address space and a single thread of control.
 
+Suppose we have 3 independent tasks to run (independent as in they are able to be run concurrently).![](threads-and-processes.png)
 
-
-
-Process Management
-"State" - in the state diagram
-Priority
-Statistics about process
-
-File Management
-Open files ("Everything is a file")
-Security- Permissions
-
-Memory Management
-Management of Address Space
-
-Forms a record per each active process
-
-
----
-
-Thread
-> A stream of instructions and their associated states
---? Very much like a process
 
 Process are not the only things that feed as input to the scheduler
 
 Process and Threads
-3 independent tasks (able to be run concurrently)![](Pasted%20image%2020230206093628.png)
+3 independent tasks (able to be run concurrently)
 If we launch 3 processes, we get 3 stream of instructions.
 
 Instead, what if combine the thread into one process.
