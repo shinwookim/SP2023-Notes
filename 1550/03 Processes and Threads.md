@@ -95,19 +95,13 @@ What if, instead, we combine the threads into one process (right)? Note that now
 However, choosing between threading and processes isn't just weight trade-offs; it is a matter of philosophy. If we have multiple tasks which are mostly independent we can choose to implement this as multiple processes, or multiple threads in a single process. If the tasks needs to compete for some resource, we would choose the process approach as the OS can manage the resources between processes. However, if the tasks are more cooperative in nature, we might choose threads; the threads can share the resource among themselves without the need for OS overhead. Hence, the question of threads vs process is a question of *resource management by the OS* vs. *resource management by the process*.
 
 ### Threads are mini-processes
-Threads are very similar to processes. Much like a process, each thread needs its own set of registers, program counter, etc. This means we need some way to keep track of this information. Previously, we stored some per-process items in a process table. Now, we need to store some per-thread items (mainly, PC, register, stack/stack pointer, and state).
+Threads are very similar to processes. Much like a process, each thread needs its own set of registers, program counter, etc. This means we need some way to keep track of this information. Previously, we stored some per-process items in a process table. Now, on top of this, we also need to store some per-thread items (mainly, PC, register, stack/stack pointer, and state).
 
-When we switch from one thread to another
+Note that the stack is of particular interest. In our previous illustrations, we were only able to see a singular thread per each process; the stack grew up and heap grew down. However, now we need a way of storing multiple stacks (We *stack* the *stack*s). Note that this 
+![](Threading.png)
 
+When we switch from running one thread to another, we need to perform a *thread switch*. A thread switch is much like a context switch. However, by having less values to save and restore, thread-thread switches are less expensive than process-to-process context swithces. Hence a thread is sometimes called a **lightweight process.**
 
-Thread State
-Per Process Items (still the same)
-
-Per thread items
-- Program counter
-- Registers
-- Stack & stack pointer ≤- Interesting....our illustrations of address space only had one stack (*stack grows up, heap down*)
-- State
 
 There is maximum size of a stack (*stack overflow*)
 
