@@ -69,18 +69,19 @@ We might say that the processes are structured into two *layers*. The lowest lay
 ## Process Table
 To implement the process model, the operating system must maintain some sort of data structure which contain some information about each process. This data structure is called a **process table** (in Linux, it is actually a linked list) and in it each process has a process table entry (also called **process control blocks**). 
 
-Note that how the process table entry is exactly laid out is an implementation detail in will vary among different designs. However, here is what we might find in a typical process table entry:
+Most importantly, we need to keep track of the process's *state* (from the process life cycle above). We would also record the pri
+
+
+Note that how the process table entry is exactly laid out is an implementation detail in will vary among different designs. For instance the process table entry might keep track of the registers, program counter, and CPU status work; these details might also be relegated to storage in the program stack. However, here is what we might find in a typical process table entry:
 |Process management | Memory Management | File management|
 |-------------------|-------------------|----------------|
-|Registers Program counter CPU status word Stack pointer Process state Priority / scheduling parameters Process IDParent process IDSignals Process start time Total CPU usage|Pointers to text, data, stackor Pointer to page table|
+|Registers<br /> Program counter<br /> CPU status word<br /> Stack pointer<br /> Process state<br /> Priority/scheduling parameters<br /> Process ID<br /> Parent process ID<br /> Signals<br /> Process start time<br /> Total CPU usage|Pointers to text, data, stack<br />*or*<br />Pointer to page table|Root directory<br /> Working (current) directory<br /> File descriptors<br /> User ID, Group ID|
 
 
 
 
-the information stored in them
 
-(In Linux, Linked List)
-The exact Process Table entry is an implementation detail  (some details might be stored conceptually)
+
 
 Process Management
 "State" - in the state diagram
