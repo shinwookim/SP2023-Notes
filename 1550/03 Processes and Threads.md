@@ -67,7 +67,17 @@ This process model gives us a view at what is going on  inside the system. Some 
 
 We might say that the processes are structured into two *layers*. The lowest layer of the process-structured operating system handles interrupts and scheduling. In fact, the details of starting and stopping processes are abstracted away in the *scheduler*. The rest of the operating system is structured in a process form; these sequential processes lie above the scheduler. ![](two-layer-process.png)
 ## Process Table
-To implement the process model, the operating system must maintain some sort of data structure which contain some information about each process. This data structure is called a **process table**
+To implement the process model, the operating system must maintain some sort of data structure which contain some information about each process. This data structure is called a **process table** (in Linux, it is actually a linked list) and in it each process has a process table entry (also called **process control blocks**). 
+
+Note that how the process table entry is exactly laid out is an implementation detail in will vary among different designs. However, here is what we might find in a typical process table entry:
+|Process management | Memory Management | File management|
+|-------------------|-------------------|----------------|
+|Registers Program counter CPU status word Stack pointer Process state Priority / scheduling parameters Process IDParent process IDSignals Process start time Total CPU usage|Pointers to text, data, stackor Pointer to page table|
+
+
+
+
+the information stored in them
 
 (In Linux, Linked List)
 The exact Process Table entry is an implementation detail  (some details might be stored conceptually)
