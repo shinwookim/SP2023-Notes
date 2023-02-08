@@ -122,19 +122,12 @@ Let's look at another example. This time, consider a webserver. A webserver wait
 An interesting detail about HTTP is that it is a statless protocol. Every time, you talk to it, it *forgets* who you are and re-fetches the data. (This is why we have *cookies* and *session ID*. They compensate for HTTP being stateless and allows the webserver to know who you are.)
 
 This is fine because generally every single request to a web server is entirely independent. It also gives use the benefit of allowing us to complete request non-sequentially (since the current request doesn't depend on previous requests). I.e., we can parallelize request handling.
-![](webserver-threads.png)
-So should we implement the task ha
+![](Assets/webserver-threads.png)
+So should we implement the task handlers as threads? or processes? In fact, both are valid options and modern web servers use a combination of processes and threads for workers. So let's compare the pros and cons of each approach.
 
+First, let's consider *security*. If we want to protect a worker from one another, we would want to use processes since the resources are partitioned by the OS in a notion of exclusive access. This could be particularly useful if there is an exploitable vulnerability such as injecting mallicious code. If a thread is infected, it can impact other threads; however, if a process is infected, it can't effect any other processes.
 
-
-
-But generally, every single request to a web server is entirely independent.
-
-We don't need to do request sequentially. --> We can do them in parallel
-
-(In reality, web servers use both process and threads for workers).
-
-If processes are an option, at the core, the tasks can be handled independently.
+What about reliability? If a single worker is buggy in a process approach, we can simply kill the process with a signal. However, since signal handlers are per-process, if a thread does something buggy, we still need to kill t
 
 
 Why threads or process?
