@@ -119,18 +119,14 @@ Back to the philosophical question...are the tasks in competition for resources?
 #### Webserver
 Let's look at another example. This time, consider a webserver. A webserver waits for a network connection from clients (web browser). When a client connects to it, the server software handles the request via HTTP.
 
-An interesting detail about HTTP is that it is a statless prot
+An interesting detail about HTTP is that it is a statless protocol. Every time, you talk to it, it *forgets* who you are and re-fetches the data. (This is why we have *cookies* and *session ID*. They compensate for HTTP being stateless and allows the webserver to know who you are.)
+
+This is fine because generally every single request to a web server is entirely independent. It also gives use the benefit of allowing us to complete request non-sequentially (since the current request doesn't depend on previous requests). I.e., we can parallelize request handling.
+![](webserver-threads.png)
+So should we implement the task ha
 
 
 
-
-
-
-
-Webserver - waits for network connections from clients (web browsers)
-When a client connects to the server, the server software handles request via HTTP
-
-HTTP is a stateless protocol...every time you talk to it, it *forgets*, and re-fetches the data. (hence the need for *Cookies, Session ID*)
 
 But generally, every single request to a web server is entirely independent.
 
@@ -158,7 +154,7 @@ Why threads or process?
 	- However, we know that thread switches are cheaper!
 
 Implementing Thread (User Threads vs Kernel Threads)
-![](Pasted%20image%2020230206103630.png)
+![](thread-implementation.png)
 Modern OS Manage the time through preemption
 
 In User thread, the thread state resides inside the user space. Typically, by linking against a library  We still manage process at the user level. The threads within a proecss are managed by the process itself (perhaps by linkinng a libarary)
