@@ -137,11 +137,11 @@ Note that however, caching isn't typically implemented at this level. A common w
 ![](thread-implementation.png)
 In a modern operating system (one that manages resources throgh preemption), there are two main approaches to threads: **User Threads** and **Kernel Threads**.
 
-In a 
+In a user thread approach, the thread state resides within the user space. We manage the threads at the user level by the process itself (typically by linking against a library). This is great since it does not require any kernel support; however this is likely slower than kernel threads and is harder to do non-blocking I/O.
 
-In User thread, the thread state resides inside the user space. Typically, by linking against a library  We still manage process at the user level. The threads within a proecss are managed by the process itself (perhaps by linkinng a libarary)
+In the kernel thread approach, the thread state lies in the kernel space and tells the OS about the existence of threads. Hence, threads are managed at the OS level. This is great since we can use this information to be more flexible in our scheduling. We can also easily implement non-blocking I/O. However, the downside is that this makes the implementation kernel-dependent which reduces the portability of our code.
 
-In kernel thread, thread state tells the OS about the existence about theread. We know about 7 total threads in 2 user process (in kernel). We manage the threads as the OS.
+To circumvent headaches about which implementation a programmer's machine is running, the C library provides `pthr`
 
 The entire purpose of pthread is to hide the implementation of threads. Abstraction layer. --> we call the same functions, but their appliciton differs.
 
