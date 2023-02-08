@@ -49,7 +49,7 @@ In fact, `read()` is a **blocking system call,** in which it prevents further in
 
 The presence of a blocked state establishes a notion of pseudo-parallelism, allowing us to run multiple processes at once.
 
-## Greedy processes require interrupts 
+### Greedy processes require interrupts 
 Up to this point, the scheduler runs either when a process exits (invoking the `exit()` system call), or due to a hardware interrupt. This means that the scheduler is only taking an active role, however, and may lead to issues.
 
 Now, consider a simple program with an infinite loop which *does nothing*. That is, this program has a single instruction which tells the CPU to jump to the jump instruction. Notice that with our current model, a process only leaves the running state (i) when it exits, or (ii) when it is interrupted. Since this program has an infinite loop, it will never exit freely. And hardware interrupts are rare, especially as we go on. Since our process will be the only process running, no other process runs to ask for an event. Thus, the chance of hardware interrupts decreases and decreases.
@@ -65,18 +65,9 @@ Back to invoking the scheduler; To run the scheduler, we need to be in kernel mo
 
 This process model gives us a view at what is going on  inside the system. Some of the process run programs that carry out commands from a user; other processes are part of the system and handle tasks such as carrying out requests for file services or managing the details of running a disk or tape drive. 
 
-We might say that the processes are structured into two *layers*. The lowest layer of the process-structured operating system handles interrupts and scheduling while above this layer lies the sequ
-
-the  above layers are the sequential processes
-
-while a variety of process are on top of it.
-
-
-![](Pasted%20image%2020230206093143.png)
-
-
+We might say that the processes are structured into two *layers*. The lowest layer of the process-structured operating system handles interrupts and scheduling. In fact, the details of starting and stopping processes are abstracted away in the *scheduler*. The rest of the operating system is structured in a process form; these sequential processes lie above the scheduler. ![](two-layer-process.png)
 ## Process Table
-
+To implement the process model, the operating system must maintain some sort of data structure which contain some information about each process. This data structure is called a **process table**
 
 (In Linux, Linked List)
 The exact Process Table entry is an implementation detail  (some details might be stored conceptually)
