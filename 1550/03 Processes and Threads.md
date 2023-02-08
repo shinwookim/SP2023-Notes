@@ -94,27 +94,10 @@ What if, instead, we combine the threads into one process (right)? Note that now
 ### Difference in philosophy
 However, choosing between threading and processes isn't just weight trade-offs; it is a matter of philosophy. If we have multiple tasks which are mostly independent we can choose to implement this as multiple processes, or multiple threads in a single process. If the tasks needs to compete for some resource, we would choose the process approach as the OS can manage the resources between processes. However, if the tasks are more cooperative in nature, we might choose threads; the threads can share the resource among themselves without the need for OS overhead. Hence, the question of threads vs process is a question of *resource management by the OS* vs. *resource management by the process*.
 
-### Practical uses for threads
-To illustrate when threads might be a useful option, let us consider an example: a word processor. A modern word processor, like Microsoft Word, needs to do a lot more than simply read, edit, and write files.
-1. Task 1: The program needs to wait for a user to type something; when the user does type, we need to insert that information into some sort of data structure (called document for now)
-2. Task 2: At the same time, we need to render the document; we need to break the document into lines, paragraphs, pages, etc and visually display them on the screen
-3. Task 3: We should add a spell check feature which runs each word against a dictionary; When there is a typo, we draw a red line under that word
-4. Task 4: Every few minutes, let's auto save the document
+### Threads are mini-processes
+Threads are very similar to processes. Much like a process, each thread needs its own set of registers, program counter, etc. This means we need some way to keep track of this information. Previously, we stored some per-process items in a process table. Now, we need to store some per-thread items (mainly, PC, register, stack/stack pointer, and state).
 
-Notice that these tasks have some degree of concurrency. That is, most of these tasks have large idle time between each instruction. Thus, during each task's idle time, we can schedule some other task. Now that we have 4 tasks which are highly interweavable due to large idle time that can be done concurrently, should we use threads or processes?
-
-Well, there is a notion of *explicit sharing* in this problem; all of our tasks are working on the same document. So, instead of passing information around between processes, having threads allows us to have a shared pointer within a singular address space.
-
-
-, let's have thread
-
-
-Threads
-- notion of *Explicit Sharing* - we don't want to pass that information around. Let the threads have a shared pointer within a singular address space.
-- Philosophy - Are the tasks in competition for resources? or cooperating? → cooperating (they are all parts of a singular program - word processor)
-
-### How the OS implements threads
-
+When we switch from one thread to another
 
 
 Thread State
@@ -133,6 +116,29 @@ Switching from thread to thread involves switching a subset of the total process
 
 By having smaller values to save and restore, thread-thread switch is less expensive than process-process context switch
 (**thread is sometimes called lightweight process***)
+
+
+
+### Practical uses for threads
+To illustrate when threads might be a useful option, let us consider an example: a word processor. A modern word processor, like Microsoft Word, needs to do a lot more than simply read, edit, and write files.
+1. Task 1: The program needs to wait for a user to type something; when the user does type, we need to insert that information into some sort of data structure (called document for now)
+2. Task 2: At the same time, we need to render the document; we need to break the document into lines, paragraphs, pages, etc and visually display them on the screen
+3. Task 3: We should add a spell check feature which runs each word against a dictionary; When there is a typo, we draw a red line under that word
+4. Task 4: Every few minutes, let's auto save the document
+
+Notice that these tasks have some degree of concurrency. That is, most of these tasks have large idle time between each instruction. Thus, during each task's idle time, we can schedule some other task. Now that we have 4 tasks which are highly interweavable due to large idle time that can be done concurrently, should we use threads or processes?
+
+Well, there is a notion of *explicit sharing* in this problem; all of our tasks are working on the same document. So, instead of passing information around between processes, having threads allows us to have a shared pointer within a singular address space.
+
+
+
+
+
+Threads
+- notion of *Explicit Sharing* - we don't want to pass that information around. Let the threads have a shared pointer within a singular address space.
+- Philosophy - Are the tasks in competition for resources? or cooperating? → cooperating (they are all parts of a singular program - word processor)
+
+
 
 
 ## Threading
