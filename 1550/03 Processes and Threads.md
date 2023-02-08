@@ -83,7 +83,7 @@ Note that how the process table entry is exactly laid out is an implementation d
 This definition is very similar to the definition of a process. In fact, in a traditional operating system, each process has an address space and a single thread of control.
 
 Suppose we have 3 independent tasks to run (independent as in they are able to be run concurrently).![](threads-and-processes.png)
-We could launch 3 processes (left), resulting in 3 streams of instructions. Since each set of processes gets a unique address space, we are left with 3 sets of address spaces to manage. But how can each process communicate with one another?
+We could launch 3 processes (left), resulting in 3 streams of instructions. Here, each process has a single **main thread** (the thread which runs `main()`). Since each set of processes gets a unique address space, we are left with 3 sets of address spaces to manage. But how can each process communicate with one another?
 1. One approach might be to have all the process read and write to a same file.
 2. Another approach might be to use a socket and set up a network connection between each process
 3. We might even try to use the signals to communicate (although singals are usually only used to handle events)
@@ -97,23 +97,13 @@ However, choosing between threading and processes isn't just weight trade-offs; 
 ### Threads are mini-processes
 Threads are very similar to processes. Much like a process, each thread needs its own set of registers, program counter, etc. This means we need some way to keep track of this information. Previously, we stored some per-process items in a process table. Now, on top of this, we also need to store some per-thread items (mainly, PC, register, stack/stack pointer, and state).
 
-Note that the stack is of particular interest. In our previous illustrations, we were only able to see a singular thread per each process; the stack grew up and heap grew down. However, now we need a way of storing multiple stacks (We *stack* the *stack*s). Note that this 
+Note that the stack is of particular interest. In our previous illustrations, we were only able to see a singular thread per each process; the stack grew up and heap grew down. However, now we need a way of storing multiple stacks (We *stack* the *stack*s). Note that this means we need to restrict the size of a stack (which is why recursion sometimes causes stack overflow errors)
 ![](Threading.png)
 
-When we switch from running one thread to another, we need to perform a *thread switch*. A thread switch is much like a context switch. However, by having less values to save and restore, thread-thread switches are less expensive than process-to-process context swithces. Hence a thread is sometimes called a **lightweight process.**
-
-
-There is maximum size of a stack (*stack overflow*)
-
---> Need for a thread switch (much like a context switch)
-Switching from thread to thread involves switching a subset of the total process context.
-
-By having smaller values to save and restore, thread-thread switch is less expensive than process-process context switch
-(**thread is sometimes called lightweight process***)
-
-
+When we switch from running one thread to another, we need to perform a *thread switch*. A thread switch is much like a context switch. However, by having less values to save and restore, thread-thread switches are less expensive than process-to-process context switches. Furthermore, threads don't need a separate address space which means creating and destroying them are also faster than processes. Hence a thread is sometimes called a **lightweight process.**
 
 ### Practical uses for threads
+#### Word Processor
 To illustrate when threads might be a useful option, let us consider an example: a word processor. A modern word processor, like Microsoft Word, needs to do a lot more than simply read, edit, and write files.
 1. Task 1: The program needs to wait for a user to type something; when the user does type, we need to insert that information into some sort of data structure (called document for now)
 2. Task 2: At the same time, we need to render the document; we need to break the document into lines, paragraphs, pages, etc and visually display them on the screen
@@ -124,23 +114,13 @@ Notice that these tasks have some degree of concurrency. That is, most of these 
 
 Well, there is a notion of *explicit sharing* in this problem; all of our tasks are working on the same document. So, instead of passing information around between processes, having threads allows us to have a shared pointer within a singular address space.
 
+Back to the philosophical question...are the tasks in competition for resources? or cooperating? Clearly, the tasks are cooperating because they are all parts of a singular program (word processor). Hence, threads is the approporiate approach here.
 
+#### Webserver
+Let's look at another example. This time, consider a webserver. A webserver waits for a network connection from clients (web browser). When a client connects to it, the server software handles the request via HTTP.
 
+An interesting detail about HTTP is that it is a statless prot
 
-
-Threads
-- notion of *Explicit Sharing* - we don't want to pass that information around. Let the threads have a shared pointer within a singular address space.
-- Philosophy - Are the tasks in competition for resources? or cooperating? → cooperating (they are all parts of a singular program - word processor)
-
-
-
-
-## Threading
-Main thread (thread in which main() executes) in normal process
-
-Is it beneficial to create more threads in the same process? Yes.
---> need to allocate space from the address space
---> need for thread switch
 
 
 
