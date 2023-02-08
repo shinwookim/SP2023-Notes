@@ -92,7 +92,11 @@ Whatever approach we take, the operating system is involved in mediating the com
 What if, instead, we combine the threads into one process (right)? Note that now the 3 threads reside in a singular address space. That means each thread can access another thread's memory. If one threads stores a value to memory, another thread is able to read or modify it. Now for each thread to communicate with each other, the process can simply read and write to a shared memory location. In fact, since reading and writing are just loads and stores to memory (no OS involved), we attain a performance boost. However, there is a catch; poorly written code might be dangerous since one thread can modify the code/data of another thread.
 
 ### Difference in philosophy
-However, choosing between threading and processes isn't just weight trade-offs; it is a matter of philosophy. If we have multiple tasks which are mostly independent we can choose to implement this as multiple processes, or multiple threads in a single process. If the tasks needs to compete for some resource, we would choose the process approach as the OS can manage the resources between processes. However, if the tasks are more cooperative in nature, we might choose threads; the threads can share the resource among themselves without the need for OS overhead. Hence, the question of threads vs process is a question of *resource management by the OS* vs. *resource management by the process*.
+However, choosing between threading and processes isn't just weight trade-offs; it is a matter of philosophy. If we have multiple tasks which are mostly independent we can choose to implement this as multiple processes, or multiple threads in a single process. If the tasks needs to compete for some resource, we would choose the process approach as the OS can manage the resources between processes. However, if the tasks are more cooperative in nature, we might choose threads; the threads can share the resource among themselves without the need for OS overhead. Hence, the question of threads vs process is a question of *resource management by the OS* vs. *resource management by the process* (**independence** vs **cooperation**).
+
+Usually, a process will be cooperative if it needs to share information, speed up computation, allow modularity, or by conveneience. To accomplish this, a cooperating process needs to affect or be aff
+
+can affect or be affected by other processes, including sharing data.
 
 ### Threads are mini-processes
 Threads are very similar to processes. Much like a process, each thread needs its own set of registers, program counter, etc. This means we need some way to keep track of this information. Previously, we stored some per-process items in a process table. Now, on top of this, we also need to store some per-thread items (mainly, PC, register, stack/stack pointer, and state).
@@ -141,13 +145,6 @@ In a user thread approach, the thread state resides within the user space. We ma
 
 In the kernel thread approach, the thread state lies in the kernel space and tells the OS about the existence of threads. Hence, threads are managed at the OS level. This is great since we can use this information to be more flexible in our scheduling. We can also easily implement non-blocking I/O. However, the downside is that this makes the implementation kernel-dependent which reduces the portability of our code.
 
-To circumvent headaches about which implementation a programmer's machine is running, the C library provides `pthr`
+To circumvent headaches about which implementation a programmer's machine is running, the C library provides `pthread`s. The purpose of `pthread` is to hide the implementation of thread to the user by providing an abstraction layer. When a programmer invokes a `pthread` function, it will determine which *version* it needs to run (depending on thread implementation) and run the corresponding functions.
 
-The entire purpose of pthread is to hide the implementation of threads. Abstraction layer. --> we call the same functions, but their appliciton differs.
-
----
-Threads: 
-1. create a thread `pthread create`
-	- new entry to thread state (in Kernel space)
-		- system call to get to the address space of kernel
-	- function call (in user threads)
+To create a new thread, we call `pthread_create()`. In a user thread model, this is simply a function call which create the thread; However, in a kernel thread model, it makes a system call to get to the address space of the kernel and creates a new entry to the thread state (in kernel space).
