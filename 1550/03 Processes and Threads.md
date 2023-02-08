@@ -83,25 +83,18 @@ Note that how the process table entry is exactly laid out is an implementation d
 This definition is very similar to the definition of a process. In fact, in a traditional operating system, each process has an address space and a single thread of control.
 
 Suppose we have 3 independent tasks to run (independent as in they are able to be run concurrently).![](threads-and-processes.png)
+We could launch 3 processes (left), resulting in 3 streams of instructions. Since each set of processes gets a unique address space, we are left with 3 sets of address spaces to manage.
+
+What if, instead, we combine the threads into one process (right)? Note that now the 3 threads reside in a singular address space. That means each thread can access another thread's memory. If one threads stores a value to memory, another thread is able to read or modify it.
 
 
-Process are not the only things that feed as input to the scheduler
 
-Process and Threads
-3 independent tasks (able to be run concurrently)
-If we launch 3 processes, we get 3 stream of instructions.
 
-Instead, what if combine the thread into one process.
 
-Number of circles are different → Address space
+In fact, this is what allows threads to communicate with each other: they read and write to a shared memory location.
 
-Every process gets a unique address space
+In our 3 process approach, h
 
-In the right, 3 threads reside in a singular address space
-
-⇾ Note that each thread can access each other's memory. If one thread stores a value, the other threads can read/modify it.
-
-Threads communicate by reading and writing a shared memory location.
 
 In the left, how do we let each of the processes talk to each other?
 1. Write to the file/then read to the file
@@ -120,6 +113,12 @@ If we have multiple tasks which are mostly independent:
 If the threads communicate, how do they communicate? Can the change of values harm us?
 Typical competition of resource (process)...vs....cooperation (threads)
 management of resources by OS vs. self-management of resources
+
+
+Process are not the only things that feed as input to the scheduler
+
+
+
 
 Our focus: how the OS implements the threads
 
@@ -141,7 +140,7 @@ By having smaller values to save and restore, thread-thread switch is less expen
 (**thread is sometimes called lightweight process***)
 
 
-# Threading
+## Threading
 Main thread (thread in which main() executes) in normal process
 
 Is it beneficial to create more threads in the same process? Yes.
