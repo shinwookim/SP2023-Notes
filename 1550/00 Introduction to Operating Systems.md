@@ -138,11 +138,7 @@ Most systems are byte-addressable (meaning we can only talk about addresses in t
 
 There is a caveat to address spaces, however. In a 32-bit CPU, we promise all processes each that the 4 GB of RAM is either the process's or not yet that process's. But, we know that this promise cannot be false. Discounting the amount taken up by the OS, a modern computer runs hundreds of processes in the background; and it's physically impossible to give 4 GB to all the processes.
 
-Yet, since we promise each process the enumeration of the entire 4GBs, no process is able to generate an address that is the code/data of another program. This is what gives the illusion of exclusive access.
-
-In this scheme, the same (virtual) address can hold different values (based on which program requests it). The address provided to the program is not the actual address, but an abstraction provided by the OS.
-
-Thus, we have solved the protection problem.
+Yet, since we promise each process the enumeration of the entire 4GBs, no process is able to generate an address that is the code/data of another program. This is what gives the illusion of exclusive access. In this scheme, the same (virtual) address can hold different values (based on which program requests it). The address provided to the program is not the actual address, but an abstraction provided by the OS. Thus, we have solved the protection problem.
 
 As an aside, why does the stack grow down, and heap up? Because all the other ones create issues. If both grow in the same direction, we will need to shift data as they grow. If we split the memory into halves, our programs may terminate when they run out of heap/stack space when there is still space left in memory. By having them grow in the opposite directions, n space is wasted even when they collide.
 
