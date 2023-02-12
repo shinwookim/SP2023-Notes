@@ -192,5 +192,6 @@ void print_course(Course course)
 	}
 }
 ```
-Now, functions can better illustrate they take an `enum` value(it will still accept integer values, however).
-
+Now, functions can better illustrate they take an `enum` value (it will still accept integer values, however).
+
+
