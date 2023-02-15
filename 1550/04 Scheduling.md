@@ -28,24 +28,12 @@ Thus, for our goals, we would prefer if the vast majority of the processes on ou
 
 The traditional answer to this question was **better hardware**. With faster CPUS, we could improve the computational parts of a CPU bound process. (Note that I/O bound process typically do not reap the benefits of a better CPU because most of their time is spend waiting for I/O and I/O access speed is not proportional to CPU speed). Now, if we can continuously improve the computational performance of a CPU bound program, eventually we will reach a point where the I/O access time overtakes the computational time. And hence our CPU bound program becomes an I/O bound program and interweaving processes become reasonable.
 
-Historically, with [Moore's Law](https://en.wikipedia.org/wiki/Moore's_law), it was reasonable to expect that CPU speeds to increase at an exponential rate. However, in the modern day, this expectation is no longer reasonable, and this approach is less accepted.
+Historically, with [Moore's Law](https://en.wikipedia.org/wiki/Moore's_law), it was reasonable to expect that CPU speeds to increase at an exponential rate. However, in the modern day, this expectation is no longer reasonable, and this approach is less accepted. Yet, still the general principle of faster hardware converting CPU bound processes to I/O bound process stil stand.
 
+Also, as an aside, why can't we easily improve the performance of I/O bound processes? Unlike, CPUs, improvements in I/O devices have been largely stagnant. Although there certainly are some improvements (such as the development of solid state drives), a lot of I/O devices have largely stayed the same (Hard Disk Drive speeds have been the same for almost a decade!). Furthermore, many I/O in these programs represents *human interactions* (which is slow and unpredictable!).
 
-
-
-
-If we have a CPU that runs twice the speed, the CPU bound process runs around half the time (about).
-If we have a CPU that runs twice the speed, the I/O bound process does not in half the time (File I/O still take a long time).
-- E.g., HDD can only spin so fast (7200RPM for decade)
-
-With better CPUs, we can only scale improvements by CPU bound parts. If we can continuously improve a CPU-bound program (until CPU bound becomes faster and faster),  then the bottlenecks become I/O → Hence, CPU bound programs become I/O bound programs. (Happens because CPUs becomes faster much faster than other IO peripherals-linear vs. exponential);
-
-Why are I/O bound programs so common? Human Interaction = I/O Bound!
-
-
-
-
----
+## When to schedule
+Now that we've justified the need for a scheduling, let's look at how scheduling act
 
 
 When to schedule:
