@@ -33,18 +33,16 @@ Historically, with [Moore's Law](https://en.wikipedia.org/wiki/Moore's_law), it 
 Also, as an aside, why can't we easily improve the performance of I/O bound processes? Unlike, CPUs, improvements in I/O devices have been largely stagnant. Although there certainly are some improvements (such as the development of solid state drives), a lot of I/O devices have largely stayed the same (Hard Disk Drive speeds have been the same for almost a decade!). Furthermore, many I/O in these programs represents *human interactions* (which is slow and unpredictable!).
 
 ## When to schedule
-Now that we've justified the need for a scheduling, let's look at how scheduling act
+Now that we've justified the need for a scheduling, let's look at how scheduling actually happens. Note that scheduling occurs in the OS (kernel). So to determine when we schedule, we need to look at when we transition to OS code from process code. 
+1. When a **process is created**, we are in the OS. Hence, we can run the schduler here.
+2. Conversely when a **process exits**, we are once again put in the OS. Hence, we can run the scheduler here.
+3. When we are **blocked** (e.g., for file I/O), we make a system call to get data. With the system call, we are put in the OS, and since we only schedule ready processes, we can schedule here (and pick another process).
+4. When we have a hardware interrupt (such as an **I/O interrupt**), we run the OS code. Hence, we can run the scheduler here.
+5. As mentioned before, when we have a **clock interrupt**, we schedule (for preemption). 
 
-
-When to schedule:
-- Process Creation - syscall
-- Process Exit - syscall
-- Blocked - syscall
-- I/O Interrupt - hardware interupt
-- Clock Interrupt - preemption
-(I.e., when are we scheduling? When we are in the OS...When are we in the OS?)
-
-Three-Level Scheduling...where do we schedule?
+## Where to schedule...Three-Level Scheduling
+Now that we've looked at when we schedule, let's look at where we do the sc
+...where do we schedule?
 ![](three-level-schedule.png)
 CPU schedule picks from the ready process to give the CPU time
 
