@@ -70,7 +70,7 @@ The first non-preemptive batch scheduling algorithm we will look at is **first c
 ![](Assets/FirstComeFirstServed.png)
 #### Analysis
 1. Throughput
-$$\frac{\text{number of jobs}}{\text{total time}}=\frac{4}{16}=0.25$$
+$$\frac{\text{number of jobs}}{\text{total time}}=\frac{4}{16}=0.25 \text{ job/unit time}$$
 2. Average Turnaround Time
 
 $$
@@ -83,9 +83,148 @@ D: (4+3+6+3) - 0 = 16\\
 \implies \frac{\sum \text{turnaround}}{\text{number of jobs}}=\frac{40}{4}=10
 \end{align*}
 $$
-
 3. Asymptotic Behavior: Queue operations (enqueue, dequeue) is a constant time operation ($O(1)$).
 4. Implementation Difficulty: Queue implementation is relatively easy
 5. Fairness
-	1. Fair - Assuming all jobs are comparable, it is fair. (The process that was submitted first, got first service)
-	2. Unfair - Tasks B and D have comparable run-times, but Task B ran much before task D.
+	1. Likely fair - Assuming all jobs are comparable, it is fair. (The process that was submitted first, got first service)
+	2. But also unfair - Tasks B and D have comparable run-times, but Task B ran much before task D (especially in terms of turnaround time).
+---
+
+Out of Infinite possible scheduling algorithms, there are $4!$ possible non-preemptive batch schedules (for these 4 jobs).
+- Throughput is always the same (0.25)...without preemption total time is always the same
+- Because we oversimplified the overhead
+	- Without preemption, overhead only occurs at process termination
+	- Throughout is uninteresting!
+
+What about Average Turnaround Time?
+- Embedded in turnaround time, is a notion of execution time 
+- Average execution time is 4 units,
+- hence most processes are waiting for 6 units.
+- For best possible turnaround time, the process needs to go first...
+- But not all processes can go first,
+	- As the second process, we hope the process before is short!
+	- ... 3rd process We hope that the , shortest job first!
+	- 
+### Shortest Job First
+![SJF](Assets/SJF.png)
+1. Throughput (no change)
+$$\frac{\text{number of jobs}}{\text{total time}}=\frac{4}{16}=0.25 \text{ job/unit time}$$
+2. Average Turnaround Time (Improvement!)
+
+$$
+\begin{align*} 
+B: 3 - 0  = 3\\
+D:(3+3) - 0 = 6 \\
+A: (3+3+4) - 0 = 10\\
+C: (3+3+4+6) - 0 = 16\\
+\therefore \sum{\text{turnaround}}=3+6+10+16=35\\
+\implies \frac{\sum \text{turnaround}}{\text{number of jobs}}=\frac{35}{4}
+\end{align*}
+$$
+Better....but optimal? ... yes (see 1510) regardless of input.
+
+Algorithmic view:
+3. Asymptotic Behavior: 
+
+Partial ordering vs. Total order <-- we need this
+--> let's sort them
+... but when?
+Insertion (O(n))
+
+To run the process O(1)
+
+
+Can we do better ? n logn
+
+Priority queue ←- Min Heap
+
+n log n!!!
+<-- Sorting problem
+
+But how do we know how long the program will take?
+--> No... OS is just another program...*like the halting problem (halts/doesn't halt)* but harder (now we have to figure out how long it takes to run)
+
+...possible static analysis? No because some instructions are longer (and might be inf loops)
+
+
+Hence, Impossible!
+
+But practically, could we inject the *expected run time into the code*? Yes, but people could lie. (incentive to lie)
+--> How do we prevent...we could killl the process after the input run time
+--> Now incentive to slightly overestimate
+
+
+We could look at past behavior...how long did the program take to run the last time it ran?  (we don't know the future, but we can predict it with data from the past)
+...in a batch system, run time is pretty stable.
+
+
+
+4. Implementation Difficulty: Still do-able
+
+
+
+5. Fairness
+New short jobs can arrive...then longer jobs might never run!
+In FCFS, the jobs might still take infinite time, but they all run!
+Starvation...is not fair!
+
+
+
+Interactive Scheduling
+> Impatient users waiting!
+
+
+maybe the quantiATIVE is not critical!
+
+
+*responsiveness* can't be measured -- > but we can measure response time!
+
+Time from action to response (click to dialogue box)
+--> let's add preemption, interleaving
+
+Round Robin Scheduling
+let's give each ready process some unit time! (not running to completion)
+
+How much time? the *quantum*... amount of time we are willing to let programs run (at most!)
+--> how long do we run a process before preemption
+
+<-- slide is bad b/c we are only running CPU bound processes.
+But in reality, CPU bound processes are rare.
+Why? cuz we change due to premptin
+
+|||||||| Read()          |<-- preemption
+
+
+But the timer never occurs if we blocking sys call, hence no quantum!
+
+
+Only CPU bound process hits the quantum!
+
+
+
+If we are preempted after a click, then we need to wait for another quantum to display the dialogue box...
+
+Worst case for this wait time = quantum * # jobs. \alpha response time
+
+Increase response time....
+
+To decrease resp time, we can reduce the ready jobs, or reduce the quantum...but the system can't reduce the number of jobs (that would be killing processes), so we must reduce the quantum!
+
+
+But how short?
+ Suppose
+Quantum = Context switch = 1 unit.
+
+| CS  | A   | CS  |
+| --- | --- | --- |
+
+At most, 1 out of 2 time units, is spent doing useful work
+
+Useful work is only 50% of total time.
+
+Our 4ghz cpu is now 2 ghz
+
+
+How do we make sure useful work is maximized?
+
+Make the context switch is relatively small...i.e., incentive to make Q as long as possib le!
