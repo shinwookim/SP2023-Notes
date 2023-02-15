@@ -8,7 +8,12 @@ Suppose we measure a process by the amount of wall-clock time elapsed from start
 ![](CPU-IO-Bound-Scheduling.png)
 Now, if we wanted to run two processes, a naïve approach may be to run the processes sequentially. However, this approach will double our run-time. However, since I/O bound processes spend most of their time *blocked*, we might try to interweave the two processes to reduce run-time.
 
-Empirically, for instance, if a single I/O bound process requires 1 unit time to complete, we might 
+For instance, suppose a single I/O bound process requires 1 unit time to complete. During that time, the actual time spent doing computation might only be 0.3 units. Now, if we were to interweave an identical process, we might be able to complete both processes in 1 unit time if we run the computation for the second process while the orignal process is blocked (this is much faster than running them sequentially which would require 2 unit time). Note that there is overhead, however, as a result of the necessary context switches between the two processes. 
+
+But what about for CPU bound processes? We could still try running a second process while our process is blocked. However, for CPU bound processes these will be minimal and so will our performance benefits (especially once we factor in overhead from context swit. 
+
+
+
 
 
 If we wanted
@@ -38,6 +43,19 @@ yet, we still rather have I/O bound than CPU bounds (we don't attain as much gai
 
 
 Associated with each read() system call -blocking, is some overhead from the OS. (Hence overhead in interweaving)
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 But, processes can stop for other reasons.....preemption!
 How long should preemption be?
