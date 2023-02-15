@@ -23,10 +23,14 @@ Hence, setting an appropriate length for the preemption timer is important. If t
 
 Assuming an appropriate length for the preemption timer is set, I/O bound processes are typically unaffected by the preemption timer (as they have short bursts of computation and many calls to blocking system calls). On the other hand, CPU bound process are frequently preempted. Thus, if we interweave two CPU bound processes, we now have to account for the costs associated with preemptive context switches. Empirically, this may slow the total performance enough to the point that interweaving is slower than the sequentially running the processes (batch system).
 
-### With time, CPU bound pro
+### With time, CPU bound processes become I/O bound
+Thus, for our goals, we would prefer if the vast majority of the processes on our system are I/O bound (and they are!). Hence, the key question is: *Can we turn a CPU bound process into a I/O bound process?*
 
----
-For our goals, We hope that the vast majority of process are I/O bound. (and they are!)
+The historical answer to this question was **better hardware**. With faster CPUS, we could improve the computational parts of a CPU bound process. (Note that I/O bound process typically do not reap the benefits of a better CPU because most of their time is spend waiting for I/O and I/O access speed is not proportional to CPU speed). Now, if we can continuously improve the computational 
+
+
+
+
 
 We can make programs faster by using faster hardware (processes)
 - With more transistors, we can put more resources on the CPU.
