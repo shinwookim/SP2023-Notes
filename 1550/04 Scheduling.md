@@ -2,18 +2,23 @@
 > How to choose which of the *ready processes*/*threads* gets to *run* next
 
 ## CPU Bound vs. I/O Bound Processes
-Nearly all processes alternate bursts of computing with I/O requests; the CPU runs for a while without stopping, then a system call is made to read or write to a file. When the system call
+Nearly all processes alternate bursts of computing with I/O requests; the CPU runs for a while without stopping, then a system call is made to read or write to a file. When the system call completes, the CPU computes again until the next I/O request.
+
+Suppose we measure a process by the amount of wall-clock time elapsed from start to termination (*elapsed real time*). If a process uses most of that time running instructions, we call it **CPU bound**. Conversely, if a process spends most of the time blocked (from blocking system calls), we call it **I/O bound**.
+![](CPU-IO-Bound-Scheduling.png)
+Now, if we wanted to run two processes, a naïve approach may be to run the processes sequentially. However, this approach will double our run-time. However, since I/O bound processes spend most of their time *blocked*, we might try to interweave the two processes to reduce run-time.
+
+Empirically, for instance, if a single I/O bound process requires 1 unit time to complete, we might 
 
 
+If we wanted
 
 
-
-Suppose we measure a process by the amount of wall-clock time elapsed from start to termination (*elapsed real time*).
 
 - Suppose we have a program that takes a Wall Clock time(second, minute, etc.)
 - If a process uses most of the time running instructions (CPU Bound)
 - If a process spends most of the time blocked (I/O Bound)
-![](CPU-IO-Bound-Scheduling.png)
+
 - We can run them sequentially (would take 2 time units)
 
 For CPU bound, if I/O waits did not exit (instantaneous IO), we could run our program in say 0.8 units
