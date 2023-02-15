@@ -10,39 +10,15 @@ Now, if we wanted to run two processes, a naïve approach may be to run the proc
 
 For instance, suppose a single I/O bound process requires 1 unit time to complete. During that time, the actual time spent doing computation might only be 0.3 units. Now, if we were to interweave an identical process, we might be able to complete both processes in 1 unit time if we run the computation for the second process while the orignal process is blocked (this is much faster than running them sequentially which would require 2 unit time). Note that there is overhead, however, as a result of the necessary context switches between the two processes. 
 
-But what about for CPU bound processes? We could still try running a second process while our process is blocked. However, for CPU bound processes these will be minimal and so will our performance benefits (especially once we factor in overhead from context swit. 
+But what about for CPU bound processes? Again, by recognizing that different process use the same amount of time differently, we can attempt to interweave processes to gain performance benefits. However, for CPU bound processes, the time they spend blocked is minimal and thus our performance benefits will also be less (especially once we factor in overhead from context switches and scheduling). 
+
+### Premption and its effect on pro
 
 
 
 
 
-If we wanted
 
-
-
-- Suppose we have a program that takes a Wall Clock time(second, minute, etc.)
-- If a process uses most of the time running instructions (CPU Bound)
-- If a process spends most of the time blocked (I/O Bound)
-
-- We can run them sequentially (would take 2 time units)
-
-For CPU bound, if I/O waits did not exit (instantaneous IO), we could run our program in say 0.8 units
-
-In the gap between CPU burst, we can run another process (interleave) to run both processes in say 1.6 units. (certainly better than 2)
-
-But not true, in reality, we must account for context switches + scheduling ==> say 1.9
-
----
-Let's do the same with IO bound processes
-
-We can collapse the program to say .3 (much lower than 1 unit).
-If we had another identical process, we might even be able to interweave them to complete still in 1 unit. (Two process in the time of one).
-
-By recognizing the process use the same amount of time differently --> interweaving
-yet, we still rather have I/O bound than CPU bounds (we don't attain as much gain)
-
-
-Associated with each read() system call -blocking, is some overhead from the OS. (Hence overhead in interweaving)
 
 
 
