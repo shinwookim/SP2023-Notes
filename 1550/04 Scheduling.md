@@ -12,46 +12,18 @@ For instance, suppose a single I/O bound process requires 1 unit time to complet
 
 But what about for CPU bound processes? Again, by recognizing that different process use the same amount of time differently, we can attempt to interweave processes to gain performance benefits. However, for CPU bound processes, the time they spend blocked is minimal and thus our performance benefits will also be less (especially once we factor in overhead from context switches and scheduling). 
 
-### Premption and its effect on processes
+### Premption and its effect
 We've discussed how processes may voluntarily *block* (via system calls like `read()`), but process can also stop non-voluntarily. Previous, we introduced the idea of preemption with the hopes of dealing with greedy processes. With preemption, a hardware timer sends a signal time-periodically, to *preempt* long-running processes. 
 
 As a process, preemption is not desirable (it prevents the system from running the process's code). In fact, it exists to maintain the pseudo-parallelism for the user, but is not necessary from the process's point of view. For the process, a preemption context switch is unnatural (unlike I/O context switches which are incurred when the process calls for it). It's an additional overhead on top of the operating system, which itself is an overhead.
 
-Indeed, in the worst case, we might preempt right before a blocking system call, which means when we return, we block again (almost immediately).
+Indeed, in the worst case, we might preempt right before a blocking system call, which means when we return, we block again (almost immediately). This is undesirable as a system too, as we incurred 2 unncessary context switches.
 
+Hence, setting an appropriate length for the preemption timer is important. If the timer length is too long, it won't be effective (as we would have already made a blocking system call before the preemption signal). Yet, if it is too short, we would inccur unnecessary context switches, slowing down our system performance. 
 
-As a process, the worst case would be if we preempt right before a blocking system call
+Assuming an appropriate length for the preemption timer is set, I/O bound processes are typically unaffected by the preemption timer (as they have short bursts of computation and many calls to blocking system calls). On the other hand, CPU bound process are frequently preempted. Thus, if we interweave two CPU bound processes, we now have to account for the costs associated with preemptive context switches. Empirically, this may slow the total performance enough to the point that interweaving is slower than the sequentially running the processes (batch system).
 
-
-If the timer is too long, it won't be effective (as we would have already made a blocking system call before the preemption signal). Yet, it can't be too short, as that would inccur unnecessary context switches, slowing down our system performance. 
-
-
-
-
-
-But how long should the preemption timer be?
-
-
-
-
-
-
-
-
-
-
-How long should preemption be?
-
-Worst-case scenario: We preempt right before the blocking system call...when we return, we block again (almost immediately). (Now, 2 context switches)
-
-
-If the preemption timer is set so far in the future, that we block first, the preemption timer does not go off. (If we block before, timer, no need to switch)
-
-If we give up the CPU time, the preemption time does not go off.
-
-Hence, Usually I/O bound processes are unaffected by the preemption timer (we would set the preemption timer to be way longer)
-
-CPU bound processes are however preempted. Hence, if we interleave two process for CPU bound, there are costs associated with the preemption context switches (enough to make the total performance worse than batch running two processes say 2.1 units)
+### With time, CPU bound pro
 
 ---
 For our goals, We hope that the vast majority of process are I/O bound. (and they are!)
