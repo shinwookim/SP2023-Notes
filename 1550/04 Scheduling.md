@@ -13,7 +13,15 @@ For instance, suppose a single I/O bound process requires 1 unit time to complet
 But what about for CPU bound processes? Again, by recognizing that different process use the same amount of time differently, we can attempt to interweave processes to gain performance benefits. However, for CPU bound processes, the time they spend blocked is minimal and thus our performance benefits will also be less (especially once we factor in overhead from context switches and scheduling). 
 
 ### Premption and its effect on processes
-We've discussed how processes may voluntarily *block* (via system calls like `read()`), but process can also stop non-voluntarily. Previous, we introduced the idea of preemption with the hopes of dealing with greedy processes. With preemption, a hardware timer sends a signal time-periodically, to *preempt* long-running processes. But how long should the preemption timer be?
+We've discussed how processes may voluntarily *block* (via system calls like `read()`), but process can also stop non-voluntarily. Previous, we introduced the idea of preemption with the hopes of dealing with greedy processes. With preemption, a hardware timer sends a signal time-periodically, to *preempt* long-running processes. 
+
+As a process, preemption is not desirable (it prevents the system from running the process's code). In fact, it exists to maintain the pseudo-parallelism for the user, but is not necessary from the process's point of view. For the process, a preemption context switch is unnatural (unlike I/O context switches which are incurred when the process calls for it). It's an additional overhead on top of the operating system, which itself is an overhead.
+
+Indeed, in the worst case, we might preempt right before a blocking system call, which means when we return, we block again (almost immediately).
+
+
+As a process, the worst case would be if we preempt right before a blocking system call
+
 
 If the timer is too long, it won't be effective (as we would have already made a blocking system call before the preemption signal). Yet, it can't be too short, as that would inccur unnecessary context switches, slowing down our system performance. 
 
@@ -21,6 +29,7 @@ If the timer is too long, it won't be effective (as we would have already made a
 
 
 
+But how long should the preemption timer be?
 
 
 
@@ -35,9 +44,6 @@ How long should preemption be?
 
 Worst-case scenario: We preempt right before the blocking system call...when we return, we block again (almost immediately). (Now, 2 context switches)
 
-context switches from IO is natural (we make it because we need it)
-
-Preemption context switches is unnatural (overhead on top of OS-another overhead); As a process, we don't need it. It's there to maintain the illusion of parallelism (the users want. but the program do not.)
 
 If the preemption timer is set so far in the future, that we block first, the preemption timer does not go off. (If we block before, timer, no need to switch)
 
