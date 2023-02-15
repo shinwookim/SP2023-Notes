@@ -70,8 +70,9 @@ The first non-preemptive batch scheduling algorithm we will look at is **first c
 ![](Assets/FirstComeFirstServed.png)
 #### Analysis
 1. Throughput
-$$\frac{\text{ \#jobs}}{\text{total time}}=\frac{4}{16}=0.25$$
+$$\frac{\text{number of jobs}}{\text{total time}}=\frac{4}{16}=0.25$$
 2. Average Turnaround Time
+
 $$
 \begin{align*} 
 A: 4 - 0  = 4\\
@@ -79,9 +80,10 @@ B:(4+3) - 0 = 7 \\
 C: (4+3+6) - 0 = 13\\
 D: (4+3+6+3) - 0 = 16\\
 \therefore \sum{\text{turnaround}}=4+7+13+16=40\\
-\implies \frac{\sum \text{turnaround}}{\text{\# jobs}}=\frac{40}{4}=10
+\implies \frac{\sum \text{turnaround}}{\text{number of jobs}}=\frac{40}{4}=10
 \end{align*}
 $$
+
 3. Asymptotic Behavior: Queue operations (enqueue, dequeue) is a constant time operation ($O(1)$).
 4. Implementation Difficulty: Queue implementation is relatively easy
 5. Fairness
