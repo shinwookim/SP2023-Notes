@@ -45,22 +45,16 @@ Now that we've looked at when we schedule, let's look at where we do the schedul
 ![](three-level-schedule.png)
 We've been discussing the scheduler (in the CPU) as choosing a ready process to give CPU time. And although this will be our primary focus, there is another way to *schedule*. Due to the Von Neumann architecture, all processes need to be a RAM resident. Hence, if we deny a process access to RAM, we've implicitly scheduled a process (actually, we can't force a certain process to run, but we can make sure that it can't run).
 1. When we open a new program, the job goes into the queue, and the OS allocates RAM. However, if our resources are full (e.g., RAM is full, CPU running), the **admission scheduler** may deny the task from accessing RAM. However, in most modern systems, an admission scheduler is not present. We defer this task to the user (and expect them to make good choices).
-2. The **memory scheduler** kicks a process out of RAM. Note if we kick the process out of RAM, but never retur
+2. The **memory scheduler** kicks a process out of RAM. Note if we kick the process out of RAM, but never return it, we've essentially terminated the process. Hence, if we don't want to kill the process, we need some way to preserve the contents inside RAM. The only possible location to store memory contents is on the disk (**swapping**), so the memory scheduler may copy the contents of memory onto the disk and return it at a later point. Note that the von Neumann architecture does not allow for running instructions off of the disk, hence by doing so, we've once again implicitly prevented a process from running. Like the admission scheduler, the presence of the memory scheduler in modern systems is minimal.
+Hence, our primary focus will be on the CPU scheduler.
 
-
-1. Admission Scheduler - When we are open a new program, the job goes into queue, and the OS allocates RAM. If our resources are full (e.g., RAM is full, CPU running), the admission scheduler will deny the task from running program (NOT in many modern systems ⇾ we defer that task to the user).
-2. Memory Scheduler - Can we kick a process out of RAM (without killing it)--we need to preserve the RAM? on a disk... ('Swapping') The process cannot run since we can't run instructions from a disk in VN-arch
-	1. If we never bring it back, we essentially killed the process (in an expensive way)
-	2. Again in modern system, the memory scheduler is minimal.s)
-
-
-
-
----
-Batch Scheduling
+## Batch Scheduling
 > Non-interactive jobs that can be run “overnight”
-- No human interactions needed (usually)
-- Run from creation to termination without blocks
+
+We will begin our studies of the various scheduling methods by first focusing on scheduling schemes on a batch system, As discussed before, in a batch system, a processes typically run from creation to termination without any blocks or human interactions.
+
+## Evaluation Metrics
+To evaluate the various scheduling algorithms, we 
 
 Evaluate scheduling algorithm on 5 criteria:
 2. Quantitative 
