@@ -41,20 +41,18 @@ Now that we've justified the need for a scheduling, let's look at how scheduling
 5. As mentioned before, when we have a **clock interrupt**, we schedule (for preemption). 
 
 ## Where to schedule...Three-Level Scheduling
-Now that we've looked at when we schedule, let's look at where we do the sc
-...where do we schedule?
+Now that we've looked at when we schedule, let's look at where we do the scheduling.
 ![](three-level-schedule.png)
-CPU schedule picks from the ready process to give the CPU time
+We've been discussing the scheduler (in the CPU) as choosing a ready process to give CPU time. And although this will be our primary focus, there is another way to *schedule*. Due to the Von Neumann architecture, all processes need to be a RAM resident. Hence, if we deny a process access to RAM, we've implicitly scheduled a process (actually, we can't force a certain process to run, but we can make sure that it can't run).
+1. When we open a new program, the job goes into the queue, and the OS allocates RAM. However, if our resources are full (e.g., RAM is full, CPU running), the **admission scheduler** may deny the task from accessing RAM. However, in most modern systems, an admission scheduler is not present. We defer this task to the user (and expect them to make good choices).
+2. The **memory scheduler** kicks a process out of RAM. Note if we kick the process out of RAM, but never retur
 
 
-Von Neumann architecture, we can implicitly schedule by denying process RAM. (since process needs to be RAM resident).
-
-If we deny a process RAM, we deny that process an opportunity to run (we can't make the CPU choose it, but we can make sure it doesn't).
 1. Admission Scheduler - When we are open a new program, the job goes into queue, and the OS allocates RAM. If our resources are full (e.g., RAM is full, CPU running), the admission scheduler will deny the task from running program (NOT in many modern systems ⇾ we defer that task to the user).
 2. Memory Scheduler - Can we kick a process out of RAM (without killing it)--we need to preserve the RAM? on a disk... ('Swapping') The process cannot run since we can't run instructions from a disk in VN-arch
 	1. If we never bring it back, we essentially killed the process (in an expensive way)
-	2. Again in modern system, the memory scheduler is minimal.
-Our focus will be on CPU scheduler (which is the most common in modern interactive systems)
+	2. Again in modern system, the memory scheduler is minimal.s)
+
 
 
 
