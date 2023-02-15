@@ -53,7 +53,7 @@ Hence, our primary focus will be on the CPU scheduler.
 
 We will begin our studies of the various scheduling methods by first focusing on scheduling schemes on a batch system, As discussed before, in a batch system, a processes typically run from creation to termination without any blocks or human interactions.
 
-## Evaluation Metrics
+### Evaluation Metrics
 To evaluate the various scheduling algorithms, we will focus on 5 criterias (2 quantiative, 2 computer science metrics, 1 qualitative):
 1. **Throughput**: Number of jobs completed per unit time.
 2. **Turnaround Time**: Time from job submission to job completion.
@@ -63,26 +63,24 @@ To evaluate the various scheduling algorithms, we will focus on 5 criterias (2 q
 4. **Implementation Difficulty** (*Complex algorithms with minimal improvements might not be 'worth it*)
 5. **Fairness** (*Do comparable processes get comparable service*)
 	- Note that the focus is *comparable* processes, and not equal processes.
+	- We will always determine fairness using this framework (by comparing comparable processes).
 
- 
-3. Computer Science Metrics
-- Asymptotic Behavior (As we get more processes, how much more work does our scheduler do)
-- How hard to implement? Complex algorithms with minimal improvements might not be 'worth it' (e.g, bugs?)
-1. Qualitative
-Fairness
-> Comparable processes get comparable service
-**comparable != equal**
-^ This is the framework for determining fairness.
-
-First non-preemptive batch scheduling algo:
-# First come,  first served
+### First come, first served
+The first non-preemptive batch scheduling algorithm we will look at is **first come, first served**. As the name suggests, processes are run based on the order the tasks were submitted, with each process running after the previous process terminates.
 ![](Pasted%20image%2020230213103853.png)
-Each process runs to completion
-
-Analysis:
+#### Analysis
 1. Throughput
 $$\frac{\text{ \#jobs}}{\text{total time}}=\frac{4}{16}=0.25$$
-2. ATT
+2. Average Turnaround Time
+$$
+\begin{align*} 
+A: 4 - 0  = 4\\
+B:(4+3) - 0 = 7 \\
+C: (4+3+6) - 0 = 13\\
+D: (4+3+6+3) - 0 = 16\\
+2x - 5y &=  8 \\ 
+3x + 9y &=  -12
+\end{align*}
 $$\frac{\sum \text{turnaround}}{\text{\# jobs}}=\frac{40}{4}=10$$
 
 Turnaround time:
