@@ -26,17 +26,12 @@ Assuming an appropriate length for the preemption timer is set, I/O bound proces
 ### With time, CPU bound processes become I/O bound
 Thus, for our goals, we would prefer if the vast majority of the processes on our system are I/O bound (and they are!). Hence, the key question is: *Can we turn a CPU bound process into a I/O bound process?*
 
-The historical answer to this question was **better hardware**. With faster CPUS, we could improve the computational parts of a CPU bound process. (Note that I/O bound process typically do not reap the benefits of a better CPU because most of their time is spend waiting for I/O and I/O access speed is not proportional to CPU speed). Now, if we can continuously improve the computational 
+The traditional answer to this question was **better hardware**. With faster CPUS, we could improve the computational parts of a CPU bound process. (Note that I/O bound process typically do not reap the benefits of a better CPU because most of their time is spend waiting for I/O and I/O access speed is not proportional to CPU speed). Now, if we can continuously improve the computational performance of a CPU bound program, eventually we will reach a point where the I/O access time overtakes the computational time. And hence our CPU bound program becomes an I/O bound program and interweaving processes become reasonable.
+
+Historically, with [Moore's Law](https://en.wikipedia.org/wiki/Moore's_law), it was reasonable to expect that CPU speeds to increase at an exponential rate. However, in the modern day, this expectation is no longer reasonable, and this approach is less accepted.
 
 
 
-
-
-We can make programs faster by using faster hardware (processes)
-- With more transistors, we can put more resources on the CPU.
-- With more transistors, we can have more cores (processing elements).
-- However, Moore's Law is dead :(
-^ Historical solution to making programs faster
 
 
 If we have a CPU that runs twice the speed, the CPU bound process runs around half the time (about).
@@ -47,7 +42,7 @@ With better CPUs, we can only scale improvements by CPU bound parts. If we can c
 
 Why are I/O bound programs so common? Human Interaction = I/O Bound!
 
-Hence, we now beleive I/O bound programs are common --> Let's interweave them.
+
 
 
 ---
