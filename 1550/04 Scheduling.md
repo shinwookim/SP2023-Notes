@@ -1,7 +1,15 @@
 # Scheduling
 > How to choose which of the *ready processes*/*threads* gets to *run* next
 
-CPU Bound vs. I/O Bound
+## CPU Bound vs. I/O Bound Processes
+Nearly all processes alternate bursts of computing with I/O requests; the CPU runs for a while without stopping, then a system call is made to read or write to a file. When the system call
+
+
+
+
+
+Suppose we measure a process by the amount of wall-clock time elapsed from start to termination (*elapsed real time*).
+
 - Suppose we have a program that takes a Wall Clock time(second, minute, etc.)
 - If a process uses most of the time running instructions (CPU Bound)
 - If a process spends most of the time blocked (I/O Bound)
