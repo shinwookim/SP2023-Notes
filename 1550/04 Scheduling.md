@@ -78,31 +78,12 @@ A: 4 - 0  = 4\\
 B:(4+3) - 0 = 7 \\
 C: (4+3+6) - 0 = 13\\
 D: (4+3+6+3) - 0 = 16\\
-2x - 5y &=  8 \\ 
-3x + 9y &=  -12
+\therefore \sum{\text{turnaround}}=4+7+13+16=40\\
+\implies \frac{\sum \text{turnaround}}{\text{\# jobs}}=\frac{40}{4}=10
 \end{align*}
-$$\frac{\sum \text{turnaround}}{\text{\# jobs}}=\frac{40}{4}=10$$
-
-Turnaround time:
-A. 4 - 0 - 4
-B. 7 - 0 = 7
-C. 13 - 0 = 13
-D.16 - 0 = 16
-
-Asymptotic:
-- Add to queue (constant time)
-- Pop from front (constant time)
-Hence, constant time!
-
-Implementation:
-- pretty simple
-
-Fairness:
-- Fair
-	- All jobs (if you came here first, you get first service)
-	- 
-
-
-Fairness:
-- Unfair
-	- B,D
+$$
+3. Asymptotic Behavior: Queue operations (enqueue, dequeue) is a constant time operation ($O(1)$).
+4. Implementation Difficulty: Queue implementation is relatively easy
+5. Fairness
+	1. Fair - Assuming all jobs are comparable, it is fair. (The process that was submitted first, got first service)
+	2. Unfair - Tasks B and D have comparable run-times, but Task B ran much before task D.
