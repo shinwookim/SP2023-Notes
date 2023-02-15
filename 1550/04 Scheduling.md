@@ -54,15 +54,17 @@ Hence, our primary focus will be on the CPU scheduler.
 We will begin our studies of the various scheduling methods by first focusing on scheduling schemes on a batch system, As discussed before, in a batch system, a processes typically run from creation to termination without any blocks or human interactions.
 
 ## Evaluation Metrics
-To evaluate the various scheduling algorithms, we 
+To evaluate the various scheduling algorithms, we will focus on 5 criterias (2 quantiative, 2 computer science metrics, 1 qualitative):
+1. **Throughput**: Number of jobs completed per unit time.
+2. **Turnaround Time**: Time from job submission to job completion.
+	- Note that in a batch system, there is no preemption. Thus, turnaround time will be the execution time (which is equal to the wall clock time) + time spend not running in ready state.
+	- The **average turnaround time** is the average of *all* turnaround times for a set of *all* jobs.
+3. **Asymptotic Behavior** (*As we get more processes, how much more work does our scheduler do?*)
+4. **Implementation Difficulty** (*Complex algorithms with minimal improvements might not be 'worth it*)
+5. **Fairness** (*Do comparable processes get comparable service*)
+	- Note that the focus is *comparable* processes, and not equal processes.
 
-Evaluate scheduling algorithm on 5 criteria:
-2. Quantitative 
-Throughput: Number of jobs completed per unit time. (usually fractional)
-Turn around time: Time from job submission to job completion 
-- In batch system, job has execution time (no preemption) + blocking is part of execution time (execution time = wall clock time)
-- Turn around time includes the time not running (in ready state)3
-→ Average turnaround time :average of all turnaround times for a set of all jobs
+ 
 3. Computer Science Metrics
 - Asymptotic Behavior (As we get more processes, how much more work does our scheduler do)
 - How hard to implement? Complex algorithms with minimal improvements might not be 'worth it' (e.g, bugs?)
