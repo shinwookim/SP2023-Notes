@@ -93,11 +93,13 @@ Without any baseline to compare to, the quantitative measurements we calculated 
 However, this is not the case for average turnaround time. Embedded in turnaround time, is a notion of execution time. In our example, the average execution time was 4 time units, whereas the average turnaround time was 10 time units. Hence, on average each process is waiting for 6 time units. As a process, to minimize this wait time, we want to go first. But with multiple processes in the queue, not all of them can go first. As a comprompise, (from a process's point of view), we want the other processes before us to be as short as possible. That is, as the second process, we hope the first process is short (reduce wait time); and as the third process, we hope the first and second processes are short, and so on.
 
 ### Shortest Job First
-Thus, leads to the idea of the **shortest job first** algorithm. In this scheme, we sch
+Thus, leads to the idea of the **shortest job first** algorithm. In this scheme, we schedule the shortest processes to go before the longer processes.
 ![SJF](Assets/SJF.png)
-1. Throughput (no change)
+#### Analysis
+Again, we'll perform a similar analysis:
+1. **Throughput**: As we described before, throughput is the same for all batch scheduling schemes.
 $$\frac{\text{number of jobs}}{\text{total time}}=\frac{4}{16}=0.25 \text{ job/unit time}$$
-2. Average Turnaround Time (Improvement!)
+2. **Average Turnaround Time**
 
 $$
 \begin{align*} 
@@ -109,10 +111,12 @@ C: (3+3+4+6) - 0 = 16\\
 \implies \frac{\sum \text{turnaround}}{\text{number of jobs}}=\frac{35}{4}
 \end{align*}
 $$
-Better....but optimal? ... yes (see 1510) regardless of input.
+However, for average turnaround time, we see an improvement (since we reduce the average wait time for processes). In fact, it's provable that this scheme produces optimal average turnaround time (regardless of the inputs) — see CS 1501 for proof.
+
+3. **Asymptotic Behavior:** Algorithmically,
 
 Algorithmic view:
-3. Asymptotic Behavior: 
+ 
 
 Partial ordering vs. Total order <-- we need this
 --> let's sort them
