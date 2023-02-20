@@ -88,24 +88,12 @@ $$
 4. **Implementation Difficulty**: Queue implementation is ***relatively easy***
 5. **Fairness**: If we consider all jobs to be comparable to each other, the scheme appears to be ***fair***. The tasks that got submitted first, got serviced first. However, if we consider just tasks B and D (which both have comparable runtimes), it *may* be argued that this scheme is slightly unfair. Even though processes B and D had a similar run-time, Task B ran much before task D (especially considering turnaround time).
 
-Without any baseline to compare to, the quantitative measurements we calculated are meaningless. In fact, if we consider all the possible scheduling algorithms (infinite number), there are only $4!$ possible non-preemptive batch schedules (assuming we have 4 jobs as depicted above). In all of these cases, the total run-time is always the same. Hence, without preemption, throughput is always 0.25 and hence it's an uninteresting metric.
+Without any baseline to compare to, the quantitative measurements we calculated are meaningless. In fact, if we consider all the possible scheduling algorithms (infinite number), there are only $4!$ possible non-preemptive batch schedules (assuming we have 4 jobs as depicted above). In all of these cases, the total run-time is always the same. Hence, without preemption, throughput is always 0.25 and hence it's an uninteresting metric. (Note that we oversimplified the overhead which occurs from scheduling. However, this is fine as in a batch system, overhead only occurs at process termination).
 
+However, this is not the case for average turnaround time. Embedded in turnaround time, is a notion of execution time. In our example, the average execution time was 4 time units, whereas the average turnaround time was 10 time units. Hence, on average each process is waiting for 6 time units. As a process, to minimize this wait time, we want to go first. But with multiple processes in the queue, not all of them can go first. As a comprompise, (from a process's point of view), we want the other processes before us to be as short as possible. That is, as the second process, we hope the first process is short (reduce wait time); and as the third process, we hope the first and second processes are short, and so on.
 
-- Throughput is always the same (0.25)...without preemption total time is always the same
-- Because we oversimplified the overhead
-	- Without preemption, overhead only occurs at process termination
-	- Throughout is uninteresting!
-
-What about Average Turnaround Time?
-- Embedded in turnaround time, is a notion of execution time 
-- Average execution time is 4 units,
-- hence most processes are waiting for 6 units.
-- For best possible turnaround time, the process needs to go first...
-- But not all processes can go first,
-	- As the second process, we hope the process before is short!
-	- ... 3rd process We hope that the , shortest job first!
-	- 
 ### Shortest Job First
+Thus, leads to the idea of the **shortest job first** algorithm. In this scheme, we sch
 ![SJF](Assets/SJF.png)
 1. Throughput (no change)
 $$\frac{\text{number of jobs}}{\text{total time}}=\frac{4}{16}=0.25 \text{ job/unit time}$$
