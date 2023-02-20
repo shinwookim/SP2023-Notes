@@ -114,9 +114,12 @@ $$
 However, for average turnaround time, we see an improvement (since we reduce the average wait time for processes). In fact, it's provable that this scheme produces optimal average turnaround time (regardless of the inputs) — see CS 1501 for proof.
 
 3. **Asymptotic Behavior:** Algorithmically, we can attempt a *total ordering* scheme. This is a simple sorting problem and can be solved with a $O(n)$ insertion and $O(1)$ removal from the data structure. However, by using *partial ordering*, we can actually improve the performance. One such partial-ordering implementation may be the data structure: priority queue (via heap). Recall that  heap operations can be done in $O(\log n)$ time (both insertion and removal). Hence we can achieve logorithmic run-time, asymptotically.
+	- However, there is a catch: How can we figure out how long each process will take? The *halting problem* tells us that determining infinite loops is impossible. Hence, determining a run-time without running is al impossible (as it's a harder problem than the halting problem; we must determine not only halting but also the run-time length)
+	- We can attempt a static analysis, but this approach won't be fruitful. Since some instructions are longer (such as `syscall`s), simply counting the number of instructions does not provide an accurate description of run-time. Furthermore the limitations of the halting problem will still apply (if there are any infinite loops).
+	- Hence, computing run-time is impossible; but what if we look at past behavior? That is, we can measure the time it took for a program to execute and store it somewhere to use in scheduling later on. This is especially useful in a batch system, since run times are ususally pretty stable (due to the lack of user input).
+	- But what about programs that have never been run before? Practically, we can have the programmer (or compiler) inject the expected run
 
-But how do we know how long the program will take?
---> No... OS is just another program...*like the halting problem (halts/doesn't halt)* but harder (now we have to figure out how long it takes to run)
+
 
 ...possible static analysis? No because some instructions are longer (and might be inf loops)
 
