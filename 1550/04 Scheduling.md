@@ -134,24 +134,19 @@ The first preemptive scheduling algorithm we will look at is the **round robin s
 
 However, this does not mean all processes run for the entirety of the quantum. While this is true for CPU bound processes, in reality these processes are rare. How do we know that they are CPU bound? If the processes were I/O bound, they would have blocked much before the quantum. In fact, when we block, the timer would never actually occur, since we would've switched processes already. Hence, only CPU bound processes actually hit the quantum.
 
-Back to our example. What if we are preempted just after a click? 
+Back to our example: What if we are preempted just after a click? We need to wait for another quantum to display the dialogue box. And since, we need to allow other processes to run before resuming ours, the worst case for *waiting time* is $\text{quantum} \times \text{number of jobs}$. Conversely, $\text{response time} \propto \text{quantum} \times \text{number of jobs}$.
 
+Thus, to increase response time, we can either reduce the number of ready jobs, or reduce the quantum. However, the system can't (or shouldn't) reduce the number of jobs (as that would be killing other processes). Hence, there is an incentive to reduce the quantum.
 
-If we are preempted after a click, then we need to wait for another quantum to display the dialogue box...
-
-Worst case for this wait time = quantum * # jobs. \alpha response time
-
-Increase response time....
-
-To decrease resp time, we can reduce the ready jobs, or reduce the quantum...but the system can't reduce the number of jobs (that would be killing processes), so we must reduce the quantum!
-
+But how short can we make the quantum? Suppose the quantum was equal to the unit time it takes to perform a context switch (say we call this 1 time unit).
+| CS  | A   | CS  |B|
+| --- | --- | --- |---|
+But this would mean that out of every 2 time unit, only 1 unit is spent doing useful work.
 
 But how short?
  Suppose
 Quantum = Context switch = 1 unit.
 
-| CS  | A   | CS  |
-| --- | --- | --- |
 
 At most, 1 out of 2 time units, is spent doing useful work
 
