@@ -130,23 +130,11 @@ Suppose we have a system in which the user clicks on the screen and a dialogue b
 
 ### Round Robin Scheduling
 The first preemptive scheduling algorithm we will look at is the **round robin scheduling** scheme. In this scheme, we give each ready process some unit of CPU time. (Note the processes don't run to completion as they did in batch systems. Instead, they are preempted, and other processes are inteweaved.) This unit time is called the **quantum** and is the maximum time we are willing to let programs. That is, a process runs for the *quantum*, before  a preemption occurs.
+![](Round%20Robin.png)
 
+However, this does not mean all processes run for the entirety of the quantum. While this is true for CPU bound processes, in reality these processes are rare. How do we know that they are CPU bound? If the processes were I/O bound, they would have blocked much before the quantum. In fact, when we block, the timer would never actually occur, since we would've switched processes already. Hence, only CPU bound processes actually hit the quantum.
 
-How much time? the *quantum*... amount of time we are willing to let programs run (at most!)
---> how long do we run a process before preemption
-
-<-- slide is bad b/c we are only running CPU bound processes.
-But in reality, CPU bound processes are rare.
-Why? cuz we change due to premptin
-
-|||||||| Read()          |<-- preemption
-
-
-But the timer never occurs if we blocking sys call, hence no quantum!
-
-
-Only CPU bound process hits the quantum!
-
+Back to our example. What if we are preempted just after a click? 
 
 
 If we are preempted after a click, then we need to wait for another quantum to display the dialogue box...
