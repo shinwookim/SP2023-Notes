@@ -5,7 +5,7 @@
 Nearly all processes alternate bursts of computing with I/O requests; the CPU runs for a while without stopping, then a system call is made to read or write to a file. When the system call completes, the CPU computes again until the next I/O request.
 
 Suppose we measure a process by the amount of wall-clock time elapsed from start to termination (*elapsed real time*). If a process uses most of that time running instructions, we call it **CPU bound**. Conversely, if a process spends most of the time blocked (from blocking system calls), we call it **I/O bound**.
-![](Assets/CPU-IO-Bound-Scheduling.png)
+![](CPU-IO-Bound-Scheduling.png)
 Now, if we wanted to run two processes, a naïve approach may be to run the processes sequentially. However, this approach will double our run-time. However, since I/O bound processes spend most of their time *blocked*, we might try to interweave the two processes to reduce run-time.
 
 For instance, suppose a single I/O bound process requires 1 unit time to complete. During that time, the actual time spent doing computation might only be 0.3 units. Now, if we were to interweave an identical process, we might be able to complete both processes in 1 unit time if we run the computation for the second process while the orignal process is blocked (this is much faster than running them sequentially which would require 2 unit time). Note that there is overhead, however, as a result of the necessary context switches between the two processes. 
@@ -42,7 +42,7 @@ Now that we've justified the need for a scheduling, let's look at how scheduling
 
 ## Where to schedule...Three-Level Scheduling
 Now that we've looked at when we schedule, let's look at where we do the scheduling.
-![](Assets/three-level-schedule.png)
+![](three-level-schedule.png)
 We've been discussing the scheduler (in the CPU) as choosing a ready process to give CPU time. And although this will be our primary focus, there is another way to *schedule*. Due to the Von Neumann architecture, all processes need to be a RAM resident. Hence, if we deny a process access to RAM, we've implicitly scheduled a process (actually, we can't force a certain process to run, but we can make sure that it can't run).
 1. When we open a new program, the job goes into the queue, and the OS allocates RAM. However, if our resources are full (e.g., RAM is full, CPU running), the **admission scheduler** may deny the task from accessing RAM. However, in most modern systems, an admission scheduler is not present. We defer this task to the user (and expect them to make good choices).
 2. The **memory scheduler** kicks a process out of RAM. Note if we kick the process out of RAM, but never return it, we've essentially terminated the process. Hence, if we don't want to kill the process, we need some way to preserve the contents inside RAM. The only possible location to store memory contents is on the disk (**swapping**), so the memory scheduler may copy the contents of memory onto the disk and return it at a later point. Note that the von Neumann architecture does not allow for running instructions off of the disk, hence by doing so, we've once again implicitly prevented a process from running. Like the admission scheduler, the presence of the memory scheduler in modern systems is minimal.
@@ -67,7 +67,7 @@ To evaluate the various scheduling algorithms, we will focus on 5 criterias (2 q
 
 ### First come, first served
 The first non-preemptive batch scheduling algorithm we will look at is **first come, first served**. As the name suggests, processes are run based on the order the tasks were submitted, with each process running after the previous process terminates.
-![](Assets/FirstComeFirstServed.png)
+![](FirstComeFirstServed.png)
 #### Analysis
 Let us conduct an analysis of the the *first come, first served* scheduling scheme using the metrics we described previously:
 1. **Throughput**
@@ -94,7 +94,7 @@ However, this is not the case for average turnaround time. Embedded in turnaroun
 
 ### Shortest Job First
 Thus, leads to the idea of the **shortest job first** algorithm. In this scheme, we schedule the shortest processes to go before the longer processes.
-![SJF](Assets/SJF.png)
+![SJF](SJF.png)
 #### Analysis
 Again, we'll perform a similar analysis:
 1. **Throughput**: As we described before, throughput is the same for all batch scheduling schemes.
@@ -143,7 +143,107 @@ But how short can we make the quantum? Suppose the quantum was equal to the unit
 | CS  | A   | CS  |B|
 | --- | --- | --- |---|
 
-But this would mean that out of every 2 time unit, only 1 unit is spent doing useful work. Hence our CPU is only as 50% efficient as advertised (Our 4GHz CPU is running at an effective speed of 2GHz). To maximize, the time spent doing useful work, we need to reduce the number of context switches. That is, we need to increase the time given to doing process work. Hence, we now have a incentive to make the quantum as long as possible. Thus, choosing an effective quantum is a crucial task of balacing these factors.
+But this would mean that out of every 2 time unit, only 1 unit is spent doing useful work. Hence, our CPU is only as 50% efficient as advertised (Our 4GHz CPU is running at an effective speed of 2GHz). To maximize, the time spent doing useful work, we need to reduce the number of context switches. That is, we need to increase the time given to doing process work. Hence, we now have an incentive to make the quantum as long as possible. Thus, choosing an effective quantum is a crucial task of balancing these impulses.
+
+How do we know our choice for a quantum is effective?
+- **Benchmark** with some program
+
+In system, when we need to select a particular value for a parameter, we must benchmark them
+- Page size
+- No analytic solution, but determine empirically!
+- Choose and test
+
+Generally (20 - 100 ms) is reasonable for a quantum time.
 
 ### Priority Scheduling
+
+Some processes are more important than other → express this in some notion of priority
+
+How can we express priority and use that information in scheduling?
+
+But how do we determine the priority?
+
+- For instance, program in foreground vs. background
+- Process that depends on other process
+- User can explicitly provide the priority <--
+	- Unix based system - -20 to + 20 (integer) - normal process starts at 16
+		- `nice` lowers priority (or bumps as super user)
+	- Windows - Task Manager
+Somehow, we inject the notion of priority and quantify it.
+
+
+
+Assume 4 states of priority
+- We want the pri4 jobs to run before pri 1 jobs.
+	- We can give longer quantum to high priority jobs --> P4 will finish faster. But most of the processes are IO bound and spend the time blocked.
+		- Are P4 more likely to be CPU bound compare to P1? No! Hence more CPU time does not actually help for P4
+	- What if instead of giving a longer quantum, we give more quantum in a row. This is the same. Once we block, we hope to run that process again at some point. If we give an additional quantum (but not in a row), ie give enough time to unblock. We need to buy some time to allow P4 process to un block.
+	- Hence, we can run P4.1, the P4.2, then P4.1, then P4.2
+	- But did we put enough space in them? (Did we wait long enough to unblock?) <-- depends on the number of ready process in the given priority.
+		- Worry: Not enough process in priorirty to allow for unblock.
+		- Worry: Too many process in  P4 means no P3 process can run.
+
+Give all P4 quantum. If they block, when do we give them a second quantum?
+Let's run P4.1 P4.2 --> P3.1 P3.2 P3.3 P3.4 --> Then go back to P4 again. (Hopefully by then, we've unblocked.)
+
+P4 -> P3 -> P4 -> P2 -> P3 -> P4 -> P1 -> P2 -> P3 -> P4.
+
+^ No one is starved out.
+
 ![](Priority-Scheduling.png)
+
+### Other Scheduling Algorithms
+RoundRobuin and FCFS have worked unusally well.. but are there another idea?
+- Shortest Process Next: SJF applied to Interactive Systems
+	- SJF was provably impossible because we cannot know the job's length.
+	- In a interactive system, job length is defined by the user.
+	- When we open a program, it takes different times when we open it different times
+	- So how do we? change the meaning of a job. Instead a job being the entire execution of a task...instead, we consider the job to be the next burst of computation.
+	- Hence, we choose the job that require the shortest burst of computation. --> burst of computation length is more stable than the overall computation length.
+	- Programs are not consistent in its behavior. Typically:
+		- First phase: input, build data structure (I/O Bound)
+		- Next, run algo (CPU Bound)
+		- Produce result (print/write to file) - I/O Bound
+	- Let's use a histroical weighted average. --> naturally biases towards more recent behavior.
+	- Use this average to pick the process that is the shortest.
+	- Hence the scheduling algo is biased towards I/O bound process.
+	- Still worry: CPU bound process will never run!
+		- If we have one long-running job that is relatively IO bound.
+		- But I/O bound process are more likely to be user-driven (good for user!)
+		- As a system, this scheme is patently unfair.
+		- BButwhat if we have a slight bias (not an unfair bias-avoid starvation): 
+		- Are we ok with I/O bound processes running with priority?
+			- This is generally fine, because we expect I/O bound processes to terminate or block quickly (which frees up time to do more processes).
+			- Bit this is not the best scheme to do that
+- Guaranteed Scheduling – N processes get 1/N of the CPU Time
+	- Not actually an algorithm --> example of Policy: The rules a particular mechanism should follow (i.e., the parameters of an algorithm) -- goal we are trying to achieve
+		- How to actuall achieve it is an Mechanism- The way something is done (e.g., an algorithm)
+		- To implement, we need to know the number of processes
+		- the amount of time each processed recieved, the amount of time they've been around(compute fraction of time they've recieved so far) -- > compare to 1/N
+		- Pick a process that has not recieved 1/N
+			- Anyone? 
+			- When we are guaranteed: the process is new, or they are I/O bound processes (because they block-has been blocking alot).
+			- Again, bias towards picking IO bound processes
+			- However, we won't starve out a process unlike above. since CPU bound process will fall under the guarantee and rum --> fixed starvation!
+			- When are the processes over the guarantee? A process could be temporarily grantee (after they execute)...
+				- Or if all the other processes are blocked... CPU bound process will get more CPU time (if they can)
+	- Problem: Using this algorithms on a shared computer with multiple users. User A runs 100 process. User B runs 1 process. User A gets more CPU time than B. --> Is this fair?
+-  Fair Share– N users get 1/N CPU time
+	- In a multi-user system, we might want to divide the system into users.
+	- We want to be fair not only amongst processes but also users
+- Lottery Scheduling– Give out tickets, pull one at random, winner runs
+	- Is a mechanism that implements.. guarantee scheduling. Odds of winning is 1/N (if every process holds one ticket).
+	- Is a mechanism that implements Fair Share...give each user X number of tickets\
+		- can have collusion among process (parents process gives children process)
+	- Is a mechanism that implements ..priority scheduling (if high priority process holds more tickets) - 
+	- Assuming uniformly generated random generator (law of large numbers)
+
+
+Earliest Deadline First (EDF)
+- Real-time: How you do homework
+Systems that have deadlines (we know deadlines in advance)
+
+Often admissions scheduling
+
+User Threads:
+In each process, each process can schedule different threads using different implementation of threads

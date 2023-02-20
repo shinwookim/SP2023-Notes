@@ -31,7 +31,7 @@ The task of actually displaying the string is very complex. To show this string 
 	* We may also need to consider line-wraps and work-breaking 
 3. Finally, once we have all this information, can we use an instruction to turn on/off the necessary pixels.
 Clearly this involves a lot of details about the hardware and is best left abstracted for functions like `printf()`. I.e., it is the job of the operating system.
-![System Call](Assets/System%20Call.png)
+![System Call](System%20Call.png)
 Thus, just before `printf()` returns, it makes a system call (with yet another control transfer) with arguments to declare the location of output, `stdout`, and the string. This is verifiable by examining the assembly-level code. However, at a higher level, the syscall is simply telling the OS to do some task (print to stdout) and then returning once the task is complete. The details of how that task is done is abstracted.
 
 ## Why syscall?
@@ -156,12 +156,12 @@ We said before that the operating system needs to manage and protect resources. 
 
 ## CPU Architecture
 There are many micro-architectural concerns which influences the implantation and discussion of the OS. In Computer Organization, we looked at a primitive type of architecture which "Reads, Executive, and *Retires* Instructions". In reality, there are multiple types of architectures.
-![](Assets/CPU%20Architecture.png)
+![](CPU%20Architecture.png)
 Furthermore, certain hardware abstractions may not actually be true. For example, when the division by zero interrupt is raised, the instructions that come after the division instruction is already done, but is retired. However, this actually depends on what architecture we're using, and furthermore the system raises different exceptions based on our architecture (*Precise exception* vs *Imprecise exception*).
 
 ### Hardware can impact software
 Since our focus is not hardware, we will largely ignore these hardware concerns. However, sometimes, hardware can change how software interacts. Consider the Hard Disk Drive (HDD).
-![](Assets/HDD.png)
+![](HDD.png)
 An HDD stores bits as North/South magnetic poles on one side on a platter which rotates (often 7200 RPM). Thus, data is laid out in concentric circles (called cylinder and tracks). However, doing so actually raises interesting concerns. Geometrically, since the circumference is different, we can put more data on the outer track than the inner track. Furthermore, since the inner and outer tracks are rotating at the same angular velocity, they travel at different linear velocities. Thus, read/write is faster on the outer track. Thus, our OS might wish to track where we are physically writing on the disk (especially if we are concerned with performance). This relates to the question of **file systems** which we will discussion in the course. The file system will allow us to not only store files, but also the meta data which describes the layout of the system, name of file, extensions, ways to find it, permissions, etc.
 
 

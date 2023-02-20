@@ -78,7 +78,7 @@ For the sake of simplicity, we begin our discussion with computers with limited 
 
 ## Primitive Operating Systems
 In the early days (1960s), computers were extremely large and expensive; they costed more than the average salary of its users. Therefore, the computer's time was more important than the user's time. To minimize the costs, large institutions who owned these computers gave *usage time* to researchers (and users) and billed them for the time used (*time-sharing*). To maximize the profit, it was crucial for them to ensure that the computer was running as much as possible (any time the computer was not running, it was missing out on profit). This meant that users had to design their programs to run as efficiently as possible (to lower the bill) and they had to program on paper (since time spending doing input/output was time that was not spend computing/billable). Often, early programmers would write their programs on paper (using FORTRAN, COBOL, etc.), debug, and then transfer them to a stack of punch cards (each holding only 40 Bytes).
-![](Assets/OS_History.png)
+![](OS_History.png)
 The programmers, once it was their turn, would use cheaper computers (a-b) to digitize the punch cards into magnetic tape; again, since the costs of using a computer was so expensive, everything besides the actual computation was not done on the main system. They would, then, feed the tape into the main system (c-d) which would run the desired program (along with accounting software) and print the output onto another tape. Finally, this output tape was fed into yet another cheaper machines (e-f) which would print the output (physically) onto paper.
 
 In these early computers, *the user's time was less important than that of the computer*. To maximize the running time of the main system, the computers became extremely specialized while any auxiliary functions (such as I/O) were handled elsewhere.
@@ -119,17 +119,17 @@ Also, running multiple programs implies the sharing of memory. Since all program
 
 ## Memory Management: Partitioning
 However, how we share memory is a major concern for the OS. A primitive approach may be to partition memory and give it to each job/process.
-![](Assets/Memory%20Partition.png)
+![](Memory%20Partition.png)
 However, one problem with this approach is that we need to ensure that programs cannot modify/read the code and data of other programs (**protection problem**), which means that we must do extra tasks for management to ensure that all programs are well-behaved.
 
 ### Setting Memory Bounds
 To solve the protection problem, we may decide to remember the bounds of each process and ensure that new memory addresses are within the assigned bounds.
-![](Assets/Image%20Protection.png)
+![](Image%20Protection.png)
 This is a perfectly valid approach, but it is not what we do.
 
 ## Memory Management: Virtualization
 Most modern operating systems take another approach: **virtualization**. Virtualization is extremely useful because it simulates exclusive access for each program (using **address spaces**). That is, the operating system makes it seem as if all processes have their own set of memory.
-![Address Space](Assets/Address%20Space.png)
+![Address Space](Address%20Space.png)
 Note that the term **space** in address space is a technical term; It refers to the mathematical notion of an enumeration of everything that is possible. For instance, the space of all possible 4 character ASCII strings is $128^4$ (assuming each ASCII character is 7 bits).
 
 For our case, an address is simply a number (which is stored as binary in modern computers). We will consider a CPU with a **native word size** of 32 bits. (The native word size refers to the most data that the computers can work with in one instruction; often, the native word size is also the address size). The address space of a 32-bit CPU is the enumeration of all possible addresses (`0000....000`, `0000....001`,`0000....011`,`1111....111`) which is approximately 4.2 billion addresses.

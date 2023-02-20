@@ -15,11 +15,11 @@ All of this work is called **scheduling**.
 > The one big rock approach
 
 In a monolithic OS, this entire process of scheduling is part of the Kernel (OS). Everything from managing the task list (schedule), to determining what task to run next, to actually running the task is handled by the operating system.
-![Monolithic OS](Assets/Monolithic%20OS.png)
+![Monolithic OS](Monolithic%20OS.png)
 
 ## Microkernel (+ Exokernel)
 But looking closely, we notice that a large part of scheduling does not require privileged instructions. Inserting and removing a node in a linked list (when a new process starts or exits) clearly does not require any privilege; and traversing a linked list and making a choice (scheduling) does not either. The only part of scheduling which requires privilege is when we need to restore context to allow user programs to run (after a choice has been made by the scheduler). In a Microkernel design, the goal is to make the kernel as small as possible. Thus, we push everything that does not need to be in the kernel (non-privileged code) out onto the server, which lives in the user space. Therefore, in a Microkernel, the management of the schedule, and scheduling is done in User mode, and only the context switch occurs in the kernel. 
-![](Assets/Microkernel.png)
+![](Microkernel.png)
 
 ### Pros and cons of each design
 So which design is better? That depends. Let us consider a few situations to see where a monolithic OS shines, and where the microkernel shines.
@@ -41,6 +41,6 @@ Much like an operating system, a virtual machine must manage resources and abstr
 
 As an aside, the machine/OS that supports a VM is called the **host** (Linux in diagram) and the OS on the VM is called the **guest** (Windows NT). Furthermore, modern VMs are much faster than one might imagine due to the fact that many modern VMs allow fall through in which instructions in the same architecture (between host and guest) fall through, reducing time needed for emulation.
 
-![](Assets/VM.png)
+![](VM.png)
 
 

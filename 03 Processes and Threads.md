@@ -7,7 +7,7 @@ Our actual study of the OS begins with scheduling (the management of the CPU tim
 Unlike old mainframes, we expect our modern computer to run multiple programs simultaneously (e.g., listen to music while we read a PDF). However, from previous courses, we know that the CPU can only run one instruction at a time. So how does the CPU run multiple programs at once?
 
 As an analogy, consider *Animation,* which is built out of hundreds of still frame images. As we flip each image in a rapid motion, our eyes blend the images to provide an illusion of motion. Similarly, computers utilize the same principle to provide *pseudo-parallelism*. The CPU switches between running instructions of different processes at the millisecond level that humans perceive it as running concurrently. In fact, how the OS decides what program to switch to (scheduling) and how it actually switches to it (context switch) will be our primary focus of study in this chapter.
-![](Assets/Basics%20of%20Scheduling.png)
+![](Basics%20of%20Scheduling.png)
 Notice that even if we are had multiple processors running many programs in parallel, a modern system runs hundreds of processes concurrently (certainly more processes than the number of CPUs we have). Hence, simply relying on parallel CPUs is not viable. By the pigeonhole principle, we will always require some sort of scheduling processes.
 
 We said that in a single CPU, we can share the CPU time among many processes to make it appear as if we are running them simultaneously. However, if we are running 4 programs on this single CPU, then each process, promised exclusive access, is only able to run instructions 1/4 of the time. Thus, one might reason that from the process's perspective, the CPU capable of running 4 billion instructions per second is only running 1 billion instructions per second. I.e., it would appear as if we had really slow hardware. However, this isn't necessarily the case.
@@ -20,7 +20,7 @@ As an analogy, consider juggling. We are only able to juggle because most of the
 As an aside, let us take a moment to consider the difference between a *program* and a *process*. Simply put, a process is an instance of a program. As such, we can instantiate multiple instances of a program, with each instance (process) having their own data. For example, we can open two tabs in chrome that load different webpages because each tab has its own set of data.
 
 ### Life Cycle of a Process
-![](Assets/Process%20Lifecycle.png)
+![](Process%20Lifecycle.png)
 ### Primitive Batch System
 **(1)** When a process is created (by other processes such as the shell or by `exec()`), it is first put in the **ready** state/queue. At this stage, the process has everything it needs to run (it is **loaded**) except the actual CPU time.
 
@@ -65,7 +65,7 @@ Back to invoking the scheduler; To run the scheduler, we need to be in kernel mo
 
 This process model gives us a view at what is going on  inside the system. Some of the process run programs that carry out commands from a user; other processes are part of the system and handle tasks such as carrying out requests for file services or managing the details of running a disk or tape drive. 
 
-We might say that the processes are structured into two *layers*. The lowest layer of the process-structured operating system handles interrupts and scheduling. In fact, the details of starting and stopping processes are abstracted away in the *scheduler*. The rest of the operating system is structured in a process form; these sequential processes lie above the scheduler. ![](Assets/two-layer-process.png)
+We might say that the processes are structured into two *layers*. The lowest layer of the process-structured operating system handles interrupts and scheduling. In fact, the details of starting and stopping processes are abstracted away in the *scheduler*. The rest of the operating system is structured in a process form; these sequential processes lie above the scheduler. ![](two-layer-process.png)
 ## Process Table
 To implement the process model, the operating system must maintain some sort of data structure which contain some information about each process. This data structure is called a **process table** (in Linux, it is actually a linked list) and in it each process has a process table entry (also called **process control blocks**). 
 
@@ -82,7 +82,7 @@ Note that how the process table entry is exactly laid out is an implementation d
 
 This definition is very similar to the definition of a process. In fact, in a traditional operating system, each process has an address space and a single thread of control.
 
-Suppose we have 3 independent tasks to run (independent as in they are able to be run concurrently).![](Assets/threads-and-processes.png)
+Suppose we have 3 independent tasks to run (independent as in they are able to be run concurrently).![](threads-and-processes.png)
 We could launch 3 processes (left), resulting in 3 streams of instructions. Here, each process has a single **main thread** (the thread which runs `main()`). Since each set of processes gets a unique address space, we are left with 3 sets of address spaces to manage. But how can each process communicate with one another?
 1. One approach might be to have all the process read and write to a same file.
 2. Another approach might be to use a socket and set up a network connection between each process
@@ -122,7 +122,7 @@ Let's look at another example. This time, consider a web server. A web server wa
 An interesting detail about HTTP is that it is a statless protocol. Every time, you talk to it, it *forgets* who you are and re-fetches the data. (This is why we have *cookies* and *session ID*. They compensate for HTTP being stateless and allows the web server to know who you are.)
 
 This is fine because generally every single request to a web server is entirely independent. It also gives use the benefit of allowing us to complete request non-sequentially (since the current request doesn't depend on previous requests). I.e., we can parallelize request handling.
-![](Assets/webserver-threads.png)
+![](webserver-threads.png)
 So should we implement the task handlers as threads? or processes? In fact, both are valid options, and modern web servers use a combination of processes and threads for workers. So let's compare the pros and cons of each approach.
 
 First, let's consider *security*. If we want to protect a worker from one another, we would want to use processes, since the resources are partitioned by the OS in a notion of exclusive access. This could be particularly useful if there is an exploitable vulnerability, such as injecting malicious code. If a thread is infected, it can impact other threads; however, if a process is infected, it can't affect any other processes.
@@ -135,7 +135,7 @@ Note that, however, caching isn't typically implemented at this level. A common 
 
 ### Implementing threads 
 #### User Threads vs Kernel Threads
-![](Assets/thread-implementation.png)
+![](thread-implementation.png)
 For a modern operating system (one which can manage resources through preemption), there are two main approaches to implementing threads: **User Threads** and **Kernel Threads**.
 
 In a user thread approach, the thread state resides within the user space, and each process manages its own threads at the user level (typically by linking against a library). Notice that since all the thread handling is done within the process, the OS does not know the existence of any threads in this approach. In kernel threading, however, the thread state lie inside the kernel space, which notifies the existence of threads to the operating system. Hence, all the threads are managed at the OS level.
