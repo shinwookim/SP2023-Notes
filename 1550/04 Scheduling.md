@@ -124,17 +124,13 @@ However, for average turnaround time, we see an improvement (since we reduce the
 ## Interactive Scheduling
 > Impatient users waiting!
 
-In a system in which users inteact
-maybe the quantiATIVE is not critical!
+In a system in which users interact, we need to add preemption and interleaving to provide the notion of parellelism, as we described before. In this system, the quantitative metrics may be less critical than, *say*, **responsiveness**. However, responsiveness is relative to the user and can't be measured making it a bad metric. Yet, we can still measure response time!
 
+Suppose we have a system in which the user clicks on the screen and a dialogue box pops up. We can measure the response time to be the time taken from the action (click) to the response (dialogue box).
 
-*responsiveness* can't be measured -- > but we can measure response time!
+### Round Robin Scheduling
+The first preemptive scheduling algorithm we will look at is the **round robin scheduling** scheme. In this scheme, we give each ready process some unit of CPU time. (Note the processes don't run to completion as they did in batch systems. Instead, they are preempted, and other processes are inteweaved.) This unit time is called the **quantum** and is the maximum time we are willing to let programs. That is, a process runs for the *quantum*, before  a preemption occurs.
 
-Time from action to response (click to dialogue box)
---> let's add preemption, interleaving
-
-Round Robin Scheduling
-let's give each ready process some unit time! (not running to completion)
 
 How much time? the *quantum*... amount of time we are willing to let programs run (at most!)
 --> how long do we run a process before preemption
