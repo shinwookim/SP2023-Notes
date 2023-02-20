@@ -69,9 +69,10 @@ To evaluate the various scheduling algorithms, we will focus on 5 criterias (2 q
 The first non-preemptive batch scheduling algorithm we will look at is **first come, first served**. As the name suggests, processes are run based on the order the tasks were submitted, with each process running after the previous process terminates.
 ![](Assets/FirstComeFirstServed.png)
 #### Analysis
-1. Throughput
+Let us conduct an analysis of the the *first come, first served* scheduling scheme using the metrics we described previously:
+1. **Throughput**
 $$\frac{\text{number of jobs}}{\text{total time}}=\frac{4}{16}=0.25 \text{ job/unit time}$$
-2. Average Turnaround Time
+2. **Average Turnaround Time**
 
 $$
 \begin{align*} 
@@ -83,7 +84,7 @@ D: (4+3+6+3) - 0 = 16\\
 \implies \frac{\sum \text{turnaround}}{\text{number of jobs}}=\frac{40}{4}=10
 \end{align*}
 $$
-3. Asymptotic Behavior: Queue operations (enqueue, dequeue) is a constant time operation ($O(1)$).
+3. **Asymptotic Behavior**: Queue operations (enqueue, dequeue) is a constant time operation ($O(1)$).
 4. Implementation Difficulty: Queue implementation is relatively easy
 5. Fairness
 	1. Likely fair - Assuming all jobs are comparable, it is fair. (The process that was submitted first, got first service)
