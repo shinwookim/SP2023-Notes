@@ -84,14 +84,13 @@ D: (4+3+6+3) - 0 = 16\\
 \implies \frac{\sum \text{turnaround}}{\text{number of jobs}}=\frac{40}{4}=10
 \end{align*}
 $$
-3. **Asymptotic Behavior**: Queue operations (enqueue, dequeue) is a constant time operation ($O(1)$).
-4. Implementation Difficulty: Queue implementation is relatively easy
-5. Fairness
-	1. Likely fair - Assuming all jobs are comparable, it is fair. (The process that was submitted first, got first service)
-	2. But also unfair - Tasks B and D have comparable run-times, but Task B ran much before task D (especially in terms of turnaround time).
----
+3. **Asymptotic Behavior**: Queue operations (enqueue, dequeue) can be implemented as a constant time operation ($O(1)$).
+4. **Implementation Difficulty**: Queue implementation is ***relatively easy***
+5. **Fairness**: If we consider all jobs to be comparable to each other, the scheme appears to be ***fair***. The tasks that got submitted first, got serviced first. However, if we consider just tasks B and D (which both have comparable runtimes), it *may* be argued that this scheme is slightly unfair. Even though processes B and D had a similar run-time, Task B ran much before task D (especially considering turnaround time).
 
-Out of Infinite possible scheduling algorithms, there are $4!$ possible non-preemptive batch schedules (for these 4 jobs).
+Without any baseline to compare to, the quantitative measurements we calculated are meaningless. In fact, if we consider all the possible scheduling algorithms (infinite number), there are only $4!$ possible non-preemptive batch schedules (assuming we have 4 jobs as depicted above). In all of these cases, the total run-time is always the same. Hence, without preemption, throughput is always 0.25 and hence it's an uninteresting metric.
+
+
 - Throughput is always the same (0.25)...without preemption total time is always the same
 - Because we oversimplified the overhead
 	- Without preemption, overhead only occurs at process termination
