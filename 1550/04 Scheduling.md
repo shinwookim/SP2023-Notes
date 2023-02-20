@@ -141,20 +141,4 @@ Thus, to increase response time, we can either reduce the number of ready jobs, 
 But how short can we make the quantum? Suppose the quantum was equal to the unit time it takes to perform a context switch (say we call this 1 time unit).
 | CS  | A   | CS  |B|
 | --- | --- | --- |---|
-But this would mean that out of every 2 time unit, only 1 unit is spent doing useful work.
-
-But how short?
- Suppose
-Quantum = Context switch = 1 unit.
-
-
-At most, 1 out of 2 time units, is spent doing useful work
-
-Useful work is only 50% of total time.
-
-Our 4ghz cpu is now 2 ghz
-
-
-How do we make sure useful work is maximized?
-
-Make the context switch is relatively small...i.e., incentive to make Q as long as possib le!
+But this would mean that out of every 2 time unit, only 1 unit is spent doing useful work. Hence our CPU is only as 50% efficient as advertised (Our 4GHz CPU is running at an effective speed of 2GHz). To maximize, the time spent doing useful work, we need to reduce the number of context switches. That is, we need to increase the time given to doing process work. Hence, we now have a incentive to make the quantum as long as possible. Thus, choosing an effective quantum is a crucial task of balacing these factors.
