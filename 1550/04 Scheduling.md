@@ -113,25 +113,7 @@ C: (3+3+4+6) - 0 = 16\\
 $$
 However, for average turnaround time, we see an improvement (since we reduce the average wait time for processes). In fact, it's provable that this scheme produces optimal average turnaround time (regardless of the inputs) — see CS 1501 for proof.
 
-3. **Asymptotic Behavior:** Algorithmically,
-
-Algorithmic view:
- 
-
-Partial ordering vs. Total order <-- we need this
---> let's sort them
-... but when?
-Insertion (O(n))
-
-To run the process O(1)
-
-
-Can we do better ? n logn
-
-Priority queue ←- Min Heap
-
-n log n!!!
-<-- Sorting problem
+3. **Asymptotic Behavior:** Algorithmically, we can attempt a *total ordering* scheme. This is a simple sorting problem and can be solved with a $O(n)$ insertion and $O(1)$ removal from the data structure. However, by using *partial ordering*, we can actually improve the performance. One such partial-ordering implementation may be the data structure: priority queue (via heap). Recall that  heap operations can be done in $O(\log n)$ time (both insertion and removal). Hence we can achieve logorithmic run-time, asymptotically.
 
 But how do we know how long the program will take?
 --> No... OS is just another program...*like the halting problem (halts/doesn't halt)* but harder (now we have to figure out how long it takes to run)
