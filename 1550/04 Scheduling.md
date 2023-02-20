@@ -117,40 +117,14 @@ However, for average turnaround time, we see an improvement (since we reduce the
 	- However, there is a catch: How can we figure out how long each process will take? The *halting problem* tells us that determining infinite loops is impossible. Hence, determining a run-time without running is al impossible (as it's a harder problem than the halting problem; we must determine not only halting but also the run-time length)
 	- We can attempt a static analysis, but this approach won't be fruitful. Since some instructions are longer (such as `syscall`s), simply counting the number of instructions does not provide an accurate description of run-time. Furthermore the limitations of the halting problem will still apply (if there are any infinite loops).
 	- Hence, computing run-time is impossible; but what if we look at past behavior? That is, we can measure the time it took for a program to execute and store it somewhere to use in scheduling later on. This is especially useful in a batch system, since run times are ususally pretty stable (due to the lack of user input).
-	- But what about programs that have never been run before? Practically, we can have the programmer (or compiler) inject the expected run
+	- But what about programs that have never been run before? Practically, we can have the programmer (or compiler) inject the expected run time into the code. Yet, programmers can lie; in fact, they are incentivized to lie since this will make their process run before others. Hence, to counteract this, we simply kill the process after the given expected run-time passes. Now, programmers are left with an incentive to slightly overestimate (run-time), since they don't want their processes killed.
+4. **Implementation Difficulty**: Although implementing a heap is slightly more difficult than FCFS, it's still pretty straightforward. 
+5. **Fairness**: Consider all jobs to be comparable. In the SJF scheme, as short jobs arrive, they are pushed to the front of the queue. This means that the longer jobs might never run. In FCFS, with infinite processes, all jobs will eventually run (in infinite time). However, in the SJF scheme, with infinite processes, the process at the end of the queue (long processes) will never run. Hence, no matter what we define as a comparable job, we have **starvation** which is never fair!
 
-
-
-...possible static analysis? No because some instructions are longer (and might be inf loops)
-
-
-Hence, Impossible!
-
-But practically, could we inject the *expected run time into the code*? Yes, but people could lie. (incentive to lie)
---> How do we prevent...we could killl the process after the input run time
---> Now incentive to slightly overestimate
-
-
-We could look at past behavior...how long did the program take to run the last time it ran?  (we don't know the future, but we can predict it with data from the past)
-...in a batch system, run time is pretty stable.
-
-
-
-4. Implementation Difficulty: Still do-able
-
-
-
-5. Fairness
-New short jobs can arrive...then longer jobs might never run!
-In FCFS, the jobs might still take infinite time, but they all run!
-Starvation...is not fair!
-
-
-
-Interactive Scheduling
+## Interactive Scheduling
 > Impatient users waiting!
 
-
+In a system in which users inteact
 maybe the quantiATIVE is not critical!
 
 
