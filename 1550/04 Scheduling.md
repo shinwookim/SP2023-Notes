@@ -139,6 +139,11 @@ Back to our example: What if we are preempted just after a click? We need to wai
 Thus, to increase response time, we can either reduce the number of ready jobs, or reduce the quantum. However, the system can't (or shouldn't) reduce the number of jobs (as that would be killing other processes). Hence, there is an incentive to reduce the quantum.
 
 But how short can we make the quantum? Suppose the quantum was equal to the unit time it takes to perform a context switch (say we call this 1 time unit).
+
 | CS  | A   | CS  |B|
 | --- | --- | --- |---|
+
 But this would mean that out of every 2 time unit, only 1 unit is spent doing useful work. Hence our CPU is only as 50% efficient as advertised (Our 4GHz CPU is running at an effective speed of 2GHz). To maximize, the time spent doing useful work, we need to reduce the number of context switches. That is, we need to increase the time given to doing process work. Hence, we now have a incentive to make the quantum as long as possible. Thus, choosing an effective quantum is a crucial task of balacing these factors.
+
+### Priority Scheduling
+![](Priority-Scheduling.png)
