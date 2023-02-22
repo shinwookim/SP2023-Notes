@@ -119,7 +119,7 @@ Back to the philosophical question...are the tasks in competition for resources?
 #### Web Server
 Let's look at another example. This time, consider a web server. A web server waits for a network connection from clients (web browser). When a client connects to it, the server software handles the request via HTTP.
 
-An interesting detail about HTTP is that it is a statless protocol. Every time, you talk to it, it *forgets* who you are and re-fetches the data. (This is why we have *cookies* and *session ID*. They compensate for HTTP being stateless and allows the web server to know who you are.)
+An interesting detail about HTTP is that it is a stateless protocol. Every time, you talk to it, it *forgets* who you are and re-fetches the data. (This is why we have *cookies* and *session ID*. They compensate for HTTP being stateless and allows the web server to know who you are.)
 
 This is fine because generally every single request to a web server is entirely independent. It also gives use the benefit of allowing us to complete request non-sequentially (since the current request doesn't depend on previous requests). I.e., we can parallelize request handling.
 ![](webserver-threads.png)
