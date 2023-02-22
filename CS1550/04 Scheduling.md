@@ -143,25 +143,17 @@ But how short can we make the quantum? Suppose the quantum was equal to the unit
 | CS  | A   | CS  |B|
 | --- | --- | --- |---|
 
-But this would mean that out of every 2 time unit, only 1 unit is spent doing useful work. Hence, our CPU is only as 50% efficient as advertised (Our 4GHz CPU is running at an effective speed of 2GHz). To maximize, the time spent doing useful work, we need to reduce the number of context switches. That is, we need to increase the time given to doing process work. Hence, we now have an incentive to make the quantum as long as possible. Thus, choosing an effective quantum is a crucial task of balancing these impulses.
+But this would mean that out of every 2 time unit, only 1 unit is spent doing useful work. Hence, our CPU is only as 50% efficient as advertised (Our 4GHz CPU is running at an effective speed of 2GHz). To maximize, the time spent doing useful work, we need to reduce the number of context switches. That is, we need to increase the time given to doing process work. Hence, we now have an incentive to make the quantum as long as possible. 
 
-How do we know our choice for a quantum is effective?
-- **Benchmark** with some program
 
-In system, when we need to select a particular value for a parameter, we must benchmark them
-- Page size
-- No analytic solution, but determine empirically!
-- Choose and test
-
-Generally (20 - 100 ms) is reasonable for a quantum time.
+Thus, choosing an effective quantum is a crucial task of balancing these impulses. But how do we know our choice for a quantum is effective? Often in systems, when we need to select a particular value for a parameter (such as page size or quantum), determining that value analytically is not viable (due to trade-offs). Instead, we need to **benchmark** with some program (that mimics standard usage) and evaluate them empirically. Generally (20 - 100 ms) is reasonable for a quantum time.
 
 ### Priority Scheduling
+In an interactive system, however, some processes are more important than others. For instance, a user may wish to give more resources to a program in the foreground rather than one in the background. Hence, we need a way to express some notion of priority. To allow for us to use this information in scheduling, it is best to inject the notion of priority and quantify it.
 
-Some processes are more important than other → express this in some notion of priority
+Some modern systems, accomplishes this *under the hood*. They give priority to the active process (one that the user is actively using) and reduces the processes in the background (one that is minimized to the task bar). In some cases, a process may depend on another process (parent-child relationship), in which case the OS can assign priority accordingly. However, many systems rely on the users to explicitly provide the priority. In a Unix-based system, a user can select a priority of a process with an integer value between -20 and 20 (with normal processes being assigned priority 16).
 
-How can we express priority and use that information in scheduling?
 
-But how do we determine the priority?
 
 - For instance, program in foreground vs. background
 - Process that depends on other process
